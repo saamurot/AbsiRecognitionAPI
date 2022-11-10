@@ -1,0 +1,72 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbsiRecognitionAPI.API", "AbsiRecognitionAPI.API\AbsiRecognitionAPI.API.csproj", "{AC930403-058C-4B55-9C94-0CD1FB079E58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbsiRecognitionAPI.Business", "AbsiRecognitionAPI.Business\AbsiRecognitionAPI.Business.csproj", "{06A924D1-F279-4ADF-A975-6242AE09B6B4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AbsiRecognitionAPI.Data", "AbsiRecognitionAPI.Data\AbsiRecognitionAPI.Data.csproj", "{30F017A5-4B81-4221-8878-20B829C1CD36}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{EC0358C3-D4A0-4995-9888-0A2B34091D02}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "common", "common\common.csproj", "{AF1A3CB3-2987-435B-9CB1-0E72D0B6590A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "AbsiRecognitionAPI", "AbsiRecognitionAPI", "{39D11521-4EDD-4443-9DB2-16DE3D1FD190}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AC930403-058C-4B55-9C94-0CD1FB079E58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC930403-058C-4B55-9C94-0CD1FB079E58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC930403-058C-4B55-9C94-0CD1FB079E58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC930403-058C-4B55-9C94-0CD1FB079E58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06A924D1-F279-4ADF-A975-6242AE09B6B4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06A924D1-F279-4ADF-A975-6242AE09B6B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06A924D1-F279-4ADF-A975-6242AE09B6B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06A924D1-F279-4ADF-A975-6242AE09B6B4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30F017A5-4B81-4221-8878-20B829C1CD36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30F017A5-4B81-4221-8878-20B829C1CD36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30F017A5-4B81-4221-8878-20B829C1CD36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30F017A5-4B81-4221-8878-20B829C1CD36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF1A3CB3-2987-435B-9CB1-0E72D0B6590A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF1A3CB3-2987-435B-9CB1-0E72D0B6590A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF1A3CB3-2987-435B-9CB1-0E72D0B6590A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF1A3CB3-2987-435B-9CB1-0E72D0B6590A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AC930403-058C-4B55-9C94-0CD1FB079E58} = {39D11521-4EDD-4443-9DB2-16DE3D1FD190}
+		{06A924D1-F279-4ADF-A975-6242AE09B6B4} = {39D11521-4EDD-4443-9DB2-16DE3D1FD190}
+		{30F017A5-4B81-4221-8878-20B829C1CD36} = {39D11521-4EDD-4443-9DB2-16DE3D1FD190}
+		{AF1A3CB3-2987-435B-9CB1-0E72D0B6590A} = {EC0358C3-D4A0-4995-9888-0A2B34091D02}
+	EndGlobalSection
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 5
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://entcube.visualstudio.com/
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = AbsiRecognitionAPI.Data\\AbsiRecognitionAPI.Data.csproj
+		SccProjectTopLevelParentUniqueName1 = AbsiRecognitionAPI.API.sln
+		SccProjectName1 = AbsiRecognitionAPI.Data
+		SccLocalPath1 = AbsiRecognitionAPI.Data
+		SccProjectUniqueName2 = AbsiRecognitionAPI.Business\\AbsiRecognitionAPI.Business.csproj
+		SccProjectTopLevelParentUniqueName2 = AbsiRecognitionAPI.API.sln
+		SccProjectName2 = AbsiRecognitionAPI.Business
+		SccLocalPath2 = AbsiRecognitionAPI.Business
+		SccProjectUniqueName3 = AbsiRecognitionAPI.API\\AbsiRecognitionAPI.API.csproj
+		SccProjectTopLevelParentUniqueName3 = AbsiRecognitionAPI.API.sln
+		SccProjectName3 = AbsiRecognitionAPI.API
+		SccLocalPath3 = AbsiRecognitionAPI.API
+		SccProjectUniqueName4 = common\\common.csproj
+		SccProjectTopLevelParentUniqueName4 = AbsiRecognitionAPI.API.sln
+		SccProjectName4 = common
+		SccLocalPath4 = common
+	EndGlobalSection
+EndGlobal
