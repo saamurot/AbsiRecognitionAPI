@@ -1,7 +1,9 @@
 ﻿using AbsiRecognitionAPI.Business.Entities;
 using AbsiRecognitionAPI.Business.Interface;
 using log4net;
+using StaticWebAPI.Business.Entities;
 using System;
+using System.Data;
 using System.IO;
 using System.Net;
 using System.Net.Http;
@@ -155,11 +157,366 @@ namespace AbsiRecognitionAPI.API.Controllers
             {
                 if (log.IsErrorEnabled)
                 {
-                    log.Error(" Error in CheckStaffLogin in Master Controller" + ex);
+                    log.Error(" Error in CheckStaffLogin in Recognition Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
             return response;
         }
+        [HttpGet]
+        [Route("Recognition/GetManagerPointsMaster")]
+        public HttpResponseMessage GetManagerPointsMaster()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetManagerPointsMaster();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetManagerPointsMaster in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/GetManagerPointsTransactions")]
+        public HttpResponseMessage GetManagerPointsTransactions()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetManagerPointsTransactions();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetManagerPointsTransactions in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/InsertManagerPointsMaster")]
+        public HttpResponseMessage InsertManagerPointsMaster(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+
+
+                Int64 result = IRecognitionManager.InsertManagerPointsMaster(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+
+
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertManagerPointsMaster", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertManagerPointsMaster");
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/InsertManagerPointsTransactions")]
+        public HttpResponseMessage InsertManagerPointsTransactions(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+
+
+                Int64 result = IRecognitionManager.InsertManagerPointsTransactions(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+
+
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertManagerPointsTransactions", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertManagerPointsTransactions");
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/UpdateManagerPointsMaster")]
+        public HttpResponseMessage UpdateCertificationChapterMaster(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateManagerPointsMaster(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateManagerPointsMaster in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpPost]
+        [Route("Recognition/UpdateManagerPointsTransactions")]
+        public HttpResponseMessage UpdateManagerPointsTransactions(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateManagerPointsTransactions(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateManagerPointsTransactions in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetManagerPointsMasterByID")]
+        public HttpResponseMessage GetManagerPointsMasterByID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetManagerPointsMasterByID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetManagerPointsMasterByID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/GetManagerPointsTransactionsByID")]
+        public HttpResponseMessage GetManagerPointsTransactionsByID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetManagerPointsTransactionsByID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetManagerPointsTransactionsByID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/DeleteManagerPointsMaster")]
+        public HttpResponseMessage DeleteManagerPointsMaster(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new { ID = ID };
+                Int64 Result = IRecognitionManager.DeleteManagerPointsMaster(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, Result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in Users/DeleteManagerPointsMaster :" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + " Users/DeleteManagerPointsMaster");
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/DeleteManagerPointsTransactions")]
+        public HttpResponseMessage DeleteManagerPointsTransactions(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new { ID = ID };
+                Int64 Result = IRecognitionManager.DeleteManagerPointsTransactions(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, Result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in Users/DeleteManagerPointsTransactions :" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + " Users/DeleteManagerPointsTransactions");
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetManagerPointsRequests")]
+        public HttpResponseMessage GetManagerPointsRequests()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetManagerPointsRequests();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetManagerPointsRequests in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetStatusMaster")]
+        public HttpResponseMessage GetStatusMaster()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetStatusMaster();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetStatusMaster in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetManagerPointsRequestsByID")]
+        public HttpResponseMessage GetManagerPointsRequestsByID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetManagerPointsRequestsByID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetManagerPointsRequestsByID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpPost]
+        [Route("Recognition/InsertManagerPointsRequests")]
+        public HttpResponseMessage InsertManagerPointsRequests(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+
+
+                Int64 result = IRecognitionManager.InsertManagerPointsRequests(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+
+
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertManagerPointsRequests", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertManagerPointsRequests");
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/UpdateManagerPointsRequests")]
+        public HttpResponseMessage UpdateManagerPointsRequests(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateManagerPointsRequests(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateManagerPointsRequests in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/DeleteManagerPointsRequests")]
+        public HttpResponseMessage DeleteManagerPointsRequests(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new { ID = ID };
+                Int64 Result = IRecognitionManager.DeleteManagerPointsRequests(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, Result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in Users/DeleteManagerPointsRequests :" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + " Users/DeleteManagerPointsRequests");
+            }
+            return response;
+        }
+
     }
 }
