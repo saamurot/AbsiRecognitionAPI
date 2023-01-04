@@ -330,29 +330,30 @@ namespace AbsiRecognitionAPI.Business.Managers
                     Description = RecognitionOneEntity.Description,
                     Status = RecognitionOneEntity.Status,
 
-                };
-                return IRecognitionRepository.UpdateCategoryMaster(filter);
+<<<<<<< HEAD
+        public IEnumerable<dynamic> GetCategoryMaster()
+        {
+            try
+            {
+                return IRecognitionRepository.GetCategoryMaster<dynamic>();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public Int64 UpdateCategoryWiseCards(RecognitionOneEntity RecognitionOneEntity)
+        public IEnumerable<dynamic> GetCategoryWiseCards()
         {
             try
             {
-                var filter = new
-                {
-
-                    ID = RecognitionOneEntity.ID,
-                    CategoryID = RecognitionOneEntity.CategoryID,
-                    CardName = RecognitionOneEntity.CardName,
-                    Description = RecognitionOneEntity.Description,
-                    Status = RecognitionOneEntity.Status,
-
-                };
-                return IRecognitionRepository.UpdateCategoryWiseCards(filter);
+                return IRecognitionRepository.GetCategoryWiseCards<dynamic>();
+=======
+        public IEnumerable<dynamic> GetStaffDetailsByID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetStaffDetailsByID<dynamic>(filter);
+>>>>>>> 93ec59546a2d254bcc9cab1a39230a7bcc899f10
             }
             catch (Exception ex)
             {

@@ -17,7 +17,8 @@ namespace AbsiRecognitionAPI.Data.Interface
         IEnumerable<T> GetStatusMaster<T>();
         IEnumerable<T> GetManagerPointsRequests<T>();
         IEnumerable<T> GetManagerPointsRequestsByID<T>(object filter);
-        IEnumerable<T> GetCategoryWiseCardsByID<T>(object filter);
+        IEnumerable<T> GetCategoryMaster<T>();
+        IEnumerable<T> GetCategoryWiseCards<T>();
 
 
         Int64 InsertManagerPointsMaster(object filter);
