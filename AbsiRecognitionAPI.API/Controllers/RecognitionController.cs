@@ -623,26 +623,6 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
-        [HttpGet]
-        [Route("Recognition/DeleteCategoryWiseCards")]
-        public HttpResponseMessage DeleteCategoryWiseCards(Int64 ID)
-        {
-            HttpResponseMessage response;
-            try
-            {
-                var filter = new { ID = ID };
-                Int64 Result = IRecognitionManager.DeleteCategoryWiseCards(filter);
-                response = Request.CreateResponse(HttpStatusCode.OK, Result);
-            }
-            catch (Exception ex)
-            {
-                if (log.IsErrorEnabled)
-                {
-                    log.Error("Error in Users/DeleteCategoryWiseCards :" + ex);
-                }
-                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + " Users/DeleteCategoryWiseCards");
-            }
-            return response;
-        }
+  
     }
 }
