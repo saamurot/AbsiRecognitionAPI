@@ -21,6 +21,11 @@ namespace AbsiRecognitionAPI.Data.Interface
         Int64 InsertEmployee(object filter);
         Int64 InsertEmployeeBankDetails(object filter);
 
+
+
+
+
+
         //update Details
         Int64 UpdateDepartmentMaster(object filter);
         Int64 UpdateDesignationMaster(object filter);
