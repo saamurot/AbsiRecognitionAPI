@@ -273,5 +273,95 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+        public IEnumerable<dynamic> GetCategoryWiseCardsByID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetCategoryWiseCardsByID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 InsertCategoryMaster(RecognitionOneEntity RecognitionOneEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    Category = RecognitionOneEntity.Category,
+                    Description = RecognitionOneEntity.Description,
+                    Status = RecognitionOneEntity.Status,
+
+                };
+                return IRecognitionRepository.InsertCategoryMaster(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 InsertCategoryWiseCards(RecognitionOneEntity RecognitionOneEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    CategoryID = RecognitionOneEntity.CategoryID,
+                    CardName = RecognitionOneEntity.CardName,
+                    Description = RecognitionOneEntity.Description,
+                    Status = RecognitionOneEntity.Status,
+
+                };
+                return IRecognitionRepository.InsertCategoryWiseCards(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 UpdateCategoryMaster(RecognitionOneEntity RecognitionOneEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+
+                    ID = RecognitionOneEntity.ID,
+                    Category = RecognitionOneEntity.Category,
+                    Description = RecognitionOneEntity.Description,
+                    Status = RecognitionOneEntity.Status,
+
+                };
+                return IRecognitionRepository.UpdateCategoryMaster(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 UpdateCategoryWiseCards(RecognitionOneEntity RecognitionOneEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+
+                    ID = RecognitionOneEntity.ID,
+                    CategoryID = RecognitionOneEntity.CategoryID,
+                    CardName = RecognitionOneEntity.CardName,
+                    Description = RecognitionOneEntity.Description,
+                    Status = RecognitionOneEntity.Status,
+
+                };
+                return IRecognitionRepository.UpdateCategoryWiseCards(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }
