@@ -273,6 +273,7 @@ namespace AbsiRecognitionAPI.Business.Managers
             }
         }
 
+<<<<<<< HEAD
         public IEnumerable<dynamic> GetCategoryMaster()
         {
             try
@@ -289,6 +290,13 @@ namespace AbsiRecognitionAPI.Business.Managers
             try
             {
                 return IRecognitionRepository.GetCategoryWiseCards<dynamic>();
+=======
+        public IEnumerable<dynamic> GetStaffDetailsByID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetStaffDetailsByID<dynamic>(filter);
+>>>>>>> 93ec59546a2d254bcc9cab1a39230a7bcc899f10
             }
             catch (Exception ex)
             {

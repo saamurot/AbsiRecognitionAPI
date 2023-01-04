@@ -25,6 +25,7 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> GetCategoryWiseCards();
 
 
+
         Int64 InsertManagerPointsMaster(RecognitionOneEntity RecognitionOneEntity);
         Int64 InsertManagerPointsTransactions(RecognitionOneEntity RecognitionOneEntity);
         Int64 InsertManagerPointsRequests(RecognitionOneEntity RecognitionOneEntity);

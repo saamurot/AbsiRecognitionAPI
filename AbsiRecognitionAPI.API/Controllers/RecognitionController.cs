@@ -518,19 +518,33 @@ namespace AbsiRecognitionAPI.API.Controllers
         }
 
         [HttpGet]
+<<<<<<< HEAD
         [Route("Recognition/GetCategoryMaster")]
         public HttpResponseMessage GetCategoryMaster()
+=======
+        [Route("Recognition/GetStaffDetailsByID")]
+        public HttpResponseMessage GetStaffDetailsByID(Int64 ID)
+>>>>>>> 93ec59546a2d254bcc9cab1a39230a7bcc899f10
         {
             HttpResponseMessage response;
             try
             {
+<<<<<<< HEAD
                 object res = IRecognitionManager.GetCategoryMaster();
+=======
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetStaffDetailsByID(j);
+>>>>>>> 93ec59546a2d254bcc9cab1a39230a7bcc899f10
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
             }
             catch (Exception ex)
             {
                 if (log.IsErrorEnabled)
                 {
+<<<<<<< HEAD
                     log.Error(" Error in GetCategoryMaster in Recognition Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
@@ -552,10 +566,17 @@ namespace AbsiRecognitionAPI.API.Controllers
                 if (log.IsErrorEnabled)
                 {
                     log.Error(" Error in GetCategoryWiseCards in Recognition Controller" + ex);
+=======
+                    log.Error(" Error in GetStaffDetailsByID in Master Controller" + ex);
+>>>>>>> 93ec59546a2d254bcc9cab1a39230a7bcc899f10
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
             return response;
         }
+<<<<<<< HEAD
+=======
+
+>>>>>>> 93ec59546a2d254bcc9cab1a39230a7bcc899f10
     }
 }
