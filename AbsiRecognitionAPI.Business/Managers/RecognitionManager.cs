@@ -326,9 +326,7 @@ namespace AbsiRecognitionAPI.Business.Managers
             try
             {
                 var filter = new
-                {
-
-                    ID = RecognitionOneEntity.ID,
+                { ID = RecognitionOneEntity.ID,
                     Category = RecognitionOneEntity.Category,
                     Description = RecognitionOneEntity.Description,
                     Status = RecognitionOneEntity.Status,
@@ -362,6 +360,6 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
-
+      
     }
 }

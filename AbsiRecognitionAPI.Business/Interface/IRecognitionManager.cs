@@ -47,6 +47,7 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 DeleteManagerPointsMaster(object filter);
         Int64 DeleteManagerPointsTransactions(object filter);
         Int64 DeleteManagerPointsRequests(object filter);
+        Int64 DeleteCategoryWiseCards(object filter);
 
     }
 }

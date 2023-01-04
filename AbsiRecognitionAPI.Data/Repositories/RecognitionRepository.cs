@@ -273,7 +273,17 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-
+        public int DeleteCategoryWiseCards(object filter)
+        {
+            try
+            {
+                return db.Execute("[SProc_DeleteCategoryWiseCards]", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }
