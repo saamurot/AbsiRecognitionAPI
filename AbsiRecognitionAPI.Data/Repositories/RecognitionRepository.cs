@@ -22,6 +22,7 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+
         public IEnumerable<T> CheckStaffLogin<T>(object filter)
         {
             try
@@ -126,7 +127,7 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-        public int DeleteManagerPointsMaster(object filter)
+        public Int64 DeleteManagerPointsMaster(object filter)
         {
             try
             {
@@ -137,7 +138,7 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-        public int DeleteManagerPointsTransactions(object filter)
+        public Int64 DeleteManagerPointsTransactions(object filter)
         {
             try
             {
@@ -170,7 +171,7 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-    
+
         public IEnumerable<T> GetManagerPointsRequestsByID<T>(object filter)
         {
             try
@@ -205,7 +206,7 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-        public int DeleteManagerPointsRequests(object filter)
+        public Int64 DeleteManagerPointsRequests(object filter)
         {
             try
             {
@@ -260,28 +261,6 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-        public IEnumerable<T> GetCategoryMaster<T>()
-        {
-            try
-            {
-                return db.Query<T>("SProc_GetCategoryMaster", commandType: CommandType.StoredProcedure);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public IEnumerable<T> GetCategoryWiseCards<T>()
-        {
-            try
-            {
-                return db.Query<T>("SProc_GetCategoryWiseCards", commandType: CommandType.StoredProcedure);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
 
         public Int64 UpdateCategoryWiseCards(object filter)
         {
@@ -294,7 +273,131 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-  
+
+        public IEnumerable<T> GetSuperAdminPointsTransactions<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetSuperAdminPointsTransactions", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public IEnumerable<T> GetSuperAdminPointsTransactionsByID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetSuperAdminPointsTransactionsByID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public Int64 InsertSuperAdminPointsTransactions(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertSuperAdminPointsTransactions]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 UpdateSuperAdminPointsTransactions(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("SProc_UpdateSuperAdminPointsTransactions", filter, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 DeleteSuperAdminPointsTransactions(object filter)
+        {
+            try
+            {
+                return db.Execute("[SProc_DeleteSuperAdminPointsTransactions]", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public IEnumerable<T> GetSuperAdminPointsMaster<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetSuperAdminPointsMaster", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public IEnumerable<T> GetSuperAdminPointsMasterByID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetSuperAdminPointsMasterByID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public Int64 InsertSuperAdminPointsMaster(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertSuperAdminPointsMaster]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 UpdateSuperAdminPointsMaster(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("SProc_UpdateSuperAdminPointsMaster", filter, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 DeleteSuperAdminPointsMaster(object filter)
+        {
+            try
+            {
+                return db.Execute("[SProc_DeleteSuperAdminPointsMaster]", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

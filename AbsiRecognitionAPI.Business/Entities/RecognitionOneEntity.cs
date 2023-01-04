@@ -27,5 +27,8 @@ namespace AbsiRecognitionAPI.Business.Entities
         public string Category { get; set; }
         public Int64 CategoryID { get; set; }
         public string CardName { get; set; }
+
+        public Int64 SAPMID { get; set; }
+        public Int64 AvailablePoints { get; set; }
     }
 }

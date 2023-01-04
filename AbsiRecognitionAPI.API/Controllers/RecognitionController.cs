@@ -114,7 +114,6 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
-
         [HttpGet]
         [Route("Recognition/GetStaffDetails")]
         public HttpResponseMessage GetStaffDetails()
@@ -145,9 +144,9 @@ namespace AbsiRecognitionAPI.API.Controllers
             {
                 var filter = new
                 {
-                    EmailID= EmailID,
-                    Password= Password,
-                    LoginType= LoginType
+                    EmailID = EmailID,
+                    Password = Password,
+                    LoginType = LoginType
                 };
                 object res = IRecognitionManager.CheckStaffLogin(filter);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
@@ -457,8 +456,11 @@ namespace AbsiRecognitionAPI.API.Controllers
             HttpResponseMessage response;
             try
             {
+
+
                 Int64 result = IRecognitionManager.InsertManagerPointsRequests(RecognitionOneEntity);
                 response = Request.CreateResponse(HttpStatusCode.OK, result);
+
 
             }
             catch (Exception ex)
@@ -514,65 +516,344 @@ namespace AbsiRecognitionAPI.API.Controllers
             return response;
         }
         [HttpGet]
-<<<<<<< HEAD
-        [Route("Recognition/GetCategoryMaster")]
-        public HttpResponseMessage GetCategoryMaster()
-=======
-        [Route("Recognition/GetStaffDetailsByID")]
-        public HttpResponseMessage GetStaffDetailsByID(Int64 ID)
->>>>>>> 93ec59546a2d254bcc9cab1a39230a7bcc899f10
+        [Route("Recognition/GetCategoryWiseCardsByID")]
+        public HttpResponseMessage GetCategoryWiseCardsByID(Int64 ID)
         {
             HttpResponseMessage response;
             try
             {
-<<<<<<< HEAD
-                object res = IRecognitionManager.GetCategoryMaster();
-=======
                 var j = new
                 {
                     ID = ID
                 };
-                object res = IRecognitionManager.GetStaffDetailsByID(j);
->>>>>>> 93ec59546a2d254bcc9cab1a39230a7bcc899f10
+                object res = IRecognitionManager.GetCategoryWiseCardsByID(j);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
             }
             catch (Exception ex)
             {
                 if (log.IsErrorEnabled)
                 {
-<<<<<<< HEAD
-                    log.Error(" Error in GetCategoryMaster in Recognition Controller" + ex);
+                    log.Error(" Error in GetCategoryWiseCardsByID in Recognition Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
             return response;
         }
-        [HttpGet]
-        [Route("Recognition/GetCategoryWiseCards")]
-        public HttpResponseMessage GetCategoryWiseCards()
+
+        [HttpPost]
+        [Route("Recognition/InsertCategoryMaster")]
+        public HttpResponseMessage InsertCategoryMaster(RecognitionOneEntity RecognitionOneEntity)
         {
             HttpResponseMessage response;
             try
             {
-                object res = IRecognitionManager.GetCategoryWiseCards();
+                Int64 result = IRecognitionManager.InsertCategoryMaster(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertCategoryMaster", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertCategoryMaster");
+            }
+            return response;
+        }
+        [HttpPost]
+        [Route("Recognition/InsertCategoryWiseCards")]
+        public HttpResponseMessage InsertCategoryWiseCards(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                Int64 result = IRecognitionManager.InsertCategoryWiseCards(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertCategoryWiseCards", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertCategoryWiseCards");
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/UpdateCategoryMaster")]
+        public HttpResponseMessage UpdateCategoryMaster(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateCategoryMaster(RecognitionOneEntity);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
             }
             catch (Exception ex)
             {
                 if (log.IsErrorEnabled)
                 {
-                    log.Error(" Error in GetCategoryWiseCards in Recognition Controller" + ex);
-=======
-                    log.Error(" Error in GetStaffDetailsByID in Master Controller" + ex);
->>>>>>> 93ec59546a2d254bcc9cab1a39230a7bcc899f10
+                    log.Error(" Error in UpdateCategoryMaster in Recognition Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
             return response;
         }
-<<<<<<< HEAD
-=======
+        [HttpPost]
+        [Route("Recognition/UpdateCategoryWiseCards")]
+        public HttpResponseMessage UpdateCategoryWiseCards(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateCategoryWiseCards(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateCategoryWiseCards in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
 
->>>>>>> 93ec59546a2d254bcc9cab1a39230a7bcc899f10
+        [HttpGet]
+        [Route("Recognition/GetSuperAdminPointsTransactions")]
+        public HttpResponseMessage GetSuperAdminPointsTransactions()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetSuperAdminPointsTransactions();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetSuperAdminPointsTransactions in Master Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+        [HttpGet]
+        [Route("Recognition/GetSuperAdminPointsTransactionsByID")]
+        public HttpResponseMessage GetSuperAdminPointsTransactionsByID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetSuperAdminPointsTransactionsByID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetSuperAdminPointsTransactionsByID in Master Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+        [HttpPost]
+        [Route("Recognition/InsertSuperAdminPointsTransactions")]
+        public HttpResponseMessage InsertSuperAdminPointsTransactions(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                Int64 result = IRecognitionManager.InsertSuperAdminPointsTransactions(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertSuperAdminPointsTransactions", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertSuperAdminPointsTransactions");
+            }
+            return response;
+        }
+
+
+        [HttpPost]
+        [Route("Recognition/UpdateSuperAdminPointsTransactions")]
+        public HttpResponseMessage UpdateSuperAdminPointsTransactions([FromBody] RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateSuperAdminPointsTransactions(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateSuperAdminPointsTransactions in Master Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+        [HttpGet]
+        [Route("Recognition/DeleteSuperAdminPointsTransactions")]
+        public HttpResponseMessage DeleteSuperAdminPointsTransactions(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new { ID = ID };
+                Int64 Result = IRecognitionManager.DeleteSuperAdminPointsTransactions(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, Result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in Users/DeleteSuperAdminPointsTransactions :" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + " Users/DeleteSuperAdminPointsTransactions");
+            }
+            return response;
+        }
+
+
+
+
+
+        [HttpGet]
+        [Route("Recognition/GetSuperAdminPointsMaster")]
+        public HttpResponseMessage GetSuperAdminPointsMaster()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetSuperAdminPointsMaster();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetSuperAdminPointsMaster in Master Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+        [HttpGet]
+        [Route("Recognition/GetSuperAdminPointsMasterByID")]
+        public HttpResponseMessage GetSuperAdminPointsMasterByID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetSuperAdminPointsMasterByID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetSuperAdminPointsMasterByID in Master Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+        [HttpPost]
+        [Route("Recognition/InsertSuperAdminPointsMaster")]
+        public HttpResponseMessage InsertSuperAdminPointsMaster(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                Int64 result = IRecognitionManager.InsertSuperAdminPointsMaster(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertSuperAdminPointsMaster", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertSuperAdminPointsMaster");
+            }
+            return response;
+        }
+
+
+        [HttpPost]
+        [Route("Recognition/UpdateSuperAdminPointsMaster")]
+        public HttpResponseMessage UpdateSuperAdminPointsMaster([FromBody] RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateSuperAdminPointsMaster(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateSuperAdminPointsMaster in Master Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+        [HttpGet]
+        [Route("Recognition/DeleteSuperAdminPointsMaster")]
+        public HttpResponseMessage DeleteSuperAdminPointsMaster(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new { ID = ID };
+                Int64 Result = IRecognitionManager.DeleteSuperAdminPointsMaster(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, Result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in Users/DeleteSuperAdminPointsMaster :" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + " Users/DeleteSuperAdminPointsMaster");
+            }
+            return response;
+        }
+
+
     }
 }

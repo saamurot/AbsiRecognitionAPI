@@ -10,6 +10,7 @@ namespace AbsiRecognitionAPI.Data.Interface
     {
         IEnumerable<T> GetStaffDetails<T>();
         IEnumerable<T> CheckStaffLogin<T>(object filter);
+
         IEnumerable<T> GetManagerPointsMasterByID<T>(object filter);
         IEnumerable<T> GetManagerPointsTransactionsByID<T>(object filter);
         IEnumerable<T> GetManagerPointsMaster<T>();
@@ -17,8 +18,7 @@ namespace AbsiRecognitionAPI.Data.Interface
         IEnumerable<T> GetStatusMaster<T>();
         IEnumerable<T> GetManagerPointsRequests<T>();
         IEnumerable<T> GetManagerPointsRequestsByID<T>(object filter);
-        IEnumerable<T> GetCategoryMaster<T>();
-        IEnumerable<T> GetCategoryWiseCards<T>();
+        IEnumerable<T> GetCategoryWiseCardsByID<T>(object filter);
 
 
         Int64 InsertManagerPointsMaster(object filter);
@@ -36,9 +36,22 @@ namespace AbsiRecognitionAPI.Data.Interface
         Int64 UpdateCategoryWiseCards(object filter);
 
 
-        int DeleteManagerPointsMaster(object filter);
-        int DeleteManagerPointsTransactions(object filter);
-        int DeleteManagerPointsRequests(object filter);
-    
+        Int64 DeleteManagerPointsMaster(object filter);
+        Int64 DeleteManagerPointsTransactions(object filter);
+        Int64 DeleteManagerPointsRequests(object filter);
+
+        IEnumerable<T> GetSuperAdminPointsTransactions<T>();
+        IEnumerable<T> GetSuperAdminPointsTransactionsByID<T>(object filter);
+        Int64 InsertSuperAdminPointsTransactions(object filter);
+        Int64 UpdateSuperAdminPointsTransactions(object filter);
+        Int64 DeleteSuperAdminPointsTransactions(object filter);
+
+
+        IEnumerable<T> GetSuperAdminPointsMaster<T>();
+        IEnumerable<T> GetSuperAdminPointsMasterByID<T>(object filter);
+        Int64 InsertSuperAdminPointsMaster(object filter);
+        Int64 UpdateSuperAdminPointsMaster(object filter);
+        Int64 DeleteSuperAdminPointsMaster(object filter);
+
     }
 }

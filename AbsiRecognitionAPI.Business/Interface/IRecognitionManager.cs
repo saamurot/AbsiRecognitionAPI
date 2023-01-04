@@ -14,15 +14,14 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> CheckStaffLogin(object filter);
 
 
-         IEnumerable<dynamic> GetManagerPointsMasterByID(object filter);
+        IEnumerable<dynamic> GetManagerPointsMasterByID(object filter);
         IEnumerable<dynamic> GetManagerPointsTransactionsByID(object filter);
         IEnumerable<dynamic> GetManagerPointsMaster();
         IEnumerable<dynamic> GetManagerPointsTransactions();
         IEnumerable<dynamic> GetStatusMaster();
         IEnumerable<dynamic> GetManagerPointsRequests();
         IEnumerable<dynamic> GetManagerPointsRequestsByID(object filter);
-        IEnumerable<dynamic> GetCategoryMaster();
-        IEnumerable<dynamic> GetCategoryWiseCards();
+        IEnumerable<dynamic> GetCategoryWiseCardsByID(object filter);
 
 
 
@@ -48,7 +47,22 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 DeleteManagerPointsMaster(object filter);
         Int64 DeleteManagerPointsTransactions(object filter);
         Int64 DeleteManagerPointsRequests(object filter);
-    
+
+        IEnumerable<dynamic> GetSuperAdminPointsTransactions();
+        IEnumerable<dynamic> GetSuperAdminPointsTransactionsByID(object filter);
+        Int64 InsertSuperAdminPointsTransactions(RecognitionOneEntity RecognitionOneEntity);
+        Int64 UpdateSuperAdminPointsTransactions(RecognitionOneEntity RecognitionOneEntity);
+        Int64 DeleteSuperAdminPointsTransactions(object filter);
+
+
+
+        IEnumerable<dynamic> GetSuperAdminPointsMaster();
+        IEnumerable<dynamic> GetSuperAdminPointsMasterByID(object filter);
+        Int64 InsertSuperAdminPointsMaster(RecognitionOneEntity RecognitionOneEntity);
+        Int64 UpdateSuperAdminPointsMaster(RecognitionOneEntity RecognitionOneEntity);
+        Int64 DeleteSuperAdminPointsMaster(object filter);
+
+
 
     }
 }
