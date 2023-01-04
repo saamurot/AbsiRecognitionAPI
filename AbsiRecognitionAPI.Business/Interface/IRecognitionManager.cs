@@ -23,12 +23,9 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> GetManagerPointsRequestsByID(object filter);
 
 
-
         Int64 InsertManagerPointsMaster(RecognitionOneEntity RecognitionOneEntity);
         Int64 InsertManagerPointsTransactions(RecognitionOneEntity RecognitionOneEntity);
         Int64 InsertManagerPointsRequests(RecognitionOneEntity RecognitionOneEntity);
-
-
 
 
 
@@ -42,6 +39,10 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 DeleteManagerPointsMaster(object filter);
         Int64 DeleteManagerPointsTransactions(object filter);
         Int64 DeleteManagerPointsRequests(object filter);
+
+
+
+
 
     }
 }

@@ -49,7 +49,6 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return text;
         }
-
         public static string DecryptText(string cipherText)
         {
             string EncryptionKey = "AMAZEINCBNG";
