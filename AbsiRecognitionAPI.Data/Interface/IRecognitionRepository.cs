@@ -37,5 +37,7 @@ namespace AbsiRecognitionAPI.Data.Interface
         int DeleteManagerPointsMaster(object filter);
         int DeleteManagerPointsTransactions(object filter);
         int DeleteManagerPointsRequests(object filter);
+
+        IEnumerable<T> GetStaffDetailsByID<T>(object filter);
     }
 }

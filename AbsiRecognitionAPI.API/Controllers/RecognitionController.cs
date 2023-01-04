@@ -518,5 +518,30 @@ namespace AbsiRecognitionAPI.API.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("Recognition/GetStaffDetailsByID")]
+        public HttpResponseMessage GetStaffDetailsByID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetStaffDetailsByID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetStaffDetailsByID in Master Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
     }
 }
