@@ -22,5 +22,10 @@ namespace AbsiRecognitionAPI.Business.Entities
         public Int64 ApprovedPoints { get; set; }
         public Int64 StatusID { get; set; }
         public Int64 ManagerID { get; set; }
+        public string Description { get; set; }
+        public Boolean Status { get; set; }
+        public string Category { get; set; }
+        public Int64 CategoryID { get; set; }
+        public string CardName { get; set; }
     }
 }

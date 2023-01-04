@@ -513,10 +513,9 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
-
         [HttpGet]
-        [Route("Recognition/GetStaffDetailsByID")]
-        public HttpResponseMessage GetStaffDetailsByID(Int64 ID)
+        [Route("Recognition/GetCategoryWiseCardsByID")]
+        public HttpResponseMessage GetCategoryWiseCardsByID(Int64 ID)
         {
             HttpResponseMessage response;
             try
@@ -525,45 +524,101 @@ namespace AbsiRecognitionAPI.API.Controllers
                 {
                     ID = ID
                 };
-                object res = IRecognitionManager.GetStaffDetailsByID(j);
+                object res = IRecognitionManager.GetCategoryWiseCardsByID(j);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
             }
             catch (Exception ex)
             {
                 if (log.IsErrorEnabled)
                 {
-                    log.Error(" Error in GetStaffDetailsByID in Master Controller" + ex);
+                    log.Error(" Error in GetCategoryWiseCardsByID in Recognition Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
             return response;
         }
 
-
-        [HttpGet]
-        [Route("Recognition/GetStaffDetailsByTypeID")]
-        public HttpResponseMessage GetStaffDetailsByTypeID(Int64 TypeID)
+        [HttpPost]
+        [Route("Recognition/InsertCategoryMaster")]
+        public HttpResponseMessage InsertCategoryMaster(RecognitionOneEntity RecognitionOneEntity)
         {
             HttpResponseMessage response;
             try
             {
-                var j = new
+                 Int64 result = IRecognitionManager.InsertCategoryMaster(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+             }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
                 {
-                    TypeID = TypeID
-                };
-                object res = IRecognitionManager.GetStaffDetailsByTypeID(j);
+                    log.Error("Error in InsertCategoryMaster", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertCategoryMaster");
+            }
+            return response;
+        }
+        [HttpPost]
+        [Route("Recognition/InsertCategoryWiseCards")]
+        public HttpResponseMessage InsertCategoryWiseCards(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                Int64 result = IRecognitionManager.InsertCategoryWiseCards(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertCategoryWiseCards", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertCategoryWiseCards");
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/UpdateCategoryMaster")]
+        public HttpResponseMessage UpdateCategoryMaster(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateCategoryMaster(RecognitionOneEntity);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
             }
             catch (Exception ex)
             {
                 if (log.IsErrorEnabled)
                 {
-                    log.Error(" Error in GetStaffDetailsByTypeID in Master Controller" + ex);
+                    log.Error(" Error in UpdateCategoryMaster in Recognition Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
             return response;
         }
-
+        [HttpPost]
+        [Route("Recognition/UpdateCategoryWiseCards")]
+        public HttpResponseMessage UpdateCategoryWiseCards(RecognitionOneEntity RecognitionOneEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateCategoryWiseCards(RecognitionOneEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateCategoryWiseCards in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+  
     }
 }

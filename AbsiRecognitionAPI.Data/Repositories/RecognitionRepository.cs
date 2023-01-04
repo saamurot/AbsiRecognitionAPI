@@ -216,29 +216,63 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+        public IEnumerable<T> GetCategoryWiseCardsByID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetCategoryWiseCardsByID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 InsertCategoryMaster(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertCategoryMaster]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 InsertCategoryWiseCards(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertCategoryWiseCards]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 UpdateCategoryMaster(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("SProc_UpdateCategoryMaster", filter, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
-        public IEnumerable<T> GetStaffDetailsByID<T>(object filter)
+        public Int64 UpdateCategoryWiseCards(object filter)
         {
             try
             {
-                return db.Query<T>("SProc_GetStaffDetailsByID", filter, commandType: CommandType.StoredProcedure);
+                return db.Query<Int64>("SProc_UpdateCategoryWiseCards", filter, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-        public IEnumerable<T> GetStaffDetailsByTypeID<T>(object filter)
-        {
-            try
-            {
-                return db.Query<T>("SProc_GetStaffDetailsByTypeID", filter, commandType: CommandType.StoredProcedure);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+  
 
     }
 }

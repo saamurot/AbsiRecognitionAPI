@@ -21,27 +21,32 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> GetStatusMaster();
         IEnumerable<dynamic> GetManagerPointsRequests();
         IEnumerable<dynamic> GetManagerPointsRequestsByID(object filter);
+        IEnumerable<dynamic> GetCategoryWiseCardsByID(object filter);
 
 
         Int64 InsertManagerPointsMaster(RecognitionOneEntity RecognitionOneEntity);
         Int64 InsertManagerPointsTransactions(RecognitionOneEntity RecognitionOneEntity);
         Int64 InsertManagerPointsRequests(RecognitionOneEntity RecognitionOneEntity);
 
+        Int64 InsertCategoryMaster(RecognitionOneEntity RecognitionOneEntity);
+        Int64 InsertCategoryWiseCards(RecognitionOneEntity RecognitionOneEntity);
+
+
+
 
 
         Int64 UpdateManagerPointsMaster(RecognitionOneEntity RecognitionOneEntity);
         Int64 UpdateManagerPointsTransactions(RecognitionOneEntity RecognitionOneEntity);
         Int64 UpdateManagerPointsRequests(RecognitionOneEntity RecognitionOneEntity);
-
+        Int64 UpdateCategoryMaster(RecognitionOneEntity RecognitionOneEntity);
+        Int64 UpdateCategoryWiseCards(RecognitionOneEntity RecognitionOneEntity);
 
 
 
         Int64 DeleteManagerPointsMaster(object filter);
         Int64 DeleteManagerPointsTransactions(object filter);
         Int64 DeleteManagerPointsRequests(object filter);
-        IEnumerable<dynamic> GetStaffDetailsByID(object filter);
-        IEnumerable<dynamic> GetStaffDetailsByTypeID(object filter);
-
+    
 
     }
 }
