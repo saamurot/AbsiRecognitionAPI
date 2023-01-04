@@ -240,7 +240,6 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
-
         public Int64 UpdateManagerPointsRequests(RecognitionOneEntity RecognitionOneEntity)
         {
             try

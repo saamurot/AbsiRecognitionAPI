@@ -22,7 +22,6 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-
         public IEnumerable<T> CheckStaffLogin<T>(object filter)
         {
             try

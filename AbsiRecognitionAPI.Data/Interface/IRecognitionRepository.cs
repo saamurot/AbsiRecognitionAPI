@@ -10,8 +10,7 @@ namespace AbsiRecognitionAPI.Data.Interface
     {
         IEnumerable<T> GetStaffDetails<T>();
         IEnumerable<T> CheckStaffLogin<T>(object filter);
-
-          IEnumerable<T> GetManagerPointsMasterByID<T>(object filter);
+        IEnumerable<T> GetManagerPointsMasterByID<T>(object filter);
         IEnumerable<T> GetManagerPointsTransactionsByID<T>(object filter);
         IEnumerable<T> GetManagerPointsMaster<T>();
         IEnumerable<T> GetManagerPointsTransactions<T>();
@@ -31,6 +30,8 @@ namespace AbsiRecognitionAPI.Data.Interface
         Int64 UpdateManagerPointsMaster(object filter);
         Int64 UpdateManagerPointsTransactions(object filter);
         Int64 UpdateManagerPointsRequests(object filter);
+
+
 
 
 
