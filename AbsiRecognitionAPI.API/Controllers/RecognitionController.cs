@@ -517,5 +517,45 @@ namespace AbsiRecognitionAPI.API.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("Recognition/GetCategoryMaster")]
+        public HttpResponseMessage GetCategoryMaster()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetCategoryMaster();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetCategoryMaster in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetCategoryWiseCards")]
+        public HttpResponseMessage GetCategoryWiseCards()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetCategoryWiseCards();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetCategoryWiseCards in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
     }
 }

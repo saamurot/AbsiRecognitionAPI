@@ -272,5 +272,28 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+
+        public IEnumerable<dynamic> GetCategoryMaster()
+        {
+            try
+            {
+                return IRecognitionRepository.GetCategoryMaster<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> GetCategoryWiseCards()
+        {
+            try
+            {
+                return IRecognitionRepository.GetCategoryWiseCards<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

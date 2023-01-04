@@ -216,7 +216,28 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-
+        public IEnumerable<T> GetCategoryMaster<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetCategoryMaster", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> GetCategoryWiseCards<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetCategoryWiseCards", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
 
 
