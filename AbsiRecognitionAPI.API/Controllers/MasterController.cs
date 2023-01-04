@@ -23,7 +23,6 @@ namespace AbsiRecognitionAPI.API.Controllers
         public IMasterManager IMasterManager;
 
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
         public MasterController(IMasterManager IMasterManager)
         {
             this.IMasterManager = IMasterManager;
