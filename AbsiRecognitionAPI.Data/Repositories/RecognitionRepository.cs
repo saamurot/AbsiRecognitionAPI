@@ -228,9 +228,17 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-
-
-
+        public IEnumerable<T> GetStaffDetailsByTypeID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetStaffDetailsByTypeID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }

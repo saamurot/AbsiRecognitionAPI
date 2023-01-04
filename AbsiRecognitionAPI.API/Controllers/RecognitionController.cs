@@ -457,11 +457,8 @@ namespace AbsiRecognitionAPI.API.Controllers
             HttpResponseMessage response;
             try
             {
-
-
                 Int64 result = IRecognitionManager.InsertManagerPointsRequests(RecognitionOneEntity);
                 response = Request.CreateResponse(HttpStatusCode.OK, result);
-
 
             }
             catch (Exception ex)
@@ -536,6 +533,32 @@ namespace AbsiRecognitionAPI.API.Controllers
                 if (log.IsErrorEnabled)
                 {
                     log.Error(" Error in GetStaffDetailsByID in Master Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+        [HttpGet]
+        [Route("Recognition/GetStaffDetailsByTypeID")]
+        public HttpResponseMessage GetStaffDetailsByTypeID(Int64 TypeID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    TypeID = TypeID
+                };
+                object res = IRecognitionManager.GetStaffDetailsByTypeID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetStaffDetailsByTypeID in Master Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }

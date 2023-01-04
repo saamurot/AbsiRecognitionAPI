@@ -39,9 +39,8 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 DeleteManagerPointsMaster(object filter);
         Int64 DeleteManagerPointsTransactions(object filter);
         Int64 DeleteManagerPointsRequests(object filter);
-
-
-
+        IEnumerable<dynamic> GetStaffDetailsByID(object filter);
+        IEnumerable<dynamic> GetStaffDetailsByTypeID(object filter);
 
 
     }

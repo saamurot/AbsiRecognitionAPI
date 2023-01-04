@@ -284,5 +284,17 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+
+        public IEnumerable<dynamic> GetStaffDetailsByTypeID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetStaffDetailsByTypeID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
