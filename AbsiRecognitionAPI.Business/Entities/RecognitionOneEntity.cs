@@ -30,5 +30,12 @@ namespace AbsiRecognitionAPI.Business.Entities
 
         public Int64 SAPMID { get; set; }
         public Int64 AvailablePoints { get; set; }
+
+        public string CardUrl { get; set; }
+
+        public string Discription { get; set; }
+        public DateTime StatusUpdateDate { get; set; }
+
+        public Int64 EmployeeID { get; set; }
     }
 }

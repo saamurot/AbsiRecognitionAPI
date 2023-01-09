@@ -41,238 +41,7 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
-        public IEnumerable<dynamic> GetManagerPointsMaster()
-        {
-            try
-            {
-                return IRecognitionRepository.GetManagerPointsMaster<dynamic>();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public IEnumerable<dynamic> GetManagerPointsTransactions()
-        {
-            try
-            {
-                return IRecognitionRepository.GetManagerPointsTransactions<dynamic>();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
-        public Int64 InsertManagerPointsMaster(RecognitionOneEntity RecognitionOneEntity)
-        {
-            try
-            {
-                var filter = new
-                {
-                    UserID = RecognitionOneEntity.UserID,
-                    AvailabalePoints = RecognitionOneEntity.AvailabalePoints,
-                };
-                return IRecognitionRepository.InsertManagerPointsMaster(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public Int64 InsertManagerPointsTransactions(RecognitionOneEntity RecognitionOneEntity)
-        {
-            try
-            {
-                var filter = new
-                {
-
-
-                    MPMID = RecognitionOneEntity.MPMID,
-                    TransactionType = RecognitionOneEntity.TransactionType,
-                    Points = RecognitionOneEntity.Points,
-                    ClosingBalance = RecognitionOneEntity.ClosingBalance,
-                };
-                return IRecognitionRepository.InsertManagerPointsTransactions(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public Int64 UpdateManagerPointsMaster(RecognitionOneEntity RecognitionOneEntity)
-        {
-            try
-            {
-                var filter = new
-                {
-                    ID = RecognitionOneEntity.ID,
-                    UserID = RecognitionOneEntity.UserID,
-                    AvailabalePoints = RecognitionOneEntity.AvailabalePoints,
-
-                };
-                return IRecognitionRepository.UpdateManagerPointsMaster(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public Int64 UpdateManagerPointsTransactions(RecognitionOneEntity RecognitionOneEntity)
-        {
-            try
-            {
-                var filter = new
-                {
-                    ID = RecognitionOneEntity.ID,
-                    MPMID = RecognitionOneEntity.MPMID,
-                    TransactionType = RecognitionOneEntity.TransactionType,
-                    Points = RecognitionOneEntity.Points,
-                    ClosingBalance = RecognitionOneEntity.ClosingBalance,
-
-                };
-                return IRecognitionRepository.UpdateManagerPointsTransactions(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public IEnumerable<dynamic> GetManagerPointsMasterByID(object filter)
-        {
-            try
-            {
-                return IRecognitionRepository.GetManagerPointsMasterByID<dynamic>(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public IEnumerable<dynamic> GetManagerPointsTransactionsByID(object filter)
-        {
-            try
-            {
-                return IRecognitionRepository.GetManagerPointsTransactionsByID<dynamic>(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public Int64 DeleteManagerPointsMaster(object filter)
-        {
-            try
-            {
-                return IRecognitionRepository.DeleteManagerPointsMaster(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public Int64 DeleteManagerPointsTransactions(object filter)
-        {
-            try
-            {
-                return IRecognitionRepository.DeleteManagerPointsTransactions(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public IEnumerable<dynamic> GetStatusMaster()
-        {
-            try
-            {
-                return IRecognitionRepository.GetStatusMaster<dynamic>();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public IEnumerable<dynamic> GetManagerPointsRequests()
-        {
-            try
-            {
-                return IRecognitionRepository.GetManagerPointsRequests<dynamic>();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public IEnumerable<dynamic> GetManagerPointsRequestsByID(object filter)
-        {
-            try
-            {
-                return IRecognitionRepository.GetManagerPointsRequestsByID<dynamic>(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public Int64 InsertManagerPointsRequests(RecognitionOneEntity RecognitionOneEntity)
-        {
-            try
-            {
-                var filter = new
-                {
-
-
-                    SuperAdminID = RecognitionOneEntity.SuperAdminID,
-                    PointsRequested = RecognitionOneEntity.PointsRequested,
-                    // ApprovedPoints = RecognitionOneEntity.ApprovedPoints,
-                    // StatusID = RecognitionOneEntity.StatusID,
-                    ManagerID = RecognitionOneEntity.ManagerID,
-
-                };
-                return IRecognitionRepository.InsertManagerPointsRequests(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public Int64 UpdateManagerPointsRequests(RecognitionOneEntity RecognitionOneEntity)
-        {
-            try
-            {
-                var filter = new
-                {
-                    ID = RecognitionOneEntity.ID,
-                    SuperAdminID = RecognitionOneEntity.SuperAdminID,
-                    PointsRequested = RecognitionOneEntity.PointsRequested,
-                    //ApprovedPoints = RecognitionOneEntity.ApprovedPoints,
-                    //StatusID = RecognitionOneEntity.StatusID,
-                    ManagerID = RecognitionOneEntity.ManagerID,
-
-                };
-                return IRecognitionRepository.UpdateManagerPointsRequests(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-        public Int64 DeleteManagerPointsRequests(object filter)
-        {
-            try
-            {
-                return IRecognitionRepository.DeleteManagerPointsRequests(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+       
         public IEnumerable<dynamic> GetCategoryWiseCardsByID(object filter)
         {
             try
@@ -292,8 +61,7 @@ namespace AbsiRecognitionAPI.Business.Managers
                 {
                     Category = RecognitionOneEntity.Category,
                     Description = RecognitionOneEntity.Description,
-                    Status = RecognitionOneEntity.Status,
-
+                    //Status = RecognitionOneEntity.Status,
                 };
                 return IRecognitionRepository.InsertCategoryMaster(filter);
             }
@@ -311,7 +79,8 @@ namespace AbsiRecognitionAPI.Business.Managers
                     CategoryID = RecognitionOneEntity.CategoryID,
                     CardName = RecognitionOneEntity.CardName,
                     Description = RecognitionOneEntity.Description,
-                    Status = RecognitionOneEntity.Status,
+                    //Status = RecognitionOneEntity.Status,
+                    CardUrl= RecognitionOneEntity.CardUrl
 
                 };
                 return IRecognitionRepository.InsertCategoryWiseCards(filter);
@@ -330,7 +99,7 @@ namespace AbsiRecognitionAPI.Business.Managers
                     ID = RecognitionOneEntity.ID,
                     Category = RecognitionOneEntity.Category,
                     Description = RecognitionOneEntity.Description,
-                    Status = RecognitionOneEntity.Status,
+                    //Status = RecognitionOneEntity.Status,
 
                 };
                 return IRecognitionRepository.UpdateCategoryMaster(filter);
@@ -351,8 +120,8 @@ namespace AbsiRecognitionAPI.Business.Managers
                     CategoryID = RecognitionOneEntity.CategoryID,
                     CardName = RecognitionOneEntity.CardName,
                     Description = RecognitionOneEntity.Description,
-                    Status = RecognitionOneEntity.Status,
-
+                    //Status = RecognitionOneEntity.Status,
+                    CardUrl= RecognitionOneEntity.CardUrl
                 };
                 return IRecognitionRepository.UpdateCategoryWiseCards(filter);
             }
@@ -361,159 +130,99 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
-
-        public IEnumerable<dynamic> GetSuperAdminPointsTransactions()
+        public IEnumerable<dynamic> GetStaffDetailsByTypeID(object filter)
         {
             try
             {
-                return IRecognitionRepository.GetSuperAdminPointsTransactions<dynamic>();
+                return IRecognitionRepository.GetStaffDetailsByTypeID<dynamic>(filter);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-
-        public IEnumerable<dynamic> GetSuperAdminPointsTransactionsByID(object filter)
+        public IEnumerable<dynamic> GetStaffDetailsByID(object filter)
         {
             try
             {
-                return IRecognitionRepository.GetSuperAdminPointsTransactionsByID<dynamic>(filter);
+                return IRecognitionRepository.GetStaffDetailsByID<dynamic>(filter);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-
-        public Int64 InsertSuperAdminPointsTransactions(RecognitionOneEntity RecognitionOneEntity)
+        public IEnumerable<dynamic> GetCategoryWiseCards()
         {
             try
             {
-                var filter = new
-                {
-                    SAPMID = RecognitionOneEntity.SAPMID,
-                    TransactionType = RecognitionOneEntity.TransactionType,
-                    Points = RecognitionOneEntity.Points,
-                    ClosingBalance = RecognitionOneEntity.ClosingBalance
-
-                };
-                return IRecognitionRepository.InsertSuperAdminPointsTransactions(filter);
+                return IRecognitionRepository.GetCategoryWiseCards<dynamic>();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-        public Int64 UpdateSuperAdminPointsTransactions(RecognitionOneEntity RecognitionOneEntity)
+        public IEnumerable<dynamic> GetCategoryMasterByID(object filter)
         {
             try
             {
-                var filter = new
-                {
-                    ID = RecognitionOneEntity.ID,
-                    SAPMID = RecognitionOneEntity.SAPMID,
-                    TransactionType = RecognitionOneEntity.TransactionType,
-                    Points = RecognitionOneEntity.Points,
-                    ClosingBalance = RecognitionOneEntity.ClosingBalance
-
-
-
-                };
-                return IRecognitionRepository.UpdateSuperAdminPointsTransactions(filter);
+                return IRecognitionRepository.GetCategoryMasterByID<dynamic>(filter);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-        public Int64 DeleteSuperAdminPointsTransactions(object filter)
+        public IEnumerable<dynamic> EnableCategoryWiseCards(object filter)
         {
             try
             {
-                return IRecognitionRepository.DeleteSuperAdminPointsTransactions(filter);
+                return IRecognitionRepository.EnableCategoryWiseCards<dynamic>(filter);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-
-
-
-        public IEnumerable<dynamic> GetSuperAdminPointsMaster()
+        public IEnumerable<dynamic> DisableCategoryWiseCards(object filter)
         {
             try
             {
-                return IRecognitionRepository.GetSuperAdminPointsMaster<dynamic>();
+                return IRecognitionRepository.DisableCategoryWiseCards<dynamic>(filter);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-
-        public IEnumerable<dynamic> GetSuperAdminPointsMasterByID(object filter)
+        public IEnumerable<dynamic> EnableCategoryMaster(object filter)
         {
             try
             {
-                return IRecognitionRepository.GetSuperAdminPointsMasterByID<dynamic>(filter);
+                return IRecognitionRepository.EnableCategoryMaster<dynamic>(filter);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-
-        public Int64 InsertSuperAdminPointsMaster(RecognitionOneEntity RecognitionOneEntity)
+        public IEnumerable<dynamic> DisableCategoryMaster(object filter)
         {
             try
             {
-                var filter = new
-                {
-                    UserID = RecognitionOneEntity.UserID,
-                    AvailablePoints = RecognitionOneEntity.AvailablePoints,
-
-                };
-                return IRecognitionRepository.InsertSuperAdminPointsMaster(filter);
+                return IRecognitionRepository.DisableCategoryMaster<dynamic>(filter);
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
-
-        public Int64 UpdateSuperAdminPointsMaster(RecognitionOneEntity RecognitionOneEntity)
+        public IEnumerable<dynamic> GetCategoryMaster()
         {
             try
             {
-                var filter = new
-                {
-                    ID = RecognitionOneEntity.ID,
-                    UserID = RecognitionOneEntity.UserID,
-                    AvailablePoints = RecognitionOneEntity.AvailablePoints,
-
-                };
-                return IRecognitionRepository.UpdateSuperAdminPointsMaster(filter);
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-        public Int64 DeleteSuperAdminPointsMaster(object filter)
-        {
-            try
-            {
-                return IRecognitionRepository.DeleteSuperAdminPointsMaster(filter);
+                return IRecognitionRepository.GetCategoryMaster<dynamic>();
             }
             catch (Exception ex)
             {

@@ -12,57 +12,23 @@ namespace AbsiRecognitionAPI.Business.Interface
     {
         IEnumerable<dynamic> GetStaffDetails();
         IEnumerable<dynamic> CheckStaffLogin(object filter);
+        IEnumerable<dynamic> GetStaffDetailsByTypeID(object filter);
+        IEnumerable<dynamic> GetStaffDetailsByID(object filter);
 
-
-        IEnumerable<dynamic> GetManagerPointsMasterByID(object filter);
-        IEnumerable<dynamic> GetManagerPointsTransactionsByID(object filter);
-        IEnumerable<dynamic> GetManagerPointsMaster();
-        IEnumerable<dynamic> GetManagerPointsTransactions();
-        IEnumerable<dynamic> GetStatusMaster();
-        IEnumerable<dynamic> GetManagerPointsRequests();
-        IEnumerable<dynamic> GetManagerPointsRequestsByID(object filter);
+       
         IEnumerable<dynamic> GetCategoryWiseCardsByID(object filter);
-
-
-
-        Int64 InsertManagerPointsMaster(RecognitionOneEntity RecognitionOneEntity);
-        Int64 InsertManagerPointsTransactions(RecognitionOneEntity RecognitionOneEntity);
-        Int64 InsertManagerPointsRequests(RecognitionOneEntity RecognitionOneEntity);
-
         Int64 InsertCategoryMaster(RecognitionOneEntity RecognitionOneEntity);
         Int64 InsertCategoryWiseCards(RecognitionOneEntity RecognitionOneEntity);
-
-
-
-
-
-        Int64 UpdateManagerPointsMaster(RecognitionOneEntity RecognitionOneEntity);
-        Int64 UpdateManagerPointsTransactions(RecognitionOneEntity RecognitionOneEntity);
-        Int64 UpdateManagerPointsRequests(RecognitionOneEntity RecognitionOneEntity);
         Int64 UpdateCategoryMaster(RecognitionOneEntity RecognitionOneEntity);
         Int64 UpdateCategoryWiseCards(RecognitionOneEntity RecognitionOneEntity);
 
+        IEnumerable<dynamic> GetCategoryWiseCards();
+        IEnumerable<dynamic> GetCategoryMasterByID(object filter);
 
-
-        Int64 DeleteManagerPointsMaster(object filter);
-        Int64 DeleteManagerPointsTransactions(object filter);
-        Int64 DeleteManagerPointsRequests(object filter);
-
-        IEnumerable<dynamic> GetSuperAdminPointsTransactions();
-        IEnumerable<dynamic> GetSuperAdminPointsTransactionsByID(object filter);
-        Int64 InsertSuperAdminPointsTransactions(RecognitionOneEntity RecognitionOneEntity);
-        Int64 UpdateSuperAdminPointsTransactions(RecognitionOneEntity RecognitionOneEntity);
-        Int64 DeleteSuperAdminPointsTransactions(object filter);
-
-
-
-        IEnumerable<dynamic> GetSuperAdminPointsMaster();
-        IEnumerable<dynamic> GetSuperAdminPointsMasterByID(object filter);
-        Int64 InsertSuperAdminPointsMaster(RecognitionOneEntity RecognitionOneEntity);
-        Int64 UpdateSuperAdminPointsMaster(RecognitionOneEntity RecognitionOneEntity);
-        Int64 DeleteSuperAdminPointsMaster(object filter);
-
-
-
+        IEnumerable<dynamic> EnableCategoryWiseCards(object filter);
+        IEnumerable<dynamic> DisableCategoryWiseCards(object filter);
+        IEnumerable<dynamic> EnableCategoryMaster(object filter);
+        IEnumerable<dynamic> DisableCategoryMaster(object filter);
+        IEnumerable<dynamic> GetCategoryMaster();
     }
 }
