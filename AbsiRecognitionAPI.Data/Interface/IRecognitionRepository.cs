@@ -27,5 +27,43 @@ namespace AbsiRecognitionAPI.Data.Interface
         IEnumerable<T> EnableCategoryMaster<T>(object filter);
         IEnumerable<T> DisableCategoryMaster<T>(object filter);
 
+
+
+
+        Int64 InsertKudosBadges(object filter);
+        Int64 UpdateKudosBadges(object filter);
+        Int64 DeleteKudosBadges(object filter);
+        IEnumerable<T> GetKudosBadgesByID<T>(object filter);
+        IEnumerable<T> GetKudosBadges<T>();
+        IEnumerable<T> EnableKudosBadges<T>(object filter);
+        IEnumerable<T> DisableKudosBadges<T>(object filter);
+
+        Int64 InsertKudosBadgeCategory(object filter);
+        Int64 UpdateKudosBadgeCategory(object filter);
+        Int64 DeleteKudosBadgeCategory(object filter);
+        IEnumerable<T> GetKudosBadgeCategoryByID<T>(object filter);
+        IEnumerable<T> GetKudosBadgeCategory<T>();
+        IEnumerable<T> EnableKudosBadgeCategory<T>(object filter);
+        IEnumerable<T> DisableKudosBadgeCategory<T>(object filter);
+
+
+        Int64 InsertCelebrationTemplates(object filter);
+        Int64 InsertCelebrationTemplatesCategory(object filter);
+        Int64 UpdateCelebrationTemplates(object filter);
+        Int64 UpdateCelebrationTemplatesCategory(object filter);
+        IEnumerable<T> GetCelebrationTemplates<T>();
+        IEnumerable<T> GetCelebrationTemplatesCategory<T>();
+        IEnumerable<T> GetCelebrationTemplatesByID<T>(object filter);
+        IEnumerable<T> GetCelebrationTemplatesCategoryByID<T>(object filter);
+
+        IEnumerable<T> EnableCelebrationTemplates<T>(object filter);
+        IEnumerable<T> DisableCelebrationTemplates<T>(object filter);
+
+        IEnumerable<T> EnableCelebrationTemplatesCategory<T>(object filter);
+        IEnumerable<T> DisableCelebrationTemplatesCategory<T>(object filter);
+
+        Int64 DeleteCelebrationTemplates(object filter);
+        Int64 DeleteCelebrationTemplatesCategory(object filter);
+
     }
 }

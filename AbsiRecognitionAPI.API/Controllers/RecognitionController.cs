@@ -14,6 +14,10 @@ using System.Web.Hosting;
 using System.Web;
 using System.Web.Http;
 using System.Linq;
+using System.Configuration;
+using System.Net.Configuration;
+using System.Net.Mail;
+using System.Web.Configuration;
 
 namespace AbsiRecognitionAPI.API.Controllers
 {
@@ -27,6 +31,44 @@ namespace AbsiRecognitionAPI.API.Controllers
         {
             this.IRecognitionManager = IRecognitionManager;
         }
+
+
+        [HttpPost]
+        [Route("Recognition/sendemail/")]
+        public HttpResponseMessage sendemail(RecognitionOneEntity email)
+        {
+            HttpResponseMessage response;
+
+            Configuration config = WebConfigurationManager.OpenWebConfiguration(HttpContext.Current.Request.ApplicationPath);
+            MailSettingsSectionGroup settings = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
+
+            var client = new SmtpClient("smtp-mail.outlook.com", 587)
+            {
+                Credentials = new NetworkCredential("absirr@outlook.com", "P@ssw0rd@123"),
+                EnableSsl = true
+            };
+            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            msg.From = new MailAddress("absirr@outlook.com");
+            msg.To.Add(new MailAddress(email.emailto));
+
+            msg.Subject = email.emailsubject;
+            msg.Body = email.emailbody;
+            msg.IsBodyHtml = true;
+           
+            try
+            {
+                client.Send(msg);
+                response = Request.CreateResponse(HttpStatusCode.OK, "Success");
+            }
+            catch (Exception ex)
+            {
+                response = Request.CreateResponse(HttpStatusCode.OK, ex);
+            }
+            return response;
+        }
+
+
+
 
         public static string EncryptText(string text)
         {
@@ -490,8 +532,8 @@ namespace AbsiRecognitionAPI.API.Controllers
         }
 
         [HttpPost]
-        [Route("Recognition/UploadCategoryCards")]
-        public HttpResponseMessage UploadCategoryCards()
+        [Route("Recognition/UploadCelebrationTemplates")]
+        public HttpResponseMessage UploadCelebrationTemplates()
         {
             HttpResponseMessage response;
             try
@@ -507,8 +549,8 @@ namespace AbsiRecognitionAPI.API.Controllers
                         var Name = postedFile.FileName.Split('\\').LastOrDefault().Split('/').LastOrDefault().Replace(" ", null);
                         var time = DateTime.Now.ToString("yyyyMMddHHmmss");
                         var fileName = time + Name;
-                        Directory.CreateDirectory(HostingEnvironment.MapPath("~/Assets/Cards"));
-                        string filePath = HostingEnvironment.MapPath("~/Assets/Cards/" + fileName);
+                        Directory.CreateDirectory(HostingEnvironment.MapPath("~/Assets/Celebration"));
+                        string filePath = HostingEnvironment.MapPath("~/Assets/Celebration/" + fileName);
                         postedFile.SaveAs(filePath);
                         result = filePath;
                     }
@@ -519,9 +561,687 @@ namespace AbsiRecognitionAPI.API.Controllers
             {
                 if (log.IsErrorEnabled)
                 {
-                    log.Error("Recognition/UploadCategoryCards/:" + ex);
+                    log.Error("Recognition/UploadCelebrationTemplates/:" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Recognition Error " + ex.Message);
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/UploadKudosBadges")]
+        public HttpResponseMessage UploadKudosBadges()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                string result = string.Empty;
+                var httpRequest = HttpContext.Current.Request;
+                if (httpRequest.Files.Count > 0)
+                {
+                    foreach (string file in httpRequest.Files)
+                    {
+                        var postedFile = httpRequest.Files[file];
+                        //var type = postedFile.ContentType;
+                        var Name = postedFile.FileName.Split('\\').LastOrDefault().Split('/').LastOrDefault().Replace(" ", null);
+                        var time = DateTime.Now.ToString("yyyyMMddHHmmss");
+                        var fileName = time + Name;
+                        Directory.CreateDirectory(HostingEnvironment.MapPath("~/Assets/KudosBadges"));
+                        string filePath = HostingEnvironment.MapPath("~/Assets/KudosBadges/" + fileName);
+                        postedFile.SaveAs(filePath);
+                        result = filePath;
+                    }
+                }
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Recognition/UploadKudosBadges/:" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Recognition Error " + ex.Message);
+            }
+            return response;
+        }
+
+
+        [HttpPost]
+        [Route("Recognition/InsertKudosBadges")]
+        public HttpResponseMessage InsertKudosBadges(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                Int64 result = IRecognitionManager.InsertKudosBadges(KudobadgesEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertKudosBadges", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertCategoryMaster");
+            }
+            return response;
+        }
+        [HttpPost]
+        [Route("Recognition/UpdateKudosBadges")]
+        public HttpResponseMessage UpdateKudosBadges(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateKudosBadges(KudobadgesEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateKudosBadges in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/DeleteKudosBadges")]
+        public HttpResponseMessage DeleteKudosBadges(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new { ID = ID };
+                Int64 Result = IRecognitionManager.DeleteKudosBadges(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, Result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in Users/DeleteKudosBadges :" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + " Users/DeleteStatusMaster");
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/GetKudosBadgesByID")]
+        public HttpResponseMessage GetKudosBadgesByID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetKudosBadgesByID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetKudosBadgesByID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/GetKudosBadges")]
+        public HttpResponseMessage GetKudosBadges()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetKudosBadges();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetKudosBadges in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/EnableKudosBadges")]
+        public HttpResponseMessage EnableKudosBadges(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.EnableKudosBadges(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in EnableKudosBadges in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/DisableKudosBadges")]
+        public HttpResponseMessage DisableKudosBadges(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.DisableKudosBadges(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in DisableKudosBadges in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/InsertKudosBadgeCategory")]
+        public HttpResponseMessage InsertKudosBadgeCategory(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                Int64 result = IRecognitionManager.InsertKudosBadgeCategory(KudobadgesEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertKudosBadgeCategory", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertCategoryMaster");
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/UpdateKudosBadgeCategory")]
+        public HttpResponseMessage UpdateKudosBadgeCategory(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateKudosBadgeCategory(KudobadgesEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateKudosBadgeCategory in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/DeleteKudosBadgeCategory")]
+        public HttpResponseMessage DeleteKudosBadgeCategory(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new { ID = ID };
+                Int64 Result = IRecognitionManager.DeleteKudosBadgeCategory(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, Result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in Users/DeleteKudosBadgeCategory :" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + " Users/DeleteStatusMaster");
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/GetKudosBadgeCategoryByID")]
+        public HttpResponseMessage GetKudosBadgeCategoryByID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetKudosBadgeCategoryByID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetKudosBadgeCategoryByID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/GetKudosBadgeCategory")]
+        public HttpResponseMessage GetKudosBadgeCategory()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetKudosBadgeCategory();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetKudosBadgeCategory in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/EnableKudosBadgeCategory")]
+        public HttpResponseMessage EnableKudosBadgeCategory(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.EnableKudosBadgeCategory(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in EnableKudosBadgeCategory in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/DisableKudosBadgeCategory")]
+        public HttpResponseMessage DisableKudosBadgeCategory(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.DisableKudosBadgeCategory(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in DisableKudosBadgeCategory in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/InsertCelebrationTemplates")]
+        public HttpResponseMessage InsertCelebrationTemplates(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                Int64 result = IRecognitionManager.InsertCelebrationTemplates(KudobadgesEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertCelebrationTemplates", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertCategoryMaster");
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/InsertCelebrationTemplatesCategory")]
+        public HttpResponseMessage InsertCelebrationTemplatesCategory(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                Int64 result = IRecognitionManager.InsertCelebrationTemplatesCategory(KudobadgesEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertCelebrationTemplatesCategory", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertCategoryMaster");
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/UpdateCelebrationTemplates")]
+        public HttpResponseMessage UpdateCelebrationTemplates(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateCelebrationTemplates(KudobadgesEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateCelebrationTemplates in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpPost]
+        [Route("Recognition/UpdateCelebrationTemplatesCategory")]
+        public HttpResponseMessage UpdateCelebrationTemplatesCategory(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateCelebrationTemplatesCategory(KudobadgesEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateCelebrationTemplatesCategory in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/GetCelebrationTemplates")]
+        public HttpResponseMessage GetCelebrationTemplates()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetCelebrationTemplates();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetCelebrationTemplates in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/GetCelebrationTemplatesCategory")]
+        public HttpResponseMessage GetCelebrationTemplatesCategory()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetCelebrationTemplatesCategory();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetCelebrationTemplatesCategory in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/GetCelebrationTemplatesByID")]
+        public HttpResponseMessage GetCelebrationTemplatesByID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetCelebrationTemplatesByID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetCelebrationTemplatesByID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/GetCelebrationTemplatesCategoryByID")]
+        public HttpResponseMessage GetCelebrationTemplatesCategoryByID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetCelebrationTemplatesCategoryByID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetCelebrationTemplatesCategoryByID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+        [HttpGet]
+        [Route("Recognition/EnableCelebrationTemplates")]
+        public HttpResponseMessage EnableCelebrationTemplates(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.EnableCelebrationTemplates(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in EnableCelebrationTemplates in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/DisableCelebrationTemplates")]
+        public HttpResponseMessage DisableCelebrationTemplates(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.DisableCelebrationTemplates(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in DisableCelebrationTemplates in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+        [HttpGet]
+        [Route("Recognition/EnableCelebrationTemplatesCategory")]
+        public HttpResponseMessage EnableCelebrationTemplatesCategory(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.EnableCelebrationTemplatesCategory(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in EnableCelebrationTemplatesCategory in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/DisableCelebrationTemplatesCategory")]
+        public HttpResponseMessage DisableCelebrationTemplatesCategory(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.DisableCelebrationTemplatesCategory(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in DisableCelebrationTemplatesCategory in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/DeleteCelebrationTemplates")]
+        public HttpResponseMessage DeleteCelebrationTemplates(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new { ID = ID };
+                Int64 Result = IRecognitionManager.DeleteCelebrationTemplates(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, Result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in Users/DeleteCelebrationTemplates :" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + " Users/DeleteStatusMaster");
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/DeleteCelebrationTemplatesCategory")]
+        public HttpResponseMessage DeleteCelebrationTemplatesCategory(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new { ID = ID };
+                Int64 Result = IRecognitionManager.DeleteCelebrationTemplatesCategory(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, Result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in Users/DeleteCelebrationTemplatesCategory :" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + " Users/DeleteStatusMaster");
             }
             return response;
         }

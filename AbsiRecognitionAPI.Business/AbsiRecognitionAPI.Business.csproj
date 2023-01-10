@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\KudobadgesEntity.cs" />
     <Compile Include="Entities\MasterEntity.cs" />
     <Compile Include="Entities\RecognitionOneEntity.cs" />
     <Compile Include="Interface\IMasterManager.cs" />

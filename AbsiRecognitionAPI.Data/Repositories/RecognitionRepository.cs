@@ -187,5 +187,333 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+
+
+        public Int64 InsertKudosBadges(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertKudosBadges]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 UpdateKudosBadges(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("SProc_UpdateKudosBadges", filter, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 DeleteKudosBadges(object filter)
+        {
+            try
+            {
+                return db.Execute("[SProc_DeleteKudosBadges]", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> GetKudosBadgesByID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetKudosBadgesByID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T> GetKudosBadges<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetKudosBadges", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T> EnableKudosBadges<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_EnableKudosBadges", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> DisableKudosBadges<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_DisableKudosBadges", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 InsertKudosBadgeCategory(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertKudosBadgeCategory]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 UpdateKudosBadgeCategory(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("SProc_UpdateKudosBadgeCategory", filter, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 DeleteKudosBadgeCategory(object filter)
+        {
+            try
+            {
+                return db.Execute("[SProc_DeleteKudosBadgeCategory]", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T> GetKudosBadgeCategoryByID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetKudosBadgeCategoryByID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T> GetKudosBadgeCategory<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetKudosBadgeCategory", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T> EnableKudosBadgeCategory<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_EnableKudosBadgeCategory", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> DisableKudosBadgeCategory<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_DisableKudosBadgeCategory", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 InsertCelebrationTemplates(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertCelebrationTemplates]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 InsertCelebrationTemplatesCategory(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertCelebrationTemplatesCategory]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 UpdateCelebrationTemplates(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("SProc_UpdateCelebrationTemplates", filter, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 UpdateCelebrationTemplatesCategory(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("SProc_UpdateCelebrationTemplatesCategory", filter, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T> GetCelebrationTemplates<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetCelebrationTemplates", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> GetCelebrationTemplatesCategory<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetCelebrationTemplatesCategory", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T> GetCelebrationTemplatesByID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetCelebrationTemplatesByID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T> GetCelebrationTemplatesCategoryByID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetCelebrationTemplatesCategoryByID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T> EnableCelebrationTemplates<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_EnableCelebrationTemplates", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> DisableCelebrationTemplates<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_DisableCelebrationTemplates", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T> EnableCelebrationTemplatesCategory<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_EnableCelebrationTemplatesCategory", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> DisableCelebrationTemplatesCategory<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_DisableCelebrationTemplatesCategory", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 DeleteCelebrationTemplates(object filter)
+        {
+            try
+            {
+                return db.Execute("[SProc_DeleteCelebrationTemplates]", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 DeleteCelebrationTemplatesCategory(object filter)
+        {
+            try
+            {
+                return db.Execute("[SProc_DeleteCelebrationTemplatesCategory]", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

@@ -230,5 +230,387 @@ namespace AbsiRecognitionAPI.Business.Managers
             }
         }
 
+
+        public Int64 InsertKudosBadges(KudobadgesEntity KudobadgesEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    CategoryID= KudobadgesEntity.CategoryID,
+                    BadgeName= KudobadgesEntity.BadgeName,
+                    Description = KudobadgesEntity.Description,
+                    BadgeURL = KudobadgesEntity.BadgeURL,
+                };
+                return IRecognitionRepository.InsertKudosBadges(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 UpdateKudosBadges(KudobadgesEntity KudobadgesEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    ID = KudobadgesEntity.ID,
+                    CategoryID = KudobadgesEntity.CategoryID,
+                    BadgeName = KudobadgesEntity.BadgeName,
+                    Description = KudobadgesEntity.Description,
+                };
+                return IRecognitionRepository.UpdateKudosBadges(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 DeleteKudosBadges(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.DeleteKudosBadges(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<dynamic> GetKudosBadgesByID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetKudosBadgesByID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<dynamic> GetKudosBadges()
+        {
+            try
+            {
+                return IRecognitionRepository.GetKudosBadges<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<dynamic> EnableKudosBadges(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.EnableKudosBadges<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> DisableKudosBadges(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.DisableKudosBadges<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 InsertKudosBadgeCategory(KudobadgesEntity KudobadgesEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    Category = KudobadgesEntity.Category,
+                    Description = KudobadgesEntity.Description,
+                };
+                return IRecognitionRepository.InsertKudosBadgeCategory(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 UpdateKudosBadgeCategory(KudobadgesEntity KudobadgesEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    ID = KudobadgesEntity.ID,
+                    Category = KudobadgesEntity.Category,
+                    Description = KudobadgesEntity.Description,
+                };
+                return IRecognitionRepository.UpdateKudosBadgeCategory(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 DeleteKudosBadgeCategory(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.DeleteKudosBadgeCategory(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public IEnumerable<dynamic> GetKudosBadgeCategoryByID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetKudosBadgeCategoryByID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<dynamic> GetKudosBadgeCategory()
+        {
+            try
+            {
+                return IRecognitionRepository.GetKudosBadgeCategory<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<dynamic> EnableKudosBadgeCategory(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.EnableKudosBadgeCategory<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> DisableKudosBadgeCategory(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.DisableKudosBadgeCategory<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 InsertCelebrationTemplates(KudobadgesEntity KudobadgesEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    CategoryID = KudobadgesEntity.CategoryID,
+                    TemplateName = KudobadgesEntity.TemplateName,
+                    Description = KudobadgesEntity.Description,
+                    TemplateURL = KudobadgesEntity.TemplateURL,
+                };
+                return IRecognitionRepository.InsertCelebrationTemplates(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 InsertCelebrationTemplatesCategory(KudobadgesEntity KudobadgesEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    Category = KudobadgesEntity.Category,
+                    Description = KudobadgesEntity.Description,
+                };
+                return IRecognitionRepository.InsertCelebrationTemplatesCategory(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 UpdateCelebrationTemplates(KudobadgesEntity KudobadgesEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    ID = KudobadgesEntity.ID,
+                    CategoryID = KudobadgesEntity.CategoryID,
+                    TemplateName = KudobadgesEntity.TemplateName,
+                    Description = KudobadgesEntity.Description,
+                    TemplateURL = KudobadgesEntity.TemplateURL
+                };
+                return IRecognitionRepository.UpdateCelebrationTemplates(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 UpdateCelebrationTemplatesCategory(KudobadgesEntity KudobadgesEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    ID = KudobadgesEntity.ID,
+                    Category = KudobadgesEntity.Category,
+                    Description = KudobadgesEntity.Description,
+                 
+                };
+                return IRecognitionRepository.UpdateCelebrationTemplatesCategory(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<dynamic> GetCelebrationTemplates()
+        {
+            try
+            {
+                return IRecognitionRepository.GetCelebrationTemplates<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> GetCelebrationTemplatesCategory()
+        {
+            try
+            {
+                return IRecognitionRepository.GetCelebrationTemplatesCategory<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<dynamic> GetCelebrationTemplatesByID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetCelebrationTemplatesByID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> GetCelebrationTemplatesCategoryByID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetCelebrationTemplatesCategoryByID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<dynamic> EnableCelebrationTemplates(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.EnableCelebrationTemplates<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> DisableCelebrationTemplates(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.DisableCelebrationTemplates<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<dynamic> EnableCelebrationTemplatesCategory(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.EnableCelebrationTemplatesCategory<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> DisableCelebrationTemplatesCategory(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.DisableCelebrationTemplatesCategory<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 DeleteCelebrationTemplates(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.DeleteCelebrationTemplates(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 DeleteCelebrationTemplatesCategory(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.DeleteCelebrationTemplatesCategory(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

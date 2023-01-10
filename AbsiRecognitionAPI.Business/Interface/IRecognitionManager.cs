@@ -30,5 +30,36 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> EnableCategoryMaster(object filter);
         IEnumerable<dynamic> DisableCategoryMaster(object filter);
         IEnumerable<dynamic> GetCategoryMaster();
+
+        Int64 InsertKudosBadges(KudobadgesEntity KudobadgesEntity);
+        Int64 UpdateKudosBadges(KudobadgesEntity KudobadgesEntity);
+        Int64 DeleteKudosBadges(object filter);
+        IEnumerable<dynamic> GetKudosBadgesByID(object filter);
+        IEnumerable<dynamic> GetKudosBadges();
+        IEnumerable<dynamic> EnableKudosBadges(object filter);
+        IEnumerable<dynamic> DisableKudosBadges(object filter);
+        Int64 InsertKudosBadgeCategory(KudobadgesEntity KudobadgesEntity);
+        Int64 UpdateKudosBadgeCategory(KudobadgesEntity KudobadgesEntity);
+        Int64 DeleteKudosBadgeCategory(object filter);
+        IEnumerable<dynamic> GetKudosBadgeCategoryByID(object filter);
+        IEnumerable<dynamic> GetKudosBadgeCategory();
+        IEnumerable<dynamic> EnableKudosBadgeCategory(object filter);
+        IEnumerable<dynamic> DisableKudosBadgeCategory(object filter);
+
+        Int64 InsertCelebrationTemplates(KudobadgesEntity KudobadgesEntity);
+        Int64 InsertCelebrationTemplatesCategory(KudobadgesEntity KudobadgesEntity);
+        Int64 UpdateCelebrationTemplates(KudobadgesEntity KudobadgesEntity);
+        Int64 UpdateCelebrationTemplatesCategory(KudobadgesEntity KudobadgesEntity);
+        IEnumerable<dynamic> GetCelebrationTemplates();
+        IEnumerable<dynamic> GetCelebrationTemplatesCategory();
+        IEnumerable<dynamic> GetCelebrationTemplatesByID(object filter);
+        IEnumerable<dynamic> GetCelebrationTemplatesCategoryByID(object filter);
+        IEnumerable<dynamic> EnableCelebrationTemplates(object filter);
+        IEnumerable<dynamic> DisableCelebrationTemplates(object filter);
+        IEnumerable<dynamic> EnableCelebrationTemplatesCategory(object filter);
+        IEnumerable<dynamic> DisableCelebrationTemplatesCategory(object filter);
+
+        Int64 DeleteCelebrationTemplates(object filter);
+        Int64 DeleteCelebrationTemplatesCategory(object filter);
     }
 }
