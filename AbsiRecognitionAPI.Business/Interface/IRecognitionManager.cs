@@ -61,5 +61,6 @@ namespace AbsiRecognitionAPI.Business.Interface
 
         Int64 DeleteCelebrationTemplates(object filter);
         Int64 DeleteCelebrationTemplatesCategory(object filter);
+        IEnumerable<dynamic> GetSpecialDaysOfStaff(object filter);
     }
 }
