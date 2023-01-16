@@ -17,5 +17,19 @@ namespace StaticWebAPI.Business.Entities
         public string Category { get; set; }
         public string TemplateName { get; set; }
         public string TemplateURL { get; set; }
+
+
+
+
+        public Int64 RecognisedBy { get; set; }
+        public string RecognitionCategory { get; set; }
+        public Int64 StaffID { get; set; }
+        public string Title { get; set; }
+
+        public string BadgeID { get; set; }
+        public Int64 Point { get; set; }
+        public string ImageUrl { get; set; }
+        public string Message { get; set; }
+        public Boolean EmailSent { get; set; }
     }
 }

@@ -14,6 +14,9 @@ namespace AbsiRecognitionAPI.Data.Interface
         IEnumerable<T> GetStaffDetailsByID<T>(object filter);
 
 
+
+
+
         IEnumerable<T> GetCategoryWiseCardsByID<T>(object filter);
         Int64 InsertCategoryMaster(object filter);
         Int64 InsertCategoryWiseCards(object filter);
@@ -66,5 +69,13 @@ namespace AbsiRecognitionAPI.Data.Interface
         Int64 DeleteCelebrationTemplatesCategory(object filter);
         IEnumerable<T> GetSpecialDaysOfStaff<T>(object filter);
 
+
+
+        IEnumerable<T> GetKudosByHR<T>();
+        IEnumerable<T>GetKudosByHRByID<T>(object filter);
+        Int64 InsertKudosByHR(object filter);
+        Int64 UpdateKudosByHR(object filter);
+        Int64 DeleteKudosByHR(object filter);
+       
     }
 }

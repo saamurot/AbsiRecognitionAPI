@@ -40,5 +40,7 @@ namespace AbsiRecognitionAPI.Business.Entities
         public string emailto { get; set; }
         public string emailsubject { get; set; }
         public string emailbody { get; set; }
+
+
     }
 }

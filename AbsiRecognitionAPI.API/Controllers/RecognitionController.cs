@@ -1272,5 +1272,126 @@ namespace AbsiRecognitionAPI.API.Controllers
             return response;
         }
 
+        //---------------------------------
+
+        [HttpGet]
+        [Route("Recognition/GetKudosByHR")]
+        public HttpResponseMessage GetKudosByHR()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetKudosByHR();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetKudosByHR in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+
+        [HttpGet]
+        [Route("Recognition/GetKudosByHRByID")]
+        public HttpResponseMessage GetKudosByHRByID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetKudosByHRByID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetKudosByHRByID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+
+        [HttpPost]
+        [Route("Recognition/InsertKudosByHR")]
+        public HttpResponseMessage InsertKudosByHR(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                Int64 result = IRecognitionManager.InsertKudosByHR(KudobadgesEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertKudosByHR", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertKudosByHR");
+            }
+            return response;
+        }
+
+
+
+
+        [HttpPost]
+        [Route("Recognition/UpdateKudosByHR")]
+        public HttpResponseMessage UpdateKudosByHR(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateKudosByHR(KudobadgesEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateKudosByHR in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+
+
+        [HttpGet]
+        [Route("Recognition/DeleteKudosByHR")]
+        public HttpResponseMessage DeleteKudosByHR(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new { ID = ID };
+                Int64 Result = IRecognitionManager.DeleteKudosByHR(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, Result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in Users/DeleteKudosByHR :" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + " Users/DeleteKudosByHR");
+            }
+            return response;
+        }
     }
 }

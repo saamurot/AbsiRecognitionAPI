@@ -624,5 +624,105 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+
+        //--------------------------
+
+        public IEnumerable<dynamic> GetKudosByHR()
+        {
+            try
+            {
+                return IRecognitionRepository.GetKudosByHR<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        public IEnumerable<dynamic> GetKudosByHRByID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetKudosByHRByID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public Int64 InsertKudosByHR(KudobadgesEntity KudobadgesEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    RecognisedBy = KudobadgesEntity.RecognisedBy,
+                    RecognitionCategory = KudobadgesEntity.RecognitionCategory,
+                    StaffID = KudobadgesEntity.StaffID,
+                    Title = KudobadgesEntity.Title,
+                    CategoryID = KudobadgesEntity.CategoryID,
+                    BadgeID = KudobadgesEntity.BadgeID,
+                    Point = KudobadgesEntity.Point,
+                    ImageUrl = KudobadgesEntity.ImageUrl,
+                    Message = KudobadgesEntity.Message,
+                    EmailSent = KudobadgesEntity.EmailSent,
+
+
+                };
+                return IRecognitionRepository.InsertKudosByHR(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        public Int64 UpdateKudosByHR(KudobadgesEntity KudobadgesEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    ID = KudobadgesEntity.ID,
+                    RecognisedBy = KudobadgesEntity.RecognisedBy,
+                    RecognitionCategory = KudobadgesEntity.RecognitionCategory,
+                    StaffID = KudobadgesEntity.StaffID,
+                    Title = KudobadgesEntity.Title,
+                    CategoryID = KudobadgesEntity.CategoryID,
+                    BadgeID = KudobadgesEntity.BadgeID,
+                    Point = KudobadgesEntity.Point,
+                    ImageUrl = KudobadgesEntity.ImageUrl,
+                    Message = KudobadgesEntity.Message,
+                    EmailSent = KudobadgesEntity.EmailSent,
+
+                };
+                return IRecognitionRepository.UpdateKudosByHR(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public Int64 DeleteKudosByHR(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.DeleteKudosByHR(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
 }

@@ -527,5 +527,72 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+
+        //---------------------
+
+
+        public IEnumerable<T>GetKudosByHR<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetKudosByHR", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public IEnumerable<T>GetKudosByHRByID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetKudosByHRByID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public Int64 InsertKudosByHR(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertKudosByHR]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public Int64 UpdateKudosByHR(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("SProc_UpdateKudosByHR", filter, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public Int64 DeleteKudosByHR(object filter)
+        {
+            try
+            {
+                return db.Execute("[SProc_DeleteKudosByHR]", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
