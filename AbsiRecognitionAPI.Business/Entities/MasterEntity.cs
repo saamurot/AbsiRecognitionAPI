@@ -78,7 +78,11 @@ namespace StaticWebAPI.Business.Entities
         public string DrivingLicenceNumber { get; set; }
         public string PreviousPFNumber { get; set; }
         public string UANNumber { get; set; }
-
+        public Int64 UserID { get; set; }
+        public string AvailablePoints { get; set; }
+        public string TransactionType { get; set; }
+        public Int64 Points { get; set; }
+        public Int64 ClosingBalance { get; set; }
 
     }
 }
