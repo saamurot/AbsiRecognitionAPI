@@ -607,6 +607,45 @@ namespace AbsiRecognitionAPI.API.Controllers
 
 
         [HttpPost]
+        [Route("Recognition/UploadKudosBanners")]
+        public HttpResponseMessage UploadKudosBanners()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                string result = string.Empty;
+                var httpRequest = HttpContext.Current.Request;
+                if (httpRequest.Files.Count > 0)
+                {
+                    foreach (string file in httpRequest.Files)
+                    {
+                        var postedFile = httpRequest.Files[file];
+                        //var type = postedFile.ContentType;
+                        var Name = postedFile.FileName.Split('\\').LastOrDefault().Split('/').LastOrDefault().Replace(" ", null);
+                        var time = DateTime.Now.ToString("yyyyMMddHHmmss");
+                        var fileName = time + Name;
+                        Directory.CreateDirectory(HostingEnvironment.MapPath("~/Assets/KudosBanners"));
+                        string filePath = HostingEnvironment.MapPath("~/Assets/KudosBanners/" + fileName);
+                        postedFile.SaveAs(filePath);
+                        result = filePath;
+                    }
+                }
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Recognition/UploadKudosBadges/:" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, "Recognition Error " + ex.Message);
+            }
+            return response;
+        }
+
+
+
+        [HttpPost]
         [Route("Recognition/InsertKudosBadges")]
         public HttpResponseMessage InsertKudosBadges(KudobadgesEntity KudobadgesEntity)
         {
