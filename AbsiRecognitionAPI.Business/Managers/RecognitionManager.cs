@@ -669,8 +669,7 @@ namespace AbsiRecognitionAPI.Business.Managers
                     Point = KudobadgesEntity.Point,
                     ImageUrl = KudobadgesEntity.ImageUrl,
                     Message = KudobadgesEntity.Message,
-                    EmailSent = KudobadgesEntity.EmailSent,
-
+                   
 
                 };
                 return IRecognitionRepository.InsertKudosByHR(filter);
