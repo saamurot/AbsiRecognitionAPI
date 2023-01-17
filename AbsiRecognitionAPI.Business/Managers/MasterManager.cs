@@ -70,7 +70,7 @@ namespace AbsiRecognitionAPI.Business.Managers
                 var filter = new
                 {
                     UserID = MasterEntity.UserID,
-                    AvailablePoints = MasterEntity.AvailablePoints
+                    Points = MasterEntity.Points
 
                 };
                 return IMasterRrepository.InsertManagerPointsMaster(filter);
