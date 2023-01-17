@@ -531,7 +531,7 @@ namespace AbsiRecognitionAPI.Data.Repositories
         //---------------------
 
 
-        public IEnumerable<T>GetKudosByHR<T>()
+        public IEnumerable<T> GetKudosByHR<T>()
         {
             try
             {
@@ -544,7 +544,7 @@ namespace AbsiRecognitionAPI.Data.Repositories
         }
 
 
-        public IEnumerable<T>GetKudosByHRByID<T>(object filter)
+        public IEnumerable<T> GetKudosByHRByID<T>(object filter)
         {
             try
             {
@@ -594,5 +594,73 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-    }
+
+
+        //------------------
+
+
+        public IEnumerable<T>GetCelebrationByHR<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetCelebrationByHR", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T>GetCelebrationByHRByID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetCelebrationByHRByID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public Int64 InsertCelebrationByHR(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertCelebrationByHR]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public Int64 UpdateCelebrationByHR(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("SProc_UpdateCelebrationByHR", filter, commandType: System.Data.CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public Int64 DeleteCelebrationByHR(object filter)
+        {
+            try
+            {
+                return db.Execute("[SProc_DeleteCelebrationByHR]", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+    } 
+
 }

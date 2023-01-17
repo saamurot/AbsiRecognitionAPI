@@ -71,6 +71,15 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 UpdateKudosByHR(KudobadgesEntity KudobadgesEntity);
         Int64 DeleteKudosByHR(object filter);
 
+        //---------------------
+
+        IEnumerable<dynamic> GetCelebrationByHR();
+        IEnumerable<dynamic> GetCelebrationByHRByID(object filter);
+        Int64 InsertCelebrationByHR(KudobadgesEntity KudobadgesEntity);
+        Int64 UpdateCelebrationByHR(KudobadgesEntity KudobadgesEntity);
+        Int64 DeleteCelebrationByHR(object filter);
+
+
 
     }
 }

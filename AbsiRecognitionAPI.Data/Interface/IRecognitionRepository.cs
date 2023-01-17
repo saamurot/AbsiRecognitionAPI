@@ -76,6 +76,16 @@ namespace AbsiRecognitionAPI.Data.Interface
         Int64 InsertKudosByHR(object filter);
         Int64 UpdateKudosByHR(object filter);
         Int64 DeleteKudosByHR(object filter);
-       
+
+
+
+        IEnumerable<T> GetCelebrationByHR<T>();
+        IEnumerable<T> GetCelebrationByHRByID<T>(object filter);
+        Int64 InsertCelebrationByHR(object filter);
+        Int64 UpdateCelebrationByHR(object filter);
+        Int64 DeleteCelebrationByHR(object filter);
+
+
+
     }
 }

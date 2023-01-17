@@ -1432,5 +1432,129 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+
+
+        //-----
+
+
+        [HttpGet]
+        [Route("Recognition/GetCelebrationByHR")]
+        public HttpResponseMessage GetCelebrationByHR()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetCelebrationByHR();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetCelebrationByHR in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+
+        [HttpGet]
+        [Route("Recognition/GetCelebrationByHRByID")]
+        public HttpResponseMessage GetCelebrationByHRByID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetCelebrationByHRByID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetCelebrationByHRByID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+
+        [HttpPost]
+        [Route("Recognition/InsertCelebrationByHR")]
+        public HttpResponseMessage InsertCelebrationByHR(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                Int64 result = IRecognitionManager.InsertCelebrationByHR(KudobadgesEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertCelebrationByHR", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertCelebrationByHR");
+            }
+            return response;
+        }
+
+
+
+
+        [HttpPost]
+        [Route("Recognition/UpdateCelebrationByHR")]
+        public HttpResponseMessage UpdateCelebrationByHR(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.UpdateCelebrationByHR(KudobadgesEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in UpdateCelebrationByHR in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+
+
+        [HttpGet]
+        [Route("Recognition/DeleteCelebrationByHR")]
+        public HttpResponseMessage DeleteCelebrationByHR(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new { ID = ID };
+                Int64 Result = IRecognitionManager.DeleteCelebrationByHR(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, Result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in Users/DeleteCelebrationByHR :" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + " Users/DeleteCelebrationByHR");
+            }
+            return response;
+        }
     }
 }
