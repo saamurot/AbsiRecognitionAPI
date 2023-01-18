@@ -318,7 +318,17 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-
+        public IEnumerable<T> GetKudosBadgesByCategoryID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetKudosBadgesByCategoryID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public IEnumerable<T> GetKudosBadgeCategory<T>()
         {
             try

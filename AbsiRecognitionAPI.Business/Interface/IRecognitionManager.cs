@@ -24,7 +24,7 @@ namespace AbsiRecognitionAPI.Business.Interface
 
         IEnumerable<dynamic> GetCategoryWiseCards();
         IEnumerable<dynamic> GetCategoryMasterByID(object filter);
-
+        
         IEnumerable<dynamic> EnableCategoryWiseCards(object filter);
         IEnumerable<dynamic> DisableCategoryWiseCards(object filter);
         IEnumerable<dynamic> EnableCategoryMaster(object filter);
@@ -35,6 +35,7 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 UpdateKudosBadges(KudobadgesEntity KudobadgesEntity);
         Int64 DeleteKudosBadges(object filter);
         IEnumerable<dynamic> GetKudosBadgesByID(object filter);
+        IEnumerable<dynamic> GetKudosBadgesByCategoryID(object filter);
         IEnumerable<dynamic> GetKudosBadges();
         IEnumerable<dynamic> EnableKudosBadges(object filter);
         IEnumerable<dynamic> DisableKudosBadges(object filter);

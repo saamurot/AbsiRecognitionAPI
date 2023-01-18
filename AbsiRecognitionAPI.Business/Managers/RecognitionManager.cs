@@ -387,7 +387,17 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
-
+        public IEnumerable<dynamic> GetKudosBadgesByCategoryID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetKudosBadgesByCategoryID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public IEnumerable<dynamic> GetKudosBadgeCategory()
         {
             try

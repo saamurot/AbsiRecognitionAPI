@@ -892,6 +892,30 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+        [HttpGet]
+        [Route("Recognition/GetKudosBadgesByCategoryID")]
+        public HttpResponseMessage GetKudosBadgesByCategoryID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetKudosBadgesByCategoryID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetKudosBadgesByCategoryID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
 
         [HttpGet]
         [Route("Recognition/GetKudosBadgeCategory")]
