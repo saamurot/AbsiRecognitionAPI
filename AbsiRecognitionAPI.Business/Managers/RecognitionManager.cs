@@ -3,6 +3,7 @@ using AbsiRecognitionAPI.Business.Interface;
 using AbsiRecognitionAPI.Data.Interface;
 using StaticWebAPI.Business.Entities;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -664,24 +665,10 @@ namespace AbsiRecognitionAPI.Business.Managers
         }
 
 
-        public Int64 InsertKudosByHR(KudobadgesEntity KudobadgesEntity)
+        public Int64 InsertKudosByHR(object filter)
         {
             try
             {
-                var filter = new
-                {
-                    RecognisedBy = KudobadgesEntity.RecognisedBy,
-                    RecognitionCategory = KudobadgesEntity.RecognitionCategory,
-                    StaffID = KudobadgesEntity.StaffID,
-                    Title = KudobadgesEntity.Title,
-                    CategoryID = KudobadgesEntity.CategoryID,
-                    BadgeID = KudobadgesEntity.BadgeID,
-                    Point = KudobadgesEntity.Point,
-                    ImageUrl = KudobadgesEntity.ImageUrl,
-                    Message = KudobadgesEntity.Message,
-                   
-
-                };
                 return IRecognitionRepository.InsertKudosByHR(filter);
             }
             catch (Exception ex)
@@ -709,6 +696,7 @@ namespace AbsiRecognitionAPI.Business.Managers
                     ImageUrl = KudobadgesEntity.ImageUrl,
                     Message = KudobadgesEntity.Message,
                     EmailSent = KudobadgesEntity.EmailSent,
+                    CCList= KudobadgesEntity.CCList
 
                 };
                 return IRecognitionRepository.UpdateKudosByHR(filter);
@@ -761,24 +749,24 @@ namespace AbsiRecognitionAPI.Business.Managers
         }
 
 
-        public Int64 InsertCelebrationByHR(KudobadgesEntity KudobadgesEntity)
+        public Int64 InsertCelebrationByHR(object Entity)
         {
             try
             {
-                var filter = new
-                {
-                    RecognisedBy = KudobadgesEntity.RecognisedBy,
-                    RecognitionCategory = KudobadgesEntity.RecognitionCategory,
-                    StaffID = KudobadgesEntity.StaffID,
-                    Title = KudobadgesEntity.Title,
-                    CategoryID = KudobadgesEntity.CategoryID,
-                    TemplateID = KudobadgesEntity.TemplateID,
-                    ImageUrl = KudobadgesEntity.ImageUrl,
-                    Message = KudobadgesEntity.Message,
+                //var filter = new
+                //{
+                //    RecognisedBy = KudobadgesEntity.RecognisedBy,
+                //    RecognitionCategory = KudobadgesEntity.RecognitionCategory,
+                //    StaffID = KudobadgesEntity.StaffID,
+                //    Title = KudobadgesEntity.Title,
+                //    CategoryID = KudobadgesEntity.CategoryID,
+                //    TemplateID = KudobadgesEntity.TemplateID,
+                //    ImageUrl = KudobadgesEntity.ImageUrl,
+                //    Message = KudobadgesEntity.Message,
 
 
-                };
-                return IRecognitionRepository.InsertCelebrationByHR(filter);
+                //};
+                return IRecognitionRepository.InsertCelebrationByHR(Entity);
             }
             catch (Exception ex)
             {
@@ -804,6 +792,7 @@ namespace AbsiRecognitionAPI.Business.Managers
                     ImageUrl = KudobadgesEntity.ImageUrl,
                     Message = KudobadgesEntity.Message,
                     EmailSent = KudobadgesEntity.EmailSent,
+                    CCList= KudobadgesEntity.CCList
 
                 };
                 return IRecognitionRepository.UpdateCelebrationByHR(filter);

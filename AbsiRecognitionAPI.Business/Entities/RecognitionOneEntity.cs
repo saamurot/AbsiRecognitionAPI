@@ -38,6 +38,7 @@ namespace AbsiRecognitionAPI.Business.Entities
 
         public Int64 EmployeeID { get; set; }
         public string emailto { get; set; }
+        public string emailCC { get; set; }
         public string emailsubject { get; set; }
         public string emailbody { get; set; }
 

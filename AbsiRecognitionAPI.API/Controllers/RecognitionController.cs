@@ -18,6 +18,10 @@ using System.Configuration;
 using System.Net.Configuration;
 using System.Net.Mail;
 using System.Web.Configuration;
+using System.Web.Http.Results;
+using System.Collections.Generic;
+using System.Web.Mail;
+using System.Collections;
 
 namespace AbsiRecognitionAPI.API.Controllers
 {
@@ -54,7 +58,6 @@ namespace AbsiRecognitionAPI.API.Controllers
             msg.Subject = email.emailsubject;
             msg.Body = email.emailbody;
             msg.IsBodyHtml = true;
-           
             try
             {
                 client.Send(msg);
@@ -66,9 +69,6 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
-
-
-
 
         public static string EncryptText(string text)
         {
@@ -1394,8 +1394,30 @@ namespace AbsiRecognitionAPI.API.Controllers
             HttpResponseMessage response;
             try
             {
-                Int64 result = IRecognitionManager.InsertKudosByHR(KudobadgesEntity);
-                response = Request.CreateResponse(HttpStatusCode.OK, result);
+
+                var StaffIDList = KudobadgesEntity.StaffIDList.ToList();
+                if (StaffIDList != null)
+                {
+                    for (int i=0; i< StaffIDList.Count; i++)
+                    {
+
+                        var Entity = new
+                        {
+                            RecognisedBy = KudobadgesEntity.RecognisedBy,
+                            RecognitionCategory = KudobadgesEntity.RecognitionCategory,
+                            StaffID = Convert.ToInt32(StaffIDList[i].id) ,
+                            Title = KudobadgesEntity.Title,
+                            CategoryID = KudobadgesEntity.CategoryID,
+                            BadgeID = KudobadgesEntity.BadgeID,
+                            Point = KudobadgesEntity.Point,
+                            ImageUrl = KudobadgesEntity.ImageUrl,
+                            Message = KudobadgesEntity.Message,
+                            CCList= KudobadgesEntity.CCList
+                        };
+                        Int64 result = IRecognitionManager.InsertKudosByHR(Entity);
+                    }
+                }
+                response = Request.CreateResponse(HttpStatusCode.OK, 1);
             }
             catch (Exception ex)
             {
@@ -1511,6 +1533,9 @@ namespace AbsiRecognitionAPI.API.Controllers
 
 
 
+       
+
+
         [HttpPost]
         [Route("Recognition/InsertCelebrationByHR")]
         public HttpResponseMessage InsertCelebrationByHR(KudobadgesEntity KudobadgesEntity)
@@ -1518,8 +1543,29 @@ namespace AbsiRecognitionAPI.API.Controllers
             HttpResponseMessage response;
             try
             {
-                Int64 result = IRecognitionManager.InsertCelebrationByHR(KudobadgesEntity);
-                response = Request.CreateResponse(HttpStatusCode.OK, result);
+
+                var StaffIDList = KudobadgesEntity.StaffIDList.ToList();
+                if (StaffIDList != null)
+                {
+                    for (int i = 0; i < StaffIDList.Count; i++)
+                    {
+
+                        var Entity = new
+                        {
+                            RecognisedBy = KudobadgesEntity.RecognisedBy,
+                            RecognitionCategory = KudobadgesEntity.RecognitionCategory,
+                            StaffID = Convert.ToInt32(StaffIDList[i].id),
+                            Title = KudobadgesEntity.Title,
+                            CategoryID = KudobadgesEntity.CategoryID,
+                            TemplateID = KudobadgesEntity.TemplateID,
+                            ImageUrl = KudobadgesEntity.ImageUrl,
+                            Message = KudobadgesEntity.Message,
+                            CCList= KudobadgesEntity.CCList
+                        };
+                        Int64 result = IRecognitionManager.InsertCelebrationByHR(Entity);
+                    }
+                }
+                response = Request.CreateResponse(HttpStatusCode.OK, 1);
             }
             catch (Exception ex)
             {
@@ -1527,7 +1573,7 @@ namespace AbsiRecognitionAPI.API.Controllers
                 {
                     log.Error("Error in InsertCelebrationByHR", ex);
                 }
-                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertCelebrationByHR");
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertKudosByHR");
             }
             return response;
         }

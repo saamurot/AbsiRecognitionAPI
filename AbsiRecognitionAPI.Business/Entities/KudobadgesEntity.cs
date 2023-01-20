@@ -24,6 +24,7 @@ namespace StaticWebAPI.Business.Entities
         public Int64 RecognisedBy { get; set; }
         public string RecognitionCategory { get; set; }
         public Int64 StaffID { get; set; }
+        public  IEnumerable<dynamic> StaffIDList { get; set; }
         public string Title { get; set; }
         public Int64 BadgeID { get; set; }
         public Int64 Point { get; set; }
@@ -31,10 +32,7 @@ namespace StaticWebAPI.Business.Entities
         public string Message { get; set; }
         public Boolean EmailSent { get; set; }
         public Int64 TemplateID { get; set; }
-
-
-
-
+        public string CCList { get; set; }
 
     }
 }
