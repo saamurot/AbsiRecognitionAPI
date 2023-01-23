@@ -25,6 +25,7 @@ namespace StaticWebAPI.Business.Entities
         public string RecognitionCategory { get; set; }
         public Int64 StaffID { get; set; }
         public  IEnumerable<dynamic> StaffIDList { get; set; }
+        public IEnumerable<dynamic> CCIDList { get; set; }
         public string Title { get; set; }
         public Int64 BadgeID { get; set; }
         public Int64 Point { get; set; }

@@ -22,6 +22,8 @@ using System.Web.Http.Results;
 using System.Collections.Generic;
 using System.Web.Mail;
 using System.Collections;
+using System.Web.Razor.Parser.SyntaxTree;
+using System.Web.UI.WebControls;
 
 namespace AbsiRecognitionAPI.API.Controllers
 {
@@ -55,8 +57,26 @@ namespace AbsiRecognitionAPI.API.Controllers
             msg.From = new MailAddress("absirr@outlook.com");
             msg.To.Add(new MailAddress(email.emailto));
 
+
+            //string[] ToMuliId = email.emailto.Split(',');
+            //foreach (string ToEMailId in ToMuliId)
+            //{
+            //    msg.To.Add(new MailAddress(ToEMailId)); //adding multiple TO Email Id  
+            //}
+            //string[] CCId = email.emailCC.Split(',');
+            //foreach (string CCEmail in CCId)
+            //{
+            //    msg.CC.Add(new MailAddress(CCEmail)); //Adding Multiple CC email Id  
+            //}
+
+            var htmlString = "<p style='padding: 5px; background-color: blue; font-size: 20px; text-align: center; color: #fff;  width:100% '>HappyBIRTHDAY</p> " +
+                "<br><p style='text-align: center'><img src='https://103.12.1.103//AbsiRecognitionAPI//Assets//KudosBadges//20230110124136stars-01.png'  style='width:10%'></p>" +
+                "<br><p style='background-color: yellow; font-size: 20px; text-align: center; width:100% '>1000</p>" +
+                "<br><p style='text-align:center'><img src='https://103.12.1.103//AbsiRecognitionAPI//Assets//Celebration//20230110123611congratulations.jpg' style='width:100%'></p> " +
+                "<br><p style='width: 100%; background-color: rgb(184, 184, 192); font-size: 20px; text-align: center; color: #fff;'>contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</p>";
+
             msg.Subject = email.emailsubject;
-            msg.Body = email.emailbody;
+            msg.Body = htmlString;
             msg.IsBodyHtml = true;
             try
             {
@@ -206,7 +226,7 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
-       
+
         [HttpGet]
         [Route("Recognition/GetCategoryWiseCardsByID")]
         public HttpResponseMessage GetCategoryWiseCardsByID(Int64 ID)
@@ -1395,24 +1415,50 @@ namespace AbsiRecognitionAPI.API.Controllers
             try
             {
 
-                var StaffIDList = KudobadgesEntity.StaffIDList.ToList();
+                var add = "";
+                var EmailList = "";
+
+                var CCIDList = KudobadgesEntity.CCIDList?.ToList();
+                if (CCIDList != null)
+                {
+                    for (int j = 0; j < CCIDList.Count; j++)
+                    {
+                        if (j == 0)
+                        {
+                            //var A = CCIDList[j].id;
+                            EmailList = Convert.ToInt32(CCIDList[j].id).ToString();
+                            add = EmailList;
+                        }
+                        else
+                        {
+                            EmailList = add + ',' + Convert.ToInt32(CCIDList[j].id).ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    EmailList = null;
+                }
+
+
+                var StaffIDList = KudobadgesEntity.StaffIDList?.ToList();
                 if (StaffIDList != null)
                 {
-                    for (int i=0; i< StaffIDList.Count; i++)
+                    for (int i = 0; i < StaffIDList.Count; i++)
                     {
 
                         var Entity = new
                         {
                             RecognisedBy = KudobadgesEntity.RecognisedBy,
                             RecognitionCategory = KudobadgesEntity.RecognitionCategory,
-                            StaffID = Convert.ToInt32(StaffIDList[i].id) ,
+                            StaffID = Convert.ToInt32(StaffIDList[i].id),
                             Title = KudobadgesEntity.Title,
                             CategoryID = KudobadgesEntity.CategoryID,
                             BadgeID = KudobadgesEntity.BadgeID,
                             Point = KudobadgesEntity.Point,
                             ImageUrl = KudobadgesEntity.ImageUrl,
                             Message = KudobadgesEntity.Message,
-                            CCList= KudobadgesEntity.CCList
+                            CCList = EmailList
                         };
                         Int64 result = IRecognitionManager.InsertKudosByHR(Entity);
                     }
@@ -1533,7 +1579,7 @@ namespace AbsiRecognitionAPI.API.Controllers
 
 
 
-       
+
 
 
         [HttpPost]
@@ -1543,8 +1589,29 @@ namespace AbsiRecognitionAPI.API.Controllers
             HttpResponseMessage response;
             try
             {
-
-                var StaffIDList = KudobadgesEntity.StaffIDList.ToList();
+                var add = "";
+                var EmailList = "";
+                var CCIDList = KudobadgesEntity.CCIDList?.ToList();
+                if (CCIDList != null)
+                {
+                    for (int j = 0; j < CCIDList.Count; j++)
+                    {
+                        if (j == 0)
+                        {
+                            EmailList = Convert.ToInt32(CCIDList[j].id).ToString();
+                            add = EmailList;
+                        }
+                        else
+                        {
+                            EmailList = add + ',' + Convert.ToInt32(CCIDList[j].id).ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    EmailList = null;
+                }
+                var StaffIDList = KudobadgesEntity.StaffIDList?.ToList();
                 if (StaffIDList != null)
                 {
                     for (int i = 0; i < StaffIDList.Count; i++)
@@ -1560,7 +1627,7 @@ namespace AbsiRecognitionAPI.API.Controllers
                             TemplateID = KudobadgesEntity.TemplateID,
                             ImageUrl = KudobadgesEntity.ImageUrl,
                             Message = KudobadgesEntity.Message,
-                            CCList= KudobadgesEntity.CCList
+                            CCList = EmailList
                         };
                         Int64 result = IRecognitionManager.InsertCelebrationByHR(Entity);
                     }
