@@ -84,6 +84,7 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> GetEmployeePointsMaster();
 
 
+       
 
     }
 }

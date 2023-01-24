@@ -851,8 +851,7 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
-
-
+       
 
     }
 }

@@ -1332,14 +1332,14 @@ namespace AbsiRecognitionAPI.API.Controllers
 
         [HttpGet]
         [Route("Recognition/GetSpecialDaysOfStaff")]
-        public HttpResponseMessage GetSpecialDaysOfStaff(DateTime Date)
+        public HttpResponseMessage GetSpecialDaysOfStaff(Int64 Month)
         {
             HttpResponseMessage response;
             try
             {
                 var j = new
                 {
-                    Date = Date
+                    Month=Month
                 };
                 object res = IRecognitionManager.GetSpecialDaysOfStaff(j);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
@@ -1807,5 +1807,10 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+
+      
+
+
+        
     }
 }

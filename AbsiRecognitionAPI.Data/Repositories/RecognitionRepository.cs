@@ -340,6 +340,7 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+        
 
         public IEnumerable<T> EnableKudosBadgeCategory<T>(object filter)
         {
@@ -363,7 +364,6 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-
         public Int64 InsertCelebrationTemplates(object filter)
         {
             try
@@ -375,6 +375,7 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+        
         public Int64 InsertCelebrationTemplatesCategory(object filter)
         {
             try
@@ -710,3 +711,4 @@ namespace AbsiRecognitionAPI.Data.Repositories
     } 
 
 }
+
