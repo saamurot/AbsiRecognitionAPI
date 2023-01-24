@@ -81,6 +81,9 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 DeleteCelebrationByHR(object filter);
 
 
+        Int64 InsertKudosByManager(KudobadgesEntity KudobadgesEntity);
+
+        IEnumerable<dynamic> GetKudosByManager();
 
     }
 }

@@ -340,6 +340,17 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+        public IEnumerable<T> GetKudosByManager<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetKudosByManager", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public IEnumerable<T> EnableKudosBadgeCategory<T>(object filter)
         {
@@ -363,7 +374,6 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-
         public Int64 InsertCelebrationTemplates(object filter)
         {
             try
@@ -375,6 +385,7 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+        
         public Int64 InsertCelebrationTemplatesCategory(object filter)
         {
             try
@@ -665,6 +676,17 @@ namespace AbsiRecognitionAPI.Data.Repositories
             try
             {
                 return db.Execute("[SProc_DeleteCelebrationByHR]", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 InsertKudosByManager(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertKudosByManager]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
             }
             catch (Exception ex)
             {

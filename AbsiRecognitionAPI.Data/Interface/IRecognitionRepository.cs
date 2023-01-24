@@ -39,6 +39,8 @@ namespace AbsiRecognitionAPI.Data.Interface
         IEnumerable<T> GetKudosBadgesByID<T>(object filter);
         IEnumerable<T> GetKudosBadgesByCategoryID<T>(object filter);
         IEnumerable<T> GetKudosBadges<T>();
+        IEnumerable<T> GetKudosByManager<T>();
+   
         IEnumerable<T> EnableKudosBadges<T>(object filter);
         IEnumerable<T> DisableKudosBadges<T>(object filter);
 
@@ -87,6 +89,6 @@ namespace AbsiRecognitionAPI.Data.Interface
         Int64 DeleteCelebrationByHR(object filter);
 
 
-
+        Int64 InsertKudosByManager(object filter);
     }
 }
