@@ -1694,49 +1694,9 @@ namespace AbsiRecognitionAPI.API.Controllers
             return response;
         }
 
-        //--------
-
-        [HttpGet]
-        [Route("Recognition/GetKudosByManager")]
-        public HttpResponseMessage GetKudosByManager()
-        {
-            HttpResponseMessage response;
-            try
-            {
-                object res = IRecognitionManager.GetKudosByManager();
-                response = Request.CreateResponse(HttpStatusCode.OK, res);
-            }
-            catch (Exception ex)
-            {
-                if (log.IsErrorEnabled)
-                {
-                    log.Error(" Error in GetKudosByManager in Master Controller" + ex);
-                }
-                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
-            }
-            return response;
-        }
+      
 
 
-        [HttpPost]
-        [Route("Recognition/InsertKudosByManager")]
-        public HttpResponseMessage InsertKudosByManager(KudobadgesEntity KudobadgesEntity)
-        {
-            HttpResponseMessage response;
-            try
-            {
-                Int64 result = IRecognitionManager.InsertKudosByManager(KudobadgesEntity);
-                response = Request.CreateResponse(HttpStatusCode.OK, result);
-            }
-            catch (Exception ex)
-            {
-                if (log.IsErrorEnabled)
-                {
-                    log.Error("Error in InsertKudosByManager", ex);
-                }
-                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertKudosByManager");
-            }
-            return response;
-        }
+        
     }
 }
