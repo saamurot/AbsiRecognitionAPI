@@ -66,6 +66,19 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+
+
+        public Int64 InsertEmployeePointsMaster(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertEmployeePointsMaster]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public Int64 InsertManagerPointsTransactions(object filter)
         {
             try

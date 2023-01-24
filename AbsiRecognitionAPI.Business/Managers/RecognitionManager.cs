@@ -636,6 +636,18 @@ namespace AbsiRecognitionAPI.Business.Managers
             }
         }
 
+        public IEnumerable<dynamic> GetStaffByManagerID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetStaffByManagerID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         //--------------------------
 
         public IEnumerable<dynamic> GetKudosByHR()
@@ -670,6 +682,18 @@ namespace AbsiRecognitionAPI.Business.Managers
             try
             {
                 return IRecognitionRepository.InsertKudosByHR(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 InsertKudosByManager(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.InsertKudosByManager(filter);
             }
             catch (Exception ex)
             {
@@ -727,6 +751,18 @@ namespace AbsiRecognitionAPI.Business.Managers
             try
             {
                 return IRecognitionRepository.GetCelebrationByHR<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<dynamic> GetEmployeePointsMaster()
+        {
+            try
+            {
+                return IRecognitionRepository.GetEmployeePointsMaster<dynamic>();
             }
             catch (Exception ex)
             {

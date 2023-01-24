@@ -69,7 +69,7 @@ namespace AbsiRecognitionAPI.Data.Interface
         Int64 DeleteCelebrationTemplates(object filter);
         Int64 DeleteCelebrationTemplatesCategory(object filter);
         IEnumerable<T> GetSpecialDaysOfStaff<T>(object filter);
-
+        IEnumerable<T> GetStaffByManagerID<T>(object filter);
 
 
         IEnumerable<T> GetKudosByHR<T>();
@@ -86,7 +86,9 @@ namespace AbsiRecognitionAPI.Data.Interface
         Int64 UpdateCelebrationByHR(object filter);
         Int64 DeleteCelebrationByHR(object filter);
 
+        IEnumerable<T> GetEmployeePointsMaster<T>();
 
+        Int64 InsertKudosByManager(object filter);
 
     }
 }

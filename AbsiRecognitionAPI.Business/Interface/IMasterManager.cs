@@ -15,6 +15,7 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> GetManagerPointsMasterByID(object filter);
         IEnumerable<dynamic> GetManagerPointsTransactionsByID(object filter);
         Int64 InsertManagerPointsMaster(MasterEntity MasterEntity);
+        Int64 InsertEmployeePointsMaster(MasterEntity MasterEntity);
         Int64 InsertManagerPointsTransactions(MasterEntity MasterEntity);
         Int64 UpdateManagerPointsMaster(MasterEntity MasterEntity);
         Int64 UpdateManagerPointsTransactions(MasterEntity MasterEntity);

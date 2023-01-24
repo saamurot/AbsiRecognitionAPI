@@ -1355,6 +1355,31 @@ namespace AbsiRecognitionAPI.API.Controllers
             return response;
         }
 
+        [HttpGet]
+        [Route("Recognition/GetStaffByManagerID")]
+        public HttpResponseMessage GetStaffByManagerID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetStaffByManagerID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetStaffByManagerID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
         //---------------------------------
 
         [HttpGet]
@@ -1477,6 +1502,74 @@ namespace AbsiRecognitionAPI.API.Controllers
         }
 
 
+        [HttpPost]
+        [Route("Recognition/InsertKudosByManager")]
+        public HttpResponseMessage InsertKudosByManager(KudobadgesEntity KudobadgesEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+
+                var add = "";
+                var EmailList = "";
+
+                var CCIDList = KudobadgesEntity.CCIDList?.ToList();
+                if (CCIDList != null)
+                {
+                    for (int j = 0; j < CCIDList.Count; j++)
+                    {
+                        if (j == 0)
+                        {
+                            //var A = CCIDList[j].id;
+                            EmailList = Convert.ToInt32(CCIDList[j].id).ToString();
+                            add = EmailList;
+                        }
+                        else
+                        {
+                            EmailList = add + ',' + Convert.ToInt32(CCIDList[j].id).ToString();
+                        }
+                    }
+                }
+                else
+                {
+                    EmailList = null;
+                }
+
+
+                var StaffIDList = KudobadgesEntity.StaffIDList?.ToList();
+                if (StaffIDList != null)
+                {
+                    for (int i = 0; i < StaffIDList.Count; i++)
+                    {
+
+                        var Entity = new
+                        {
+                            RecognisedBy = KudobadgesEntity.RecognisedBy,
+                            RecognitionCategory = KudobadgesEntity.RecognitionCategory,
+                            StaffID = Convert.ToInt32(StaffIDList[i].id),
+                            Title = KudobadgesEntity.Title,
+                            CategoryID = KudobadgesEntity.CategoryID,
+                            BadgeID = KudobadgesEntity.BadgeID,
+                            Point = KudobadgesEntity.Point,
+                            ImageUrl = KudobadgesEntity.ImageUrl,
+                            Message = KudobadgesEntity.Message,
+                            CCList = EmailList
+                        };
+                        Int64 result = IRecognitionManager.InsertKudosByManager(Entity);
+                    }
+                }
+                response = Request.CreateResponse(HttpStatusCode.OK, 1);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertKudosByHR", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertKudosByHR");
+            }
+            return response;
+        }
 
 
         [HttpPost]
@@ -1544,6 +1637,27 @@ namespace AbsiRecognitionAPI.API.Controllers
                 if (log.IsErrorEnabled)
                 {
                     log.Error(" Error in GetCelebrationByHR in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/GetEmployeePointsMaster")]
+        public HttpResponseMessage GetEmployeePointsMaster()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetEmployeePointsMaster();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetEmployeePointsMaster in Recognition Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }

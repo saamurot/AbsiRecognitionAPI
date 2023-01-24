@@ -70,10 +70,32 @@ namespace AbsiRecognitionAPI.Business.Managers
                 var filter = new
                 {
                     UserID = MasterEntity.UserID,
-                    Points = MasterEntity.Points
+                    Points = MasterEntity.Points,
+                    AssignedBy = MasterEntity.AssignedBy
 
                 };
                 return IMasterRrepository.InsertManagerPointsMaster(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+
+        public Int64 InsertEmployeePointsMaster(MasterEntity MasterEntity)
+        {
+            try
+            {
+                var filter = new
+                {
+                    UserID = MasterEntity.UserID,
+                    Points = MasterEntity.Points,
+                    AssignedBy = MasterEntity.AssignedBy
+
+                };
+                return IMasterRrepository.InsertEmployeePointsMaster(filter);
             }
             catch (Exception ex)
             {
@@ -89,7 +111,8 @@ namespace AbsiRecognitionAPI.Business.Managers
                     UserID = MasterEntity.UserID,
                     TransactionType = MasterEntity.TransactionType,
                     Points=MasterEntity.Points,
-                    ClosingBalance=MasterEntity.ClosingBalance
+                    ClosingBalance=MasterEntity.ClosingBalance,
+                    AssignedBy = MasterEntity.AssignedBy
                 };
                 return IMasterRrepository.InsertManagerPointsTransactions(filter);
             }

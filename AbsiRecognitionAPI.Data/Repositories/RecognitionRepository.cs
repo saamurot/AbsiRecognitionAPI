@@ -538,6 +538,18 @@ namespace AbsiRecognitionAPI.Data.Repositories
             }
         }
 
+        public IEnumerable<T> GetStaffByManagerID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetStaffByManagerID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         //---------------------
 
 
@@ -621,6 +633,18 @@ namespace AbsiRecognitionAPI.Data.Repositories
             }
         }
 
+        public IEnumerable<T> GetEmployeePointsMaster<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetEmployeePointsMaster", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public IEnumerable<T>GetCelebrationByHRByID<T>(object filter)
         {
             try
@@ -665,6 +689,18 @@ namespace AbsiRecognitionAPI.Data.Repositories
             try
             {
                 return db.Execute("[SProc_DeleteCelebrationByHR]", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 InsertKudosByManager(object filter)
+        {
+            try
+            {
+                return db.Query<Int64>("[dbo].[SProc_InsertKudosByManager]", filter, commandType: CommandType.StoredProcedure).SingleOrDefault();
             }
             catch (Exception ex)
             {

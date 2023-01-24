@@ -63,12 +63,14 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 DeleteCelebrationTemplates(object filter);
         Int64 DeleteCelebrationTemplatesCategory(object filter);
         IEnumerable<dynamic> GetSpecialDaysOfStaff(object filter);
+        IEnumerable<dynamic> GetStaffByManagerID(object filter);
 
         //------------------
 
         IEnumerable<dynamic> GetKudosByHR();
         IEnumerable<dynamic> GetKudosByHRByID(object filter);
         Int64 InsertKudosByHR(object filter);
+        Int64 InsertKudosByManager(object filter);
         Int64 UpdateKudosByHR(KudobadgesEntity KudobadgesEntity);
         Int64 DeleteKudosByHR(object filter);
 
@@ -79,6 +81,7 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 InsertCelebrationByHR(object filter);
         Int64 UpdateCelebrationByHR(KudobadgesEntity KudobadgesEntity);
         Int64 DeleteCelebrationByHR(object filter);
+        IEnumerable<dynamic> GetEmployeePointsMaster();
 
 
 

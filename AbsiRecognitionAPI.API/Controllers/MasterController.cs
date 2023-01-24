@@ -135,6 +135,28 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+
+        [HttpPost]
+        [Route("Master/InsertEmployeePointsMaster")]
+        public HttpResponseMessage InsertEmployeePointsMaster(MasterEntity MasterEntity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                Int64 result = IMasterManager.InsertEmployeePointsMaster(MasterEntity);
+                response = Request.CreateResponse(HttpStatusCode.OK, result);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Error in InsertEmployeePointsMaster", ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message + "Error:InsertManagerPointsMaster");
+            }
+            return response;
+        }
+
         [HttpPost]
         [Route("Master/InsertManagerPointsTransactions")]
         public HttpResponseMessage InsertManagerPointsTransactions(MasterEntity MasterEntity)

@@ -84,6 +84,8 @@ namespace StaticWebAPI.Business.Entities
         public Int64 Points { get; set; }
         public Int64 ClosingBalance { get; set; }
 
+        public Int64 AssignedTo { get; set; }
+        public Int64 AssignedBy { get; set; }
     }
 }
 

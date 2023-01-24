@@ -13,6 +13,7 @@ namespace AbsiRecognitionAPI.Data.Interface
         IEnumerable<T> GetManagerPointsMasterByID<T>(object filter);
         IEnumerable<T> GetManagerPointsTransactionsByID<T>(object filter);
         Int64 InsertManagerPointsMaster(object filter);
+        Int64 InsertEmployeePointsMaster(object filter);
         Int64 InsertManagerPointsTransactions(object filter);
         Int64 UpdateManagerPointsMaster(object filter);
         Int64 UpdateManagerPointsTransactions(object filter);
