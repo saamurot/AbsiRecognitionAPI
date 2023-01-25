@@ -887,5 +887,51 @@ namespace AbsiRecognitionAPI.Business.Managers
             }
         }
 
+        public IEnumerable<dynamic> GetKudosByEmployee()
+        {
+            try
+            {
+                return IRecognitionRepository.GetKudosByEmployee<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> GetCelebrationByEmployee()
+        {
+            try
+            {
+                return IRecognitionRepository.GetCelebrationByEmployee<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public Int64 InsertKudosByEmployee(object Entity)
+        {
+            try
+            {
+                return IRecognitionRepository.InsertKudosByEmployee(Entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public Int64 InsertCelebrationByEmployee(object Entity)
+        {
+            try
+            {
+                return IRecognitionRepository.InsertCelebrationByEmployee(Entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
     }
 }

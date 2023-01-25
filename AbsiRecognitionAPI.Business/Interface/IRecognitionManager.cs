@@ -86,6 +86,14 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 InsertCelebrationByManager(object filter);
         IEnumerable<dynamic> GetCelebrationByManager();
 
+        IEnumerable<dynamic> GetKudosByEmployee();
+
+        IEnumerable<dynamic> GetCelebrationByEmployee();
+
+        Int64 InsertKudosByEmployee(object filter);
+
+        Int64 InsertCelebrationByEmployee(object filter);
+        
 
     }
 }

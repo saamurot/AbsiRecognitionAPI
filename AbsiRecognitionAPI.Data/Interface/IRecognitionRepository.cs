@@ -95,5 +95,11 @@ namespace AbsiRecognitionAPI.Data.Interface
         Int64 InsertCelebrationByManager(object filter);
         IEnumerable<T> GetCelebrationByManager<T>();
 
+
+        IEnumerable<T> GetKudosByEmployee<T>();
+        IEnumerable<T> GetCelebrationByEmployee<T>();
+        Int64 InsertKudosByEmployee(object filter);
+        Int64 InsertCelebrationByEmployee(object filter);
+
     }
 }
