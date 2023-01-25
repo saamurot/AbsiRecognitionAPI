@@ -83,8 +83,9 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 DeleteCelebrationByHR(object filter);
         IEnumerable<dynamic> GetEmployeePointsMaster();
 
+        Int64 InsertCelebrationByManager(object filter);
+        IEnumerable<dynamic> GetCelebrationByManager();
 
-       
 
     }
 }

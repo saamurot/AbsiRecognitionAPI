@@ -851,7 +851,41 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
-       
+        public Int64 InsertCelebrationByManager(object Entity)
+        {
+            try
+            {
+              //  var filter = new
+               // {
+                   // RecognisedBy = KudobadgesEntity.RecognisedBy,
+                   // RecognitionCategory = KudobadgesEntity.RecognitionCategory,
+                //   StaffID = KudobadgesEntity.StaffID,
+                 //  Title = KudobadgesEntity.Title,
+                  //  CategoryID = KudobadgesEntity.CategoryID,
+                  //  TemplateID = KudobadgesEntity.TemplateID,
+                  // ImageUrl = KudobadgesEntity.ImageUrl,
+                  //  Message = KudobadgesEntity.Message,
+                  //  CCLIst= KudobadgesEntity.CCList
+
+               // };
+                return IRecognitionRepository.InsertCelebrationByManager(Entity);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> GetCelebrationByManager()
+        {
+            try
+            {
+                return IRecognitionRepository.GetCelebrationByManager<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
     }
 }
