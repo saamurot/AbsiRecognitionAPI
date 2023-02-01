@@ -96,5 +96,6 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 InsertCelebrationByEmployee(object filter);
 
         IEnumerable<dynamic> GetKudosByUserID(object filter);
+        IEnumerable<dynamic> GetCelebrationByUserID(object filter);
     }
 }

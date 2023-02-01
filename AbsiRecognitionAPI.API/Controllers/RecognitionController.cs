@@ -2113,5 +2113,31 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+
+        [HttpGet]
+        [Route("Recognition/GetCelebrationByUserID")]
+        public HttpResponseMessage GetCelebrationByUserID(Int64 StaffID, Int64 Year)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    StaffID = StaffID,
+                    Year = Year
+                };
+                object res = IRecognitionManager.GetCelebrationByUserID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetCelebrationByUserID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
     }
 }

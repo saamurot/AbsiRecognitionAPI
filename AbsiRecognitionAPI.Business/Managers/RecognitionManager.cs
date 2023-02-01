@@ -957,5 +957,17 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+
+        public IEnumerable<dynamic> GetCelebrationByUserID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetCelebrationByUserID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
