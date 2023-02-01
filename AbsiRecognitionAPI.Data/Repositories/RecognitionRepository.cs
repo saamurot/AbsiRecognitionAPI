@@ -658,6 +658,18 @@ namespace AbsiRecognitionAPI.Data.Repositories
             }
         }
 
+        public IEnumerable<T> GetManagerByStaffID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetManagerByStaffID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         public Int64 InsertCelebrationByHR(object filter)
         {

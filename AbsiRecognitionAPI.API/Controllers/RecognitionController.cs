@@ -1692,6 +1692,32 @@ namespace AbsiRecognitionAPI.API.Controllers
         }
 
 
+        [HttpGet]
+        [Route("Recognition/GetManagerByStaffID")]
+        public HttpResponseMessage GetManagerByStaffID(Int64 ID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID
+                };
+                object res = IRecognitionManager.GetManagerByStaffID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetManagerByStaffID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
 
 
 

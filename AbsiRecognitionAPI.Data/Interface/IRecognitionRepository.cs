@@ -84,6 +84,7 @@ namespace AbsiRecognitionAPI.Data.Interface
 
         IEnumerable<T> GetCelebrationByHR<T>();
         IEnumerable<T> GetCelebrationByHRByID<T>(object filter);
+        IEnumerable<T> GetManagerByStaffID<T>(object filter);
         Int64 InsertCelebrationByHR(object filter);
         Int64 UpdateCelebrationByHR(object filter);
         Int64 DeleteCelebrationByHR(object filter);

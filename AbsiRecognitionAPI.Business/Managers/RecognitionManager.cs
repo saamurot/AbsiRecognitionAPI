@@ -784,6 +784,18 @@ namespace AbsiRecognitionAPI.Business.Managers
             }
         }
 
+        public IEnumerable<dynamic> GetManagerByStaffID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetManagerByStaffID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         public Int64 InsertCelebrationByHR(object Entity)
         {
