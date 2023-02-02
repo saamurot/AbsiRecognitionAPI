@@ -2141,14 +2141,14 @@ namespace AbsiRecognitionAPI.API.Controllers
         }
         [HttpGet]
         [Route("Recognition/GetAvailablePointsByUserID")]
-        public HttpResponseMessage GetAvailablePointsByUserID(Int64 LoginType)
+        public HttpResponseMessage GetAvailablePointsByUserID(Int64 UserID)
         {
             HttpResponseMessage response;
             try
             {
                 var j = new
                 {
-                    LoginType= LoginType
+                    UserID = UserID
                 };
                 object res = IRecognitionManager.GetAvailablePointsByUserID(j);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
