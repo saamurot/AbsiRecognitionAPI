@@ -969,5 +969,16 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+        public IEnumerable<dynamic> GetAvailablePointsByUserID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetAvailablePointsByUserID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

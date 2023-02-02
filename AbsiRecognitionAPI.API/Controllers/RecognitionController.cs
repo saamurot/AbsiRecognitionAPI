@@ -2139,5 +2139,29 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+        [HttpGet]
+        [Route("Recognition/GetAvailablePointsByUserID")]
+        public HttpResponseMessage GetAvailablePointsByUserID(Int64 LoginType)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    LoginType= LoginType
+                };
+                object res = IRecognitionManager.GetAvailablePointsByUserID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetAvailablePointsByUserID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
     }
 }
