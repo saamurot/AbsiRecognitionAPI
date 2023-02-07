@@ -2163,5 +2163,31 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+
+        [HttpGet]
+        [Route("Recognition/GetKudosByUserIDandDate")]
+        public HttpResponseMessage GetKudosByUserIDandDate(Int64 StaffID,DateTime Date)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    StaffID = StaffID,
+                    Date= Date
+                };
+                object res = IRecognitionManager.GetKudosByUserIDandDate(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetKudosByUserIDandDate in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
     }
 }

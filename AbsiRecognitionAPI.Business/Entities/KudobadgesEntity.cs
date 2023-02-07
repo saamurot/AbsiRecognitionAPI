@@ -35,5 +35,7 @@ namespace StaticWebAPI.Business.Entities
         public Int64 TemplateID { get; set; }
         public string CCList { get; set; }
 
+        public DateTime Date { get; set; }
+
     }
 }

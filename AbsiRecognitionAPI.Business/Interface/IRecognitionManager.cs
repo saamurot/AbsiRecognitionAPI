@@ -98,6 +98,6 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> GetKudosByUserID(object filter);
         IEnumerable<dynamic> GetCelebrationByUserID(object filter);
         IEnumerable<dynamic> GetAvailablePointsByUserID(object filter);
-
+        IEnumerable<dynamic> GetKudosByUserIDandDate(object filter);
     }
 }

@@ -980,5 +980,16 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+        public IEnumerable<dynamic> GetKudosByUserIDandDate(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetKudosByUserIDandDate<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

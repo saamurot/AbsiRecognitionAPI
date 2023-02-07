@@ -15,8 +15,6 @@ namespace AbsiRecognitionAPI.Data.Interface
 
 
 
-
-
         IEnumerable<T> GetCategoryWiseCardsByID<T>(object filter);
         Int64 InsertCategoryMaster(object filter);
         Int64 InsertCategoryWiseCards(object filter);
