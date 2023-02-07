@@ -19,5 +19,7 @@ namespace AbsiRecognitionAPI.Data.Interface
         Int64 UpdateManagerPointsTransactions(object filter);
         Int64 DeleteManagerPointsMaster(object filter);
         Int64 DeleteManagerPointsTransactions(object filter);
+
+        IEnumerable<T> GetManagerPointsMasterByUserID<T>(object filter);
     }
 }

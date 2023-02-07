@@ -21,6 +21,8 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 UpdateManagerPointsTransactions(MasterEntity MasterEntity);
         Int64 DeleteManagerPointsMaster(object filter);
         Int64 DeleteManagerPointsTransactions(object filter);
+        IEnumerable<dynamic> GetManagerPointsMasterByUserID(object filter);
+
 
     }
 }

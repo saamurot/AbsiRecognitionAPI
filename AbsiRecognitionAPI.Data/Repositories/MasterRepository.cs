@@ -134,5 +134,18 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+
+
+        public IEnumerable<T> GetManagerPointsMasterByUserID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetManagerPointsMasterByUserID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

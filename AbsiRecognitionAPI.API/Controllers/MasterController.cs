@@ -260,5 +260,31 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+
+
+        [HttpGet]
+        [Route("Master/GetManagerPointsMasterByUserID")]
+        public HttpResponseMessage GetManagerPointsMasterByUserID(Int64 UserID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    UserID = UserID
+                };
+                object res = IMasterManager.GetManagerPointsMasterByUserID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetManagerPointsMasterByUserID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
     }
 }

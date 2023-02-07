@@ -108,5 +108,6 @@ namespace AbsiRecognitionAPI.Data.Interface
         IEnumerable<T> GetCelebrationByUserID<T>(object filter);
 
         IEnumerable<T> GetAvailablePointsByUserID<T>(object filter);
+        IEnumerable<T> GetKudosByUserIDandDate<T>(object filter);
     }
 }

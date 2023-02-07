@@ -819,6 +819,17 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+        public IEnumerable<T> GetKudosByUserIDandDate<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetKudosByUserIDandDate", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     } 
 
 }

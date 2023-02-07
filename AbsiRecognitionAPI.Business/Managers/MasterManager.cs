@@ -181,5 +181,17 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+
+        public IEnumerable<dynamic> GetManagerPointsMasterByUserID(object filter)
+        {
+            try
+            {
+                return IMasterRrepository.GetManagerPointsMasterByUserID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
