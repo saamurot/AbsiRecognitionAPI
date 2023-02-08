@@ -2216,5 +2216,77 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+        [HttpGet]
+        [Route("Recognition/CheckCelebrationTemplates")]
+        public HttpResponseMessage CheckCelebrationTemplates(string TemplateName)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new
+                {
+                    TemplateName = TemplateName
+                };
+                object res = IRecognitionManager.CheckCelebrationTemplates(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in CheckCelebrationTemplates in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/CheckCelebrationTemplatesCategory")]
+        public HttpResponseMessage CheckCelebrationTemplatesCategory(string Category)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new
+                {
+                    Category = Category
+                };
+                object res = IRecognitionManager.CheckCelebrationTemplatesCategory(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in CheckCelebrationTemplatesCategory in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/CheckKudosBadgesName")]
+        public HttpResponseMessage CheckKudosBadgesName(string BadgeName)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new
+                {
+                    BadgeName = BadgeName
+                };
+                object res = IRecognitionManager.CheckKudosBadgesName(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in CheckKudosBadgesName in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
     }
 }

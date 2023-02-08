@@ -110,6 +110,9 @@ namespace AbsiRecognitionAPI.Data.Interface
 
 
         IEnumerable<T> CheckCategoryAvailability<T>(object filter);
+        IEnumerable<T> CheckCelebrationTemplates<T>(object filter);
+        IEnumerable<T> CheckCelebrationTemplatesCategory<T>(object filter);
+        IEnumerable<T> CheckKudosBadgesName<T>(object filter);
 
     }
 }

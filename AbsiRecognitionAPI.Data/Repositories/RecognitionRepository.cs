@@ -846,6 +846,39 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+        public IEnumerable<T> CheckCelebrationTemplates<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("Sproc_CheckCelebrationTemplates", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> CheckCelebrationTemplatesCategory<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("Sproc_CheckCelebrationTemplatesCategory", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> CheckKudosBadgesName<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("Sproc_CheckKudosBadgesName", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     } 
 
 }

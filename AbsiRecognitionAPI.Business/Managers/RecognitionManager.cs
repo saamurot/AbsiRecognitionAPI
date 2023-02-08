@@ -1005,5 +1005,40 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+        public IEnumerable<dynamic> CheckCelebrationTemplates(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.CheckCelebrationTemplates<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> CheckCelebrationTemplatesCategory(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.CheckCelebrationTemplatesCategory<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+           
+        }
+        public IEnumerable<dynamic> CheckKudosBadgesName(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.CheckKudosBadgesName<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }
