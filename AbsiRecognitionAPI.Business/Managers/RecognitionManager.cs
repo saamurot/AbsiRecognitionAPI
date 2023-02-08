@@ -991,5 +991,19 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+
+
+
+        public IEnumerable<dynamic> CheckCategoryAvailability(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.CheckCategoryAvailability<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

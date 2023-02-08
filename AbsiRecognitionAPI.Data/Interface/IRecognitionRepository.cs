@@ -107,5 +107,9 @@ namespace AbsiRecognitionAPI.Data.Interface
 
         IEnumerable<T> GetAvailablePointsByUserID<T>(object filter);
         IEnumerable<T> GetKudosByUserIDandDate<T>(object filter);
+
+
+        IEnumerable<T> CheckCategoryAvailability<T>(object filter);
+
     }
 }

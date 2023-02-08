@@ -2189,5 +2189,32 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+
+
+
+        [HttpGet]
+        [Route("Recognition/CheckCategoryAvailability")]
+        public HttpResponseMessage CheckCategoryAvailability(string Category)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var filter = new
+                {
+                    Category= Category
+                };
+                object res = IRecognitionManager.CheckCategoryAvailability(filter);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in CheckCategoryAvailability in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
     }
 }
