@@ -261,6 +261,7 @@ namespace AbsiRecognitionAPI.Business.Managers
                     CategoryID = KudobadgesEntity.CategoryID,
                     BadgeName = KudobadgesEntity.BadgeName,
                     Description = KudobadgesEntity.Description,
+                    BadgeURL= KudobadgesEntity.BadgeURL
                 };
                 return IRecognitionRepository.UpdateKudosBadges(filter);
             }
