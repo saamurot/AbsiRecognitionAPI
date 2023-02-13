@@ -107,5 +107,8 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> CheckCelebrationTemplatesCategory(object filter);
         IEnumerable<dynamic> CheckKudosBadgesName(object filter);
 
+
+        IEnumerable<dynamic> GetManagerPointsTransactionsByUserID(object filter);
+
     }
 }

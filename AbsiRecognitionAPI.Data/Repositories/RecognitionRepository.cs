@@ -879,6 +879,17 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+        public IEnumerable<T> GetManagerPointsTransactionsByUserID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetManagerPointsTransactionsByUserID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     } 
 
 }

@@ -2288,5 +2288,29 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+        [HttpGet]
+        [Route("Recognition/GetManagerPointsTransactionsByUserID")]
+        public HttpResponseMessage GetManagerPointsTransactionsByUserID(Int64 UserID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    UserID = UserID
+                };
+                object res = IRecognitionManager.GetManagerPointsTransactionsByUserID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetManagerPointsTransactionsByUserID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
     }
 }

@@ -1041,5 +1041,16 @@ namespace AbsiRecognitionAPI.Business.Managers
             }
 
         }
+        public IEnumerable<dynamic> GetManagerPointsTransactionsByUserID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetManagerPointsTransactionsByUserID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
