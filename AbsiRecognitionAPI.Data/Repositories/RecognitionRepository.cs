@@ -902,6 +902,45 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+
+
+        public IEnumerable<T> GetTodaysBirthDay<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetTodaysBirthDay", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public IEnumerable<T> GetTodaysMarriageAnniversary<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetTodaysMarriageAnniversary", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public IEnumerable<T> GetTodaysWorkAnniversary<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetTodaysWorkAnniversary", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     } 
 
 }

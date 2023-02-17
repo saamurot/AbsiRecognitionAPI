@@ -2349,5 +2349,81 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+        [HttpGet]
+        [Route("Recognition/GetTodaysBirthDay")]
+        public HttpResponseMessage GetTodaysBirthDay(DateTime Date)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var D = new
+                {
+                    Date = Date
+                };
+                object res = IRecognitionManager.GetTodaysBirthDay(D);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetTodaysBirthDay in Master Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+        [HttpGet]
+        [Route("Recognition/GetTodaysMarriageAnniversary")]
+        public HttpResponseMessage GetTodaysMarriageAnniversary(DateTime Date)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var D = new
+                {
+                    Date = Date
+                };
+                object res = IRecognitionManager.GetTodaysMarriageAnniversary(D);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetTodaysMarriageAnniversary in Master Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+        [HttpGet]
+        [Route("Recognition/GetTodaysWorkAnniversary")]
+        public HttpResponseMessage GetTodaysWorkAnniversary(DateTime Date)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var D = new
+                {
+                    Date = Date
+                };
+                object res = IRecognitionManager.GetTodaysWorkAnniversary(D);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetTodaysWorkAnniversary in Master Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
     }
 }

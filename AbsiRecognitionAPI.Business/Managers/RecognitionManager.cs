@@ -1063,5 +1063,41 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+        public IEnumerable<dynamic> GetTodaysBirthDay(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetTodaysBirthDay<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        public IEnumerable<dynamic> GetTodaysMarriageAnniversary(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetTodaysMarriageAnniversary<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<dynamic> GetTodaysWorkAnniversary(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetTodaysWorkAnniversary<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
