@@ -48,13 +48,13 @@ namespace AbsiRecognitionAPI.API.Controllers
             Configuration config = WebConfigurationManager.OpenWebConfiguration(HttpContext.Current.Request.ApplicationPath);
             MailSettingsSectionGroup settings = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
 
-            var client = new SmtpClient("smtp-mail.outlook.com", 587)
+            var client = new SmtpClient("smtp.office365.com", 587)
             {
-                Credentials = new NetworkCredential("absirr@outlook.com", "P@ssw0rd@123"),
+                Credentials = new NetworkCredential("mamata@amazeinc.in", "bluepink@123"),
                 EnableSsl = true
             };
             System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
-            msg.From = new MailAddress("absirr@outlook.com");
+            msg.From = new MailAddress("mamata@amazeinc.in");
             msg.To.Add(new MailAddress(email.emailto));
 
 
@@ -69,11 +69,21 @@ namespace AbsiRecognitionAPI.API.Controllers
             //    msg.CC.Add(new MailAddress(CCEmail)); //Adding Multiple CC email Id  
             //}
 
-            var htmlString = "<p style='padding: 5px; background-color: blue; font-size: 20px; text-align: center; color: #fff;  width:100% '>HappyBIRTHDAY</p> " +
-                "<br><p style='text-align: center'><img src='https://103.12.1.103//AbsiRecognitionAPI//Assets//KudosBadges//20230110124136stars-01.png'  style='width:10%'></p>" +
-                "<br><p style='background-color: yellow; font-size: 20px; text-align: center; width:100% '>1000</p>" +
-                "<br><p style='text-align:center'><img src='https://103.12.1.103//AbsiRecognitionAPI//Assets//Celebration//20230110123611congratulations.jpg' style='width:100%'></p> " +
-                "<br><p style='width: 100%; background-color: rgb(184, 184, 192); font-size: 20px; text-align: center; color: #fff;'>contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</p>";
+            //var htmlString = "<p style='padding: 5px; background-color: blue; font-size: 20px; text-align: center; color: #fff;  width:100% '>HappyBIRTHDAY</p> " +
+            //    "<br><p style='text-align: center'><img src='https://103.12.1.103//AbsiRecognitionAPI//Assets//KudosBadges//20230110124136stars-01.png'  style='width:10%'></p>" +
+            //    "<br><p style='background-color: yellow; font-size: 20px; text-align: center; width:100% '>1000</p>" +
+            //    "<br><p style='text-align:center'><img src='https://103.12.1.103//AbsiRecognitionAPI//Assets//Celebration//20230110123611congratulations.jpg' style='width:100%'></p> " +
+            //    "<br><p style='width: 100%; background-color: rgb(184, 184, 192); font-size: 20px; text-align: center; color: #fff;'>contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</p>";
+
+
+            var htmlString = "<p style='background-color: rgb(51, 51, 156); font-size: 20px; color: #fff; text-align: center; width:100% ;padding: 8px;'>QA</p><br><span>" +
+                "<img src='https://103.12.1.103//AbsiRecognitionAPI\\\\Assets\\\\KudosBadges\\\\202302151249332023020611084020230131102454360_F_281428332_I8vdli48NAy8McReaO0qQc3VMDIXUQGd.jpg' style=' width: 30%;padding: 0 15px;'>" +
+                "<span style='width: 33%;padding: 0 15px;font-size: 14px;'>contentcontentcontentcontentcontentcontentcontentcontentconont</span><br> <p style='background-color: rgb(255, 213, 4); font-size: 20px; color: #fff; text-align: center; width:30% ;padding: 8px;'>1000</p><p style='text-align:center'>" +
+                "<img src='https://103.12.1.103//AbsiRecognitionAPI\\Assets\\KudosBadges\\20230215154743VeniVidiVici.png'style='width:100%'></p>";
+
+
+
+
 
             msg.Subject = email.emailsubject;
             msg.Body = htmlString;
@@ -2003,7 +2013,7 @@ namespace AbsiRecognitionAPI.API.Controllers
                             Title = KudobadgesEntity.Title,
                             CategoryID = KudobadgesEntity.CategoryID,
                             BadgeID = KudobadgesEntity.BadgeID,
-                            Point = KudobadgesEntity.Point,
+                            //Point = KudobadgesEntity.Point,
                             ImageUrl = KudobadgesEntity.ImageUrl,
                             Message = KudobadgesEntity.Message,
                             CCList = EmailList
@@ -2218,14 +2228,15 @@ namespace AbsiRecognitionAPI.API.Controllers
         }
         [HttpGet]
         [Route("Recognition/CheckCelebrationTemplates")]
-        public HttpResponseMessage CheckCelebrationTemplates(string TemplateName)
+        public HttpResponseMessage CheckCelebrationTemplates(string TemplateName, Int64 CategoryID)
         {
             HttpResponseMessage response;
             try
             {
                 var filter = new
                 {
-                    TemplateName = TemplateName
+                    TemplateName = TemplateName,
+                    CategoryID= CategoryID
                 };
                 object res = IRecognitionManager.CheckCelebrationTemplates(filter);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
@@ -2266,14 +2277,15 @@ namespace AbsiRecognitionAPI.API.Controllers
         }
         [HttpGet]
         [Route("Recognition/CheckKudosBadgesName")]
-        public HttpResponseMessage CheckKudosBadgesName(string BadgeName)
+        public HttpResponseMessage CheckKudosBadgesName(string BadgeName, Int64 CategoryID)
         {
             HttpResponseMessage response;
             try
             {
                 var filter = new
                 {
-                    BadgeName = BadgeName
+                    BadgeName = BadgeName,
+                    CategoryID= CategoryID
                 };
                 object res = IRecognitionManager.CheckKudosBadgesName(filter);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
