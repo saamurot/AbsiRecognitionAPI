@@ -115,6 +115,6 @@ namespace AbsiRecognitionAPI.Data.Interface
         IEnumerable<T> CheckKudosBadgesName<T>(object filter);
 
         IEnumerable<T> GetManagerPointsTransactionsByUserID<T>(object filter);
-
+        IEnumerable<T> GetNewJoineeByDate<T>(object filter);
     }
 }

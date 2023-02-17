@@ -1052,5 +1052,16 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+        public IEnumerable<dynamic> GetNewJoineeByDate(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetNewJoineeByDate<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
