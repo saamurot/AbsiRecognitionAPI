@@ -2312,5 +2312,30 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+
+        [HttpGet]
+        [Route("Recognition/GetNewJoineeByDate")]
+        public HttpResponseMessage GetNewJoineeByDate(DateTime Date)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    Date = Date
+                };
+                object res = IRecognitionManager.GetNewJoineeByDate(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetNewJoineeByDate in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
     }
 }
