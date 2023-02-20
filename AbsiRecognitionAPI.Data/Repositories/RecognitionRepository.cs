@@ -941,6 +941,30 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+
+        public IEnumerable<T> GetTypeList<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetTypeList", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T> GetDepartmentList<T>()
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetDepartmentList", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     } 
 
 }

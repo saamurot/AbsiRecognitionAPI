@@ -2427,5 +2427,47 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+
+        [HttpGet]
+        [Route("Recognition/GetDepartmentList")]
+        public HttpResponseMessage GetDepartmentList()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetDepartmentList();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetDepartmentList in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Recognition/GetTypeList")]
+        public HttpResponseMessage GetTypeList()
+        {
+            HttpResponseMessage response;
+            try
+            {
+                object res = IRecognitionManager.GetTypeList();
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetTypeList in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
     }
 }

@@ -115,5 +115,8 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> GetTodaysMarriageAnniversary(object filter);
         IEnumerable<dynamic> GetTodaysWorkAnniversary(object filter);
 
+        IEnumerable<dynamic> GetDepartmentList();
+        IEnumerable<dynamic> GetTypeList();
+
     }
 }

@@ -1099,5 +1099,27 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+        public IEnumerable<dynamic> GetTypeList()
+        {
+            try
+            {
+                return IRecognitionRepository.GetTypeList<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> GetDepartmentList()
+        {
+            try
+            {
+                return IRecognitionRepository.GetDepartmentList<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

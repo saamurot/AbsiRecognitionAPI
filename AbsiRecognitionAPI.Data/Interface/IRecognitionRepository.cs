@@ -119,5 +119,8 @@ namespace AbsiRecognitionAPI.Data.Interface
         IEnumerable<T> GetTodaysWorkAnniversary<T>(object filter);
         IEnumerable<T> GetTodaysMarriageAnniversary<T>(object filter);
         IEnumerable<T> GetTodaysBirthDay<T>(object filter);
+
+        IEnumerable<T> GetDepartmentList<T>();
+        IEnumerable<T> GetTypeList<T>();
     }
 }
