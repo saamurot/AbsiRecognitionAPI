@@ -2351,14 +2351,14 @@ namespace AbsiRecognitionAPI.API.Controllers
         }
         [HttpGet]
         [Route("Recognition/GetTodaysBirthDay")]
-        public HttpResponseMessage GetTodaysBirthDay(Int64 Date,Int64 Month)
+        public HttpResponseMessage GetTodaysBirthDay(Int64 Day,Int64 Month)
         {
             HttpResponseMessage response;
             try
             {
                 var D = new
                 {
-                    Date = Date,
+                    Day = Day,
                     Month= Month
                 };
                 object res = IRecognitionManager.GetTodaysBirthDay(D);
@@ -2378,14 +2378,14 @@ namespace AbsiRecognitionAPI.API.Controllers
 
         [HttpGet]
         [Route("Recognition/GetTodaysMarriageAnniversary")]
-        public HttpResponseMessage GetTodaysMarriageAnniversary(Int64 Date, Int64 Month)
+        public HttpResponseMessage GetTodaysMarriageAnniversary(Int64 Day, Int64 Month)
         {
             HttpResponseMessage response;
             try
             {
                 var D = new
                 {
-                    Date = Date,
+                    Day = Day,
                     Month=Month
                 };
                 object res = IRecognitionManager.GetTodaysMarriageAnniversary(D);
@@ -2405,14 +2405,15 @@ namespace AbsiRecognitionAPI.API.Controllers
 
         [HttpGet]
         [Route("Recognition/GetTodaysWorkAnniversary")]
-        public HttpResponseMessage GetTodaysWorkAnniversary(DateTime Date)
+        public HttpResponseMessage GetTodaysWorkAnniversary(Int64 Day, Int64 Month)
         {
             HttpResponseMessage response;
             try
             {
                 var D = new
                 {
-                    Date = Date
+                    Day = Day,
+                    Month = Month
                 };
                 object res = IRecognitionManager.GetTodaysWorkAnniversary(D);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
