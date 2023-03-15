@@ -48,6 +48,79 @@ namespace AbsiRecognitionAPI.API.Controllers
             Configuration config = WebConfigurationManager.OpenWebConfiguration(HttpContext.Current.Request.ApplicationPath);
             MailSettingsSectionGroup settings = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
 
+            //var client = new SmtpClient("smtp.office365.com", 587)
+            //{
+            //    Credentials = new NetworkCredential("mamata@amazeinc.in", "bluepink@123"),
+            //    EnableSsl = true
+            //};
+
+            var client = new SmtpClient("smtp.gmail.com", 587)
+            {
+                Credentials = new NetworkCredential("digioffice@asticom.com.ph", "wedjhntljwbilpsd"),
+                EnableSsl = true
+            };
+            System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            msg.From = new MailAddress("digioffice@asticom.com.ph");
+           // msg.To.Add(new MailAddress(email.emailto));
+
+
+            string[] ToMuliId = email.emailto.Split(',');
+            foreach (string ToEMailId in ToMuliId)
+            {
+                msg.To.Add(new MailAddress(ToEMailId)); //adding multiple TO Email Id  
+            }
+
+            if(email.emailCC!= "")
+            {
+                string[] CCId = email.emailCC.Split(',');
+                foreach (string CCEmail in CCId)
+                {
+                    msg.CC.Add(new MailAddress(CCEmail)); //Adding Multiple CC email Id  
+                }
+            }
+
+            var htmlString = "<p style='background-color: rgb(51, 51, 156); font-size: 20px; color: #fff; text-align: center; width:100% ;padding: 8px;'>\r\n" +
+              email.emailTitle+
+                "</p>\r\n\r\n<span style=\"text-align: justify;\"> <p style=\"text-align: justify;\">" +
+               email.emailContent +
+                "</p> " +
+                "\r\n</span>\r\n<span>\r\n        <img src=" +
+               email.emailBadgeURL +
+                "\r\n                style=' width: 50%; float: left; margin-left: 230px; '>\r\n        </span> <br>\r\n<p style='background-color: rgb(255, 213, 4); font-size: 20px; color: #fff; text-align: center; width:100% ;padding: 8px; float: right; margin-top:40px; margin-left:500px; '>" +
+                "Points " +
+               email.emailPoints +
+                "</p>" +
+                "\r\n<span ><img src=" +
+                email.emailBgURL +
+                "\r\n style='height:400px; width:750px; object-fit: fill;' ></span>\r\n";
+
+
+
+            msg.Subject = email.emailsubject;
+            msg.Body = htmlString;
+            msg.IsBodyHtml = true;
+            try
+            {
+                client.Send(msg);
+                response = Request.CreateResponse(HttpStatusCode.OK, "Success");
+            }
+            catch (Exception ex)
+            {
+                response = Request.CreateResponse(HttpStatusCode.OK, ex);
+            }
+            return response;
+        }
+
+
+        [HttpPost]
+        [Route("Recognition/sendemailCelebrations/")]
+        public HttpResponseMessage sendemailCelebrations(RecognitionOneEntity email)
+        {
+            HttpResponseMessage response;
+
+            Configuration config = WebConfigurationManager.OpenWebConfiguration(HttpContext.Current.Request.ApplicationPath);
+            MailSettingsSectionGroup settings = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
+
             var client = new SmtpClient("smtp.office365.com", 587)
             {
                 Credentials = new NetworkCredential("mamata@amazeinc.in", "bluepink@123"),
@@ -55,33 +128,35 @@ namespace AbsiRecognitionAPI.API.Controllers
             };
             System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
             msg.From = new MailAddress("mamata@amazeinc.in");
-            msg.To.Add(new MailAddress(email.emailto));
+            //  msg.To.Add(new MailAddress(email.emailto));
 
 
-            //string[] ToMuliId = email.emailto.Split(',');
-            //foreach (string ToEMailId in ToMuliId)
-            //{
-            //    msg.To.Add(new MailAddress(ToEMailId)); //adding multiple TO Email Id  
-            //}
-            //string[] CCId = email.emailCC.Split(',');
-            //foreach (string CCEmail in CCId)
-            //{
-            //    msg.CC.Add(new MailAddress(CCEmail)); //Adding Multiple CC email Id  
-            //}
+            string[] ToMuliId = email.emailto.Split(',');
+            foreach (string ToEMailId in ToMuliId)
+            {
+                msg.To.Add(new MailAddress(ToEMailId)); //adding multiple TO Email Id  
+            }
 
-            //var htmlString = "<p style='padding: 5px; background-color: blue; font-size: 20px; text-align: center; color: #fff;  width:100% '>HappyBIRTHDAY</p> " +
-            //    "<br><p style='text-align: center'><img src='https://103.12.1.103//AbsiRecognitionAPI//Assets//KudosBadges//20230110124136stars-01.png'  style='width:10%'></p>" +
-            //    "<br><p style='background-color: yellow; font-size: 20px; text-align: center; width:100% '>1000</p>" +
-            //    "<br><p style='text-align:center'><img src='https://103.12.1.103//AbsiRecognitionAPI//Assets//Celebration//20230110123611congratulations.jpg' style='width:100%'></p> " +
-            //    "<br><p style='width: 100%; background-color: rgb(184, 184, 192); font-size: 20px; text-align: center; color: #fff;'>contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent</p>";
+            if (email.emailCC != "")
+            {
+                string[] CCId = email.emailCC.Split(',');
+                foreach (string CCEmail in CCId)
+                {
+                    msg.CC.Add(new MailAddress(CCEmail)); //Adding Multiple CC email Id  
+                }
+            }
 
-
-            var htmlString = "<p style='background-color: rgb(51, 51, 156); font-size: 20px; color: #fff; text-align: center; width:100% ;padding: 8px;'>QA</p><br><span>" +
-                "<img src='https://103.12.1.103//AbsiRecognitionAPI\\\\Assets\\\\KudosBadges\\\\202302151249332023020611084020230131102454360_F_281428332_I8vdli48NAy8McReaO0qQc3VMDIXUQGd.jpg' style=' width: 30%;padding: 0 15px;'>" +
-                "<span style='width: 33%;padding: 0 15px;font-size: 14px;'>contentcontentcontentcontentcontentcontentcontentcontentconont</span><br> <p style='background-color: rgb(255, 213, 4); font-size: 20px; color: #fff; text-align: center; width:30% ;padding: 8px;'>1000</p><p style='text-align:center'>" +
-                "<img src='https://103.12.1.103//AbsiRecognitionAPI\\Assets\\KudosBadges\\20230215154743VeniVidiVici.png'style='width:100%'></p>";
-
-
+            var htmlString = "<p style='background-color: rgb(51, 51, 156); font-size: 20px; color: #fff; text-align: center; width:100% ;padding: 8px;'>\r\n" +
+              email.emailTitle +
+                "</p>\r\n\r\n<span style=\"text-align: justify;\"> <p style=\"text-align: justify;\">" +
+               email.emailContent +
+                "</p> " +
+                "\r\n</span>\r\n<span>\r\n        <img src=" +
+               email.emailBadgeURL +
+                "\r\n                style='width : 50%; float: left;  '>\r\n        </span> " +
+                "\r\n<span ><img src=" +
+                email.emailBgURL +
+                "\r\n style='width: 50%;' ></span>\r\n";
 
 
 
@@ -1342,14 +1417,15 @@ namespace AbsiRecognitionAPI.API.Controllers
 
         [HttpGet]
         [Route("Recognition/GetSpecialDaysOfStaff")]
-        public HttpResponseMessage GetSpecialDaysOfStaff(Int64 Month)
+        public HttpResponseMessage GetSpecialDaysOfStaff(Int64 Month, Int64 Day)
         {
             HttpResponseMessage response;
             try
             {
                 var j = new
                 {
-                    Month=Month
+                    Month=Month,
+                    Day= Day
                 };
                 object res = IRecognitionManager.GetSpecialDaysOfStaff(j);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
@@ -1493,7 +1569,9 @@ namespace AbsiRecognitionAPI.API.Controllers
                             Point = KudobadgesEntity.Point,
                             ImageUrl = KudobadgesEntity.ImageUrl,
                             Message = KudobadgesEntity.Message,
-                            CCList = EmailList
+                            CCList = EmailList,
+                            DepartmentID= KudobadgesEntity.DepartmentID,
+                            TypeID= KudobadgesEntity.TypeID
                         };
                         Int64 result = IRecognitionManager.InsertKudosByHR(Entity);
                     }
@@ -1563,7 +1641,9 @@ namespace AbsiRecognitionAPI.API.Controllers
                             Point = KudobadgesEntity.Point,
                             ImageUrl = KudobadgesEntity.ImageUrl,
                             Message = KudobadgesEntity.Message,
-                            CCList = EmailList
+                            CCList = EmailList,
+                            DepartmentID = KudobadgesEntity.DepartmentID,
+                            TypeID = KudobadgesEntity.TypeID
                         };
                         Int64 result = IRecognitionManager.InsertKudosByManager(Entity);
                     }
@@ -1777,7 +1857,9 @@ namespace AbsiRecognitionAPI.API.Controllers
                             TemplateID = KudobadgesEntity.TemplateID,
                             ImageUrl = KudobadgesEntity.ImageUrl,
                             Message = KudobadgesEntity.Message,
-                            CCList = EmailList
+                            CCList = EmailList,
+                            DepartmentID = KudobadgesEntity.DepartmentID,
+                            TypeID = KudobadgesEntity.TypeID
                         };
                         Int64 result = IRecognitionManager.InsertCelebrationByHR(Entity);
                     }
@@ -1910,7 +1992,9 @@ namespace AbsiRecognitionAPI.API.Controllers
                             TemplateID = KudobadgesEntity.TemplateID,
                             ImageUrl = KudobadgesEntity.ImageUrl,
                             Message = KudobadgesEntity.Message,
-                            CCList = EmailList
+                            CCList = EmailList,
+                            DepartmentID= KudobadgesEntity.DepartmentID,
+                            TypeID= KudobadgesEntity.TypeID
                         };
                         Int64 result = IRecognitionManager.InsertCelebrationByManager(Entity);
                     }
@@ -2016,7 +2100,9 @@ namespace AbsiRecognitionAPI.API.Controllers
                             //Point = KudobadgesEntity.Point,
                             ImageUrl = KudobadgesEntity.ImageUrl,
                             Message = KudobadgesEntity.Message,
-                            CCList = EmailList
+                            CCList = EmailList,
+                            DepartmentID = KudobadgesEntity.DepartmentID,
+                            TypeID = KudobadgesEntity.TypeID
                         };
                         Int64 result = IRecognitionManager.InsertKudosByEmployee(Entity);
                     }
@@ -2079,7 +2165,9 @@ namespace AbsiRecognitionAPI.API.Controllers
                             TemplateID = KudobadgesEntity.TemplateID,
                             ImageUrl = KudobadgesEntity.ImageUrl,
                             Message = KudobadgesEntity.Message,
-                            CCList = EmailList
+                            CCList = EmailList,
+                            DepartmentID = KudobadgesEntity.DepartmentID,
+                            TypeID = KudobadgesEntity.TypeID
                         };
                         Int64 result = IRecognitionManager.InsertCelebrationByEmployee(Entity);
                     }

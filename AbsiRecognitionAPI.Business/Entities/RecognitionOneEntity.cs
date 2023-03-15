@@ -43,5 +43,12 @@ namespace AbsiRecognitionAPI.Business.Entities
         public string emailbody { get; set; }
 
 
+        public string emailTitle { get; set; }
+        public string emailBadgeURL { get; set; }
+        public string emailBgURL { get; set; }
+        public string emailPoints { get; set; }
+        public string emailContent { get; set; }
+       
+
     }
 }

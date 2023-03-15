@@ -36,6 +36,8 @@ namespace StaticWebAPI.Business.Entities
         public string CCList { get; set; }
 
         public DateTime Date { get; set; }
+        public Int64 DepartmentID { get; set; }
+        public Int64 TypeID { get; set; }
 
     }
 }
