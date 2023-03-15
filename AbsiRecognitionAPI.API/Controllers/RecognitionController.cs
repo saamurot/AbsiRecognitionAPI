@@ -79,25 +79,25 @@ namespace AbsiRecognitionAPI.API.Controllers
                 }
             }
 
-            var htmlString = "<p style='background-color: rgb(51, 51, 156); font-size: 20px; color: #fff; text-align: center; width:100% ;padding: 8px;'>\r\n" +
-              email.emailTitle+
-                "</p>\r\n\r\n<span style=\"text-align: justify;\"> <p style=\"text-align: justify;\">" +
-               email.emailContent +
-                "</p> " +
-                "\r\n</span>\r\n<span>\r\n        <img src=" +
-               email.emailBadgeURL +
-                "\r\n                style=' width: 50%; float: left; margin-left: 230px; '>\r\n        </span> <br>\r\n<p style='background-color: rgb(255, 213, 4); font-size: 20px; color: #fff; text-align: center; width:100% ;padding: 8px; float: right; margin-top:40px; margin-left:500px; '>" +
-                "Points " +
-               email.emailPoints +
-                "</p>" +
-                "\r\n<span ><img src=" +
-                email.emailBgURL +
-                "\r\n style='height:400px; width:750px; object-fit: fill;' ></span>\r\n";
+            //var htmlString = "<p style='background-color: rgb(51, 51, 156); font-size: 20px; color: #fff; text-align: center; width:100% ;padding: 8px;'>\r\n" +
+            //  email.emailTitle+
+            //    "</p>\r\n\r\n<span style=\"text-align: justify;\"> <p style=\"text-align: justify;\">" +
+            //   email.emailContent +
+            //    "</p> " +
+            //    "\r\n</span>\r\n<span>\r\n        <img src=" +
+            //   email.emailBadgeURL +
+            //    "\r\n                style=' width: 50%; float: left; margin-left: 230px; '>\r\n        </span> <br>\r\n<p style='background-color: rgb(255, 213, 4); font-size: 20px; color: #fff; text-align: center; width:100% ;padding: 8px; float: right; margin-top:40px; margin-left:500px; '>" +
+            //    "Points " +
+            //   email.emailPoints +
+            //    "</p>" +
+            //    "\r\n<span ><img src=" +
+            //    email.emailBgURL +
+            //    "\r\n style='height:400px; width:750px; object-fit: fill;' ></span>\r\n";
 
 
 
             msg.Subject = email.emailsubject;
-            msg.Body = htmlString;
+            msg.Body = email.emailContent;
             msg.IsBodyHtml = true;
             try
             {
