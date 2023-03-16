@@ -1417,14 +1417,15 @@ namespace AbsiRecognitionAPI.API.Controllers
 
         [HttpGet]
         [Route("Recognition/GetSpecialDaysOfStaff")]
-        public HttpResponseMessage GetSpecialDaysOfStaff(Int64 Month, Int64 Day)
+        public HttpResponseMessage GetSpecialDaysOfStaff(Int64 Supervisor, Int64 Month, Int64 Day)
         {
             HttpResponseMessage response;
             try
             {
                 var j = new
                 {
-                    Month=Month,
+                    Supervisor= Supervisor,
+                    Month =Month,
                     Day= Day
                 };
                 object res = IRecognitionManager.GetSpecialDaysOfStaff(j);
