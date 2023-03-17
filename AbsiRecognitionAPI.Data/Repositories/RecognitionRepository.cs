@@ -976,6 +976,18 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+
+        public IEnumerable<T> GetPointsByUserID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("Sproc_GetPointsByUserID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     } 
 
 }

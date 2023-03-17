@@ -118,6 +118,8 @@ namespace AbsiRecognitionAPI.Business.Interface
 
         IEnumerable<dynamic> GetDepartmentList();
         IEnumerable<dynamic> GetTypeList();
+        IEnumerable<dynamic> GetPointsByUserID(object filter);
+
 
     }
 }

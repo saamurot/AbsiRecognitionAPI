@@ -123,5 +123,7 @@ namespace AbsiRecognitionAPI.Data.Interface
 
         IEnumerable<T> GetDepartmentList<T>();
         IEnumerable<T> GetTypeList<T>();
+
+        IEnumerable<T> GetPointsByUserID<T>(object filter);
     }
 }

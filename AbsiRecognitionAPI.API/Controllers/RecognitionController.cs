@@ -2585,5 +2585,29 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+        [HttpGet]
+        [Route("Recognition/GetPointsByUserID")]
+        public HttpResponseMessage GetPointsByUserID(Int64 UserID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    UserID = UserID
+                };
+                object res = IRecognitionManager.GetPointsByUserID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetPointsByUserID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
     }
 }
