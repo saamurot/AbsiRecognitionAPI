@@ -1417,14 +1417,14 @@ namespace AbsiRecognitionAPI.API.Controllers
 
         [HttpGet]
         [Route("Recognition/GetSpecialDaysOfStaff")]
-        public HttpResponseMessage GetSpecialDaysOfStaff(Int64 Supervisor, Int64 Month, Int64 Day)
+        public HttpResponseMessage GetSpecialDaysOfStaff( Int64 Month, Int64 Day)
         {
             HttpResponseMessage response;
             try
             {
                 var j = new
                 {
-                    Supervisor= Supervisor,
+                  
                     Month =Month,
                     Day= Day
                 };
@@ -1436,6 +1436,32 @@ namespace AbsiRecognitionAPI.API.Controllers
                 if (log.IsErrorEnabled)
                 {
                     log.Error(" Error in GetSpecialDaysOfStaff in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetSpecialDaysOfManager")]
+        public HttpResponseMessage GetSpecialDaysOfManager(Int64 Supervisor, Int64 Month, Int64 Day)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    Supervisor = Supervisor,
+                    Month = Month,
+                    Day = Day
+                };
+                object res = IRecognitionManager.GetSpecialDaysOfManager(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetSpecialDaysOfManager in Recognition Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
