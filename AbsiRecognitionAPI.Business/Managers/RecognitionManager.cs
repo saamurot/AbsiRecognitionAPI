@@ -647,6 +647,17 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+        public IEnumerable<dynamic> GetSpecialDaysOfEmployee(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetSpecialDaysOfEmployee<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public IEnumerable<dynamic> GetStaffByManagerID(object filter)
         {

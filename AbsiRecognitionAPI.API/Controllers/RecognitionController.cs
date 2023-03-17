@@ -1467,6 +1467,32 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+        [HttpGet]
+        [Route("Recognition/GetSpecialDaysOfEmployee")]
+        public HttpResponseMessage GetSpecialDaysOfEmployee(Int64 ID, Int64 Month, Int64 Day)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID,
+                    Month = Month,
+                    Day = Day
+                };
+                object res = IRecognitionManager.GetSpecialDaysOfEmployee(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetSpecialDaysOfEmployee in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
 
         [HttpGet]
         [Route("Recognition/GetStaffByManagerID")]

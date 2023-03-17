@@ -549,6 +549,17 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+        public IEnumerable<T> GetSpecialDaysOfEmployee<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetSpecialDaysOfEmployee", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         public IEnumerable<T> GetStaffByManagerID<T>(object filter)
         {
