@@ -1221,14 +1221,14 @@ namespace AbsiRecognitionAPI.API.Controllers
 
         [HttpGet]
         [Route("Recognition/GetCelebrationTemplatesByID")]
-        public HttpResponseMessage GetCelebrationTemplatesByID(Int64 CategoryID)
+        public HttpResponseMessage GetCelebrationTemplatesByID(Int64 ID)
         {
             HttpResponseMessage response;
             try
             {
                 var j = new
                 {
-                    CategoryID = CategoryID
+                    ID = ID
                 };
                 object res = IRecognitionManager.GetCelebrationTemplatesByID(j);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
