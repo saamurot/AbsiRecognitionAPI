@@ -445,7 +445,17 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-
+        public IEnumerable<T> GetCelebrationTemplatesByCategoryID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetCelebrationTemplatesByCategoryID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public IEnumerable<T> GetCelebrationTemplatesCategoryByID<T>(object filter)
         {
             try

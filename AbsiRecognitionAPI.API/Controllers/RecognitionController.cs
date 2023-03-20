@@ -1243,6 +1243,30 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+        [HttpGet]
+        [Route("Recognition/GetCelebrationTemplatesByCategoryID")]
+        public HttpResponseMessage GetCelebrationTemplatesByCategoryID(Int64 CategoryID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    CategoryID =CategoryID
+                };
+                object res = IRecognitionManager.GetCelebrationTemplatesByCategoryID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetCelebrationTemplatesByCategoryID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
 
         [HttpGet]
         [Route("Recognition/GetCelebrationTemplatesCategoryByID")]

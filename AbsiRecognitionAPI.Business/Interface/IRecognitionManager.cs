@@ -54,6 +54,7 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> GetCelebrationTemplates();
         IEnumerable<dynamic> GetCelebrationTemplatesCategory();
         IEnumerable<dynamic> GetCelebrationTemplatesByID(object filter);
+        IEnumerable<dynamic> GetCelebrationTemplatesByCategoryID(object filter);
         IEnumerable<dynamic> GetCelebrationTemplatesCategoryByID(object filter);
         IEnumerable<dynamic> EnableCelebrationTemplates(object filter);
         IEnumerable<dynamic> DisableCelebrationTemplates(object filter);

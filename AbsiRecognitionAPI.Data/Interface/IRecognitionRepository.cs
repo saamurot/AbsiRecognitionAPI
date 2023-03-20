@@ -58,6 +58,7 @@ namespace AbsiRecognitionAPI.Data.Interface
         IEnumerable<T> GetCelebrationTemplates<T>();
         IEnumerable<T> GetCelebrationTemplatesCategory<T>();
         IEnumerable<T> GetCelebrationTemplatesByID<T>(object filter);
+        IEnumerable<T> GetCelebrationTemplatesByCategoryID<T>(object filter);
         IEnumerable<T> GetCelebrationTemplatesCategoryByID<T>(object filter);
 
         IEnumerable<T> EnableCelebrationTemplates<T>(object filter);

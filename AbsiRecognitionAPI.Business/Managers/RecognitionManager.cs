@@ -543,6 +543,17 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+        public IEnumerable<dynamic> GetCelebrationTemplatesByCategoryID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetCelebrationTemplatesByCategoryID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public IEnumerable<dynamic> GetCelebrationTemplatesCategoryByID(object filter)
         {
             try
