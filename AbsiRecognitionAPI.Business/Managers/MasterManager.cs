@@ -52,6 +52,18 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+
+        public IEnumerable<dynamic> GetStaffDetailsByUsernamePassword(object filter)
+        {
+            try
+            {
+                return IMasterRrepository.GetStaffDetailsByUsernamePassword<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public IEnumerable<dynamic> GetManagerPointsTransactionsByID(object filter)
         {
             try

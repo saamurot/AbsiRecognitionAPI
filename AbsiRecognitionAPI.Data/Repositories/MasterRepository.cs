@@ -44,6 +44,18 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+
+        public IEnumerable<T> GetStaffDetailsByUsernamePassword<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("[dbo].[SProc_GetStaffDetailsByUsernamePassword]", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public IEnumerable<T> GetManagerPointsTransactionsByID<T>(object filter)
         {
             try

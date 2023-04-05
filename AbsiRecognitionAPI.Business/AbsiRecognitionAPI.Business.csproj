@@ -48,6 +48,7 @@
     <Compile Include="Entities\KudobadgesEntity.cs" />
     <Compile Include="Entities\MasterEntity.cs" />
     <Compile Include="Entities\RecognitionOneEntity.cs" />
+    <Compile Include="Entities\TokenEntity.cs" />
     <Compile Include="Interface\IMasterManager.cs" />
     <Compile Include="Interface\IRecognitionManager.cs" />
     <Compile Include="Managers\MasterManager.cs" />

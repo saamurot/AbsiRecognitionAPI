@@ -15,6 +15,8 @@ using System.Linq;
 using System.IO;
 using System.Web.Hosting;
 using AbsiRecognitionAPI.Business.Entities;
+using System.Collections.Generic;
+using System.Net.Http.Headers;
 
 namespace AbsiRecognitionAPI.API.Controllers
 {
@@ -27,6 +29,75 @@ namespace AbsiRecognitionAPI.API.Controllers
         {
             this.IMasterManager = IMasterManager;
         }
+
+
+
+
+        [HttpPost]
+        [Route("Master/GetToken")]
+        public HttpResponseMessage Authenicate([FromBody] TokenEntity entity)
+        {
+            HttpResponseMessage response;
+            try
+            {
+
+                string EndPoint = WebConfigurationManager.AppSettings["EndPoint"];
+                //var authtoken = "";
+                var pairs = new List<KeyValuePair<string, string>>
+                    {
+                        new KeyValuePair<string, string>( "grant_type", "password" ),
+                        new KeyValuePair<string, string>( "username", entity.UserName ),
+                        new KeyValuePair<string, string> ( "Password", entity.Password )
+                    };
+                var content = new FormUrlEncodedContent(pairs);
+                ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
+                using (var client = new HttpClient())
+                {
+                    client.BaseAddress = new Uri(EndPoint);
+                    var token = client.PostAsync(WebConfigurationManager.AppSettings["AuthEndPoint"], content).Result;
+
+                    if (token.IsSuccessStatusCode)
+                    {
+                        var authtoken = token.Content.ReadAsAsync<dynamic>().Result.access_token;
+                        client.DefaultRequestHeaders.Authorization =
+                    new AuthenticationHeaderValue("Bearer", Convert.ToString(authtoken));
+                        var filter = new { UserName = entity.UserName, Password = entity.Password };
+                        MasterEntity MasterEntity;
+
+
+                        var result = client.GetAsync(WebConfigurationManager.AppSettings["GetStaffDetailsByUsernamePassword"] + "?UserName=" + entity.UserName + "&Password=" + entity.Password).Result;
+                        if (result.IsSuccessStatusCode)
+                        {
+                            response = Request.CreateResponse(HttpStatusCode.OK, result);
+
+                        }
+                        else
+                        {
+                            response = Request.CreateResponse(HttpStatusCode.BadRequest, "Invalid UserName/Password");
+                        }
+                    }
+                    else
+                    {
+                        response = Request.CreateResponse(HttpStatusCode.InternalServerError, "Cannot generate Token");
+                    }
+                }
+                //response = Request.CreateResponse(HttpStatusCode.OK, authtoken);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error("Post User Error:" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+
+
+
+
         [HttpGet]
         [Route("Master/GetManagerPointsMaster")]
         public HttpResponseMessage GetManagerPointsMaster()
@@ -86,6 +157,32 @@ namespace AbsiRecognitionAPI.API.Controllers
                 if (log.IsErrorEnabled)
                 {
                     log.Error(" Error in GetManagerPointsMasterByID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+
+        [HttpGet]
+        [Route("Master/GetStaffDetailsByUsernamePassword")]
+        public HttpResponseMessage GetStaffDetailsByUsernamePassword(string UserName, string Password)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    UserName = UserName,
+                    Password= Password
+                };
+                object res = IMasterManager.GetStaffDetailsByUsernamePassword(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetStaffDetailsByUsernamePassword in Recognition Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }

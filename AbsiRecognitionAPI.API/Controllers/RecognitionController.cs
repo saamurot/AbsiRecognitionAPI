@@ -44,60 +44,43 @@ namespace AbsiRecognitionAPI.API.Controllers
         public HttpResponseMessage sendemail(RecognitionOneEntity email)
         {
             HttpResponseMessage response;
+            //Configuration config = WebConfigurationManager.OpenWebConfiguration(HttpContext.Current.Request.ApplicationPath);
+            //MailSettingsSectionGroup settings = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings"); var client = new SmtpClient("smtp.gmail.com", 587)
+            //{
+            //    Credentials = new NetworkCredential("digioffice@asticom.com.ph", "wedjhntljwbilpsd"),
+            //    EnableSsl = true
+            //};
+            //System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
+            //msg.From = new MailAddress("digioffice@asticom.com.ph");
+
 
             Configuration config = WebConfigurationManager.OpenWebConfiguration(HttpContext.Current.Request.ApplicationPath);
             MailSettingsSectionGroup settings = (MailSettingsSectionGroup)config.GetSectionGroup("system.net/mailSettings");
 
-            //var client = new SmtpClient("smtp.office365.com", 587)
-            //{
-            //    Credentials = new NetworkCredential("mamata@amazeinc.in", "bluepink@123"),
-            //    EnableSsl = true
-            //};
-
-            var client = new SmtpClient("smtp.gmail.com", 587)
+            var client = new SmtpClient("smtp.office365.com", 587)
             {
-                Credentials = new NetworkCredential("digioffice@asticom.com.ph", "wedjhntljwbilpsd"),
+                Credentials = new NetworkCredential("mamata@amazeinc.in", "bluepink@123"),
                 EnableSsl = true
             };
             System.Net.Mail.MailMessage msg = new System.Net.Mail.MailMessage();
-            msg.From = new MailAddress("digioffice@asticom.com.ph");
-           // msg.To.Add(new MailAddress(email.emailto));
+            msg.From = new MailAddress("mamata@amazeinc.in");
 
 
             string[] ToMuliId = email.emailto.Split(',');
             foreach (string ToEMailId in ToMuliId)
             {
-                msg.To.Add(new MailAddress(ToEMailId)); //adding multiple TO Email Id  
-            }
-
-            if(email.emailCC!= "")
+                msg.To.Add(new MailAddress(ToEMailId)); //adding multiple TO Email Id  
+            }
+            if (email.emailCC != "")
             {
                 string[] CCId = email.emailCC.Split(',');
                 foreach (string CCEmail in CCId)
                 {
-                    msg.CC.Add(new MailAddress(CCEmail)); //Adding Multiple CC email Id  
-                }
+                    msg.CC.Add(new MailAddress(CCEmail)); //Adding Multiple CC email Id  
+                }
             }
-
-            var htmlString = "<p style='background-color: rgb(51, 51, 156); font-size: 20px; color: #fff; text-align: center; width:100% ;padding: 8px;'>\r\n" +
-              email.emailTitle+
-                "</p>\r\n\r\n<span style=\"text-align: justify;\"> <p style=\"text-align: justify;\">" +
-               email.emailContent +
-                "</p> " +
-                "\r\n</span>\r\n<span>\r\n        <img src=" +
-               email.emailBadgeURL +
-                "\r\n                style=' width: 50%; float: left; margin-left: 230px; '>\r\n        </span> <br>\r\n<p style='background-color: rgb(255, 213, 4); font-size: 20px; color: #fff; text-align: center; width:100% ;padding: 8px; float: right; margin-top:40px; margin-left:500px; '>" +
-                "Points " +
-               email.emailPoints +
-                "</p>" +
-                "\r\n<span ><img src=" +
-                email.emailBgURL +
-                "\r\n style='height:400px; width:750px; object-fit: fill;' ></span>\r\n";
-
-
-
             msg.Subject = email.emailsubject;
-            msg.Body = htmlString;
+            msg.Body = email.emailContent;
             msg.IsBodyHtml = true;
             try
             {
