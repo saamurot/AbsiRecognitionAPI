@@ -54,6 +54,7 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> GetCelebrationTemplates();
         IEnumerable<dynamic> GetCelebrationTemplatesCategory();
         IEnumerable<dynamic> GetCelebrationTemplatesByID(object filter);
+        IEnumerable<dynamic> GetCelebrationTemplatesByCategoryID(object filter);
         IEnumerable<dynamic> GetCelebrationTemplatesCategoryByID(object filter);
         IEnumerable<dynamic> EnableCelebrationTemplates(object filter);
         IEnumerable<dynamic> DisableCelebrationTemplates(object filter);
@@ -63,6 +64,8 @@ namespace AbsiRecognitionAPI.Business.Interface
         Int64 DeleteCelebrationTemplates(object filter);
         Int64 DeleteCelebrationTemplatesCategory(object filter);
         IEnumerable<dynamic> GetSpecialDaysOfStaff(object filter);
+        IEnumerable<dynamic> GetSpecialDaysOfManager(object filter);
+        IEnumerable<dynamic> GetSpecialDaysOfEmployee(object filter);
         IEnumerable<dynamic> GetStaffByManagerID(object filter);
 
         //------------------
@@ -117,6 +120,8 @@ namespace AbsiRecognitionAPI.Business.Interface
 
         IEnumerable<dynamic> GetDepartmentList();
         IEnumerable<dynamic> GetTypeList();
+        IEnumerable<dynamic> GetPointsByUserID(object filter);
+
 
     }
 }

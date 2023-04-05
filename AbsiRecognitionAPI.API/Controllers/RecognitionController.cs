@@ -1226,6 +1226,30 @@ namespace AbsiRecognitionAPI.API.Controllers
             }
             return response;
         }
+        [HttpGet]
+        [Route("Recognition/GetCelebrationTemplatesByCategoryID")]
+        public HttpResponseMessage GetCelebrationTemplatesByCategoryID(Int64 CategoryID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    CategoryID =CategoryID
+                };
+                object res = IRecognitionManager.GetCelebrationTemplatesByCategoryID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetCelebrationTemplatesByCategoryID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
 
         [HttpGet]
         [Route("Recognition/GetCelebrationTemplatesCategoryByID")]
@@ -1400,14 +1424,15 @@ namespace AbsiRecognitionAPI.API.Controllers
 
         [HttpGet]
         [Route("Recognition/GetSpecialDaysOfStaff")]
-        public HttpResponseMessage GetSpecialDaysOfStaff(Int64 Month, Int64 Day)
+        public HttpResponseMessage GetSpecialDaysOfStaff( Int64 Month, Int64 Day)
         {
             HttpResponseMessage response;
             try
             {
                 var j = new
                 {
-                    Month=Month,
+                  
+                    Month =Month,
                     Day= Day
                 };
                 object res = IRecognitionManager.GetSpecialDaysOfStaff(j);
@@ -1418,6 +1443,58 @@ namespace AbsiRecognitionAPI.API.Controllers
                 if (log.IsErrorEnabled)
                 {
                     log.Error(" Error in GetSpecialDaysOfStaff in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetSpecialDaysOfManager")]
+        public HttpResponseMessage GetSpecialDaysOfManager(Int64 Supervisor, Int64 Month, Int64 Day)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    Supervisor = Supervisor,
+                    Month = Month,
+                    Day = Day
+                };
+                object res = IRecognitionManager.GetSpecialDaysOfManager(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetSpecialDaysOfManager in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetSpecialDaysOfEmployee")]
+        public HttpResponseMessage GetSpecialDaysOfEmployee(Int64 ID, Int64 Month, Int64 Day)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    ID = ID,
+                    Month = Month,
+                    Day = Day
+                };
+                object res = IRecognitionManager.GetSpecialDaysOfEmployee(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetSpecialDaysOfEmployee in Recognition Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }
@@ -2536,6 +2613,30 @@ namespace AbsiRecognitionAPI.API.Controllers
                 if (log.IsErrorEnabled)
                 {
                     log.Error(" Error in GetTypeList in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetPointsByUserID")]
+        public HttpResponseMessage GetPointsByUserID(Int64 UserID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    UserID = UserID
+                };
+                object res = IRecognitionManager.GetPointsByUserID(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetPointsByUserID in Recognition Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }

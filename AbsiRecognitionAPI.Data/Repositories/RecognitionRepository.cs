@@ -445,7 +445,17 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
-
+        public IEnumerable<T> GetCelebrationTemplatesByCategoryID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetCelebrationTemplatesByCategoryID", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public IEnumerable<T> GetCelebrationTemplatesCategoryByID<T>(object filter)
         {
             try
@@ -532,6 +542,28 @@ namespace AbsiRecognitionAPI.Data.Repositories
             try
             {
                 return db.Query<T>("SProc_GetSpecialDaysOfStaff", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> GetSpecialDaysOfManager<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("Sproc_GetSpecialDaysOfManager", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> GetSpecialDaysOfEmployee<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetSpecialDaysOfEmployee", filter, commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {
@@ -959,6 +991,18 @@ namespace AbsiRecognitionAPI.Data.Repositories
             try
             {
                 return db.Query<T>("SProc_GetDepartmentList", commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<T> GetPointsByUserID<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("Sproc_GetPointsByUserID", filter, commandType: CommandType.StoredProcedure);
             }
             catch (Exception ex)
             {

@@ -543,6 +543,17 @@ namespace AbsiRecognitionAPI.Business.Managers
                 throw ex;
             }
         }
+        public IEnumerable<dynamic> GetCelebrationTemplatesByCategoryID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetCelebrationTemplatesByCategoryID<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public IEnumerable<dynamic> GetCelebrationTemplatesCategoryByID(object filter)
         {
             try
@@ -630,6 +641,28 @@ namespace AbsiRecognitionAPI.Business.Managers
             try
             {
                 return IRecognitionRepository.GetSpecialDaysOfStaff<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> GetSpecialDaysOfManager(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetSpecialDaysOfManager<dynamic>(filter);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<dynamic> GetSpecialDaysOfEmployee(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetSpecialDaysOfEmployee<dynamic>(filter);
             }
             catch (Exception ex)
             {
@@ -1115,6 +1148,18 @@ namespace AbsiRecognitionAPI.Business.Managers
             try
             {
                 return IRecognitionRepository.GetDepartmentList<dynamic>();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public IEnumerable<dynamic> GetPointsByUserID(object filter)
+        {
+            try
+            {
+                return IRecognitionRepository.GetPointsByUserID<dynamic>(filter);
             }
             catch (Exception ex)
             {

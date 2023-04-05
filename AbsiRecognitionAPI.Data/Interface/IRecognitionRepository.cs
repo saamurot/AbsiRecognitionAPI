@@ -58,6 +58,7 @@ namespace AbsiRecognitionAPI.Data.Interface
         IEnumerable<T> GetCelebrationTemplates<T>();
         IEnumerable<T> GetCelebrationTemplatesCategory<T>();
         IEnumerable<T> GetCelebrationTemplatesByID<T>(object filter);
+        IEnumerable<T> GetCelebrationTemplatesByCategoryID<T>(object filter);
         IEnumerable<T> GetCelebrationTemplatesCategoryByID<T>(object filter);
 
         IEnumerable<T> EnableCelebrationTemplates<T>(object filter);
@@ -69,6 +70,8 @@ namespace AbsiRecognitionAPI.Data.Interface
         Int64 DeleteCelebrationTemplates(object filter);
         Int64 DeleteCelebrationTemplatesCategory(object filter);
         IEnumerable<T> GetSpecialDaysOfStaff<T>(object filter);
+        IEnumerable<T> GetSpecialDaysOfManager<T>(object filter);
+        IEnumerable<T> GetSpecialDaysOfEmployee<T>(object filter);
         IEnumerable<T> GetStaffByManagerID<T>(object filter);
 
 
@@ -122,5 +125,7 @@ namespace AbsiRecognitionAPI.Data.Interface
 
         IEnumerable<T> GetDepartmentList<T>();
         IEnumerable<T> GetTypeList<T>();
+
+        IEnumerable<T> GetPointsByUserID<T>(object filter);
     }
 }
