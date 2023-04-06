@@ -127,5 +127,10 @@ namespace AbsiRecognitionAPI.Data.Interface
         IEnumerable<T> GetTypeList<T>();
 
         IEnumerable<T> GetPointsByUserID<T>(object filter);
+
+        IEnumerable<T> GetNewJoineeByDateManager<T>(object filter);
+        IEnumerable<T> GetTodaysBirthDayManager<T>(object filter);
+        IEnumerable<T> GetTodaysMarriageAnniversaryManager<T>(object filter);
+        IEnumerable<T> GetTodaysWorkAnniversaryManager<T>(object filter);
     }
 }

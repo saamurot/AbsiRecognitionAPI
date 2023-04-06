@@ -1009,6 +1009,51 @@ namespace AbsiRecognitionAPI.Data.Repositories
                 throw ex;
             }
         }
+        public IEnumerable<T> GetNewJoineeByDateManager<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("Sproc_GetNewJoineeByDateManager", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> GetTodaysBirthDayManager<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("Sproc_GetTodaysBirthDayManager", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
+        public IEnumerable<T> GetTodaysMarriageAnniversaryManager<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("Sproc_GetTodaysMarriageAnniversaryManager", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public IEnumerable<T> GetTodaysWorkAnniversaryManager<T>(object filter)
+        {
+            try
+            {
+                return db.Query<T>("SProc_GetTodaysWorkAnniversaryManager", filter, commandType: CommandType.StoredProcedure);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     } 
 
 }

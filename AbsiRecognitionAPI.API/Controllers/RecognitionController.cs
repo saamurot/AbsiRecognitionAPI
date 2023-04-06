@@ -2475,14 +2475,15 @@ namespace AbsiRecognitionAPI.API.Controllers
 
         [HttpGet]
         [Route("Recognition/GetNewJoineeByDate")]
-        public HttpResponseMessage GetNewJoineeByDate(DateTime Date)
+        public HttpResponseMessage GetNewJoineeByDate(DateTime StartDate, DateTime EndDate)
         {
             HttpResponseMessage response;
             try
             {
                 var j = new
                 {
-                    Date = Date
+                    StartDate = StartDate,
+                    EndDate= EndDate
                 };
                 object res = IRecognitionManager.GetNewJoineeByDate(j);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
@@ -2499,15 +2500,15 @@ namespace AbsiRecognitionAPI.API.Controllers
         }
         [HttpGet]
         [Route("Recognition/GetTodaysBirthDay")]
-        public HttpResponseMessage GetTodaysBirthDay(Int64 Day,Int64 Month)
+        public HttpResponseMessage GetTodaysBirthDay(DateTime StartDate, DateTime EndDate)
         {
             HttpResponseMessage response;
             try
             {
                 var D = new
                 {
-                    Day = Day,
-                    Month= Month
+                    StartDate = StartDate,
+                    EndDate = EndDate
                 };
                 object res = IRecognitionManager.GetTodaysBirthDay(D);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
@@ -2526,15 +2527,15 @@ namespace AbsiRecognitionAPI.API.Controllers
 
         [HttpGet]
         [Route("Recognition/GetTodaysMarriageAnniversary")]
-        public HttpResponseMessage GetTodaysMarriageAnniversary(Int64 Day, Int64 Month)
+        public HttpResponseMessage GetTodaysMarriageAnniversary(DateTime StartDate, DateTime EndDate)
         {
             HttpResponseMessage response;
             try
             {
                 var D = new
                 {
-                    Day = Day,
-                    Month=Month
+                    StartDate = StartDate,
+                    EndDate = EndDate
                 };
                 object res = IRecognitionManager.GetTodaysMarriageAnniversary(D);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
@@ -2553,15 +2554,15 @@ namespace AbsiRecognitionAPI.API.Controllers
 
         [HttpGet]
         [Route("Recognition/GetTodaysWorkAnniversary")]
-        public HttpResponseMessage GetTodaysWorkAnniversary(Int64 Day, Int64 Month)
+        public HttpResponseMessage GetTodaysWorkAnniversary(DateTime StartDate, DateTime EndDate)
         {
             HttpResponseMessage response;
             try
             {
                 var D = new
                 {
-                    Day = Day,
-                    Month = Month
+                    StartDate = StartDate,
+                    EndDate = EndDate
                 };
                 object res = IRecognitionManager.GetTodaysWorkAnniversary(D);
                 response = Request.CreateResponse(HttpStatusCode.OK, res);
@@ -2637,6 +2638,114 @@ namespace AbsiRecognitionAPI.API.Controllers
                 if (log.IsErrorEnabled)
                 {
                     log.Error(" Error in GetPointsByUserID in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetNewJoineeByDateManager")]
+        public HttpResponseMessage GetNewJoineeByDateManager(DateTime StartDate,DateTime EndDate,Int64 ManagerID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    StartDate = StartDate,
+                    EndDate= EndDate,
+                    ManagerID= ManagerID
+
+                };
+                object res = IRecognitionManager.GetNewJoineeByDateManager(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetNewJoineeByDateManager in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetTodaysBirthDayManager")]
+        public HttpResponseMessage GetTodaysBirthDayManager(DateTime StartDate, DateTime EndDate, Int64 ManagerID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    StartDate = StartDate,
+                    EndDate = EndDate,
+                    ManagerID = ManagerID
+
+                };
+                object res = IRecognitionManager.GetTodaysBirthDayManager(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetTodaysBirthDayManager in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetTodaysMarriageAnniversaryManager")]
+        public HttpResponseMessage GetTodaysMarriageAnniversaryManager(DateTime StartDate, DateTime EndDate, Int64 ManagerID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    StartDate = StartDate,
+                    EndDate = EndDate,
+                    ManagerID = ManagerID
+
+                };
+                object res = IRecognitionManager.GetTodaysMarriageAnniversaryManager(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetTodaysMarriageAnniversaryManager in Recognition Controller" + ex);
+                }
+                response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
+            }
+            return response;
+        }
+        [HttpGet]
+        [Route("Recognition/GetTodaysWorkAnniversaryManager")]
+        public HttpResponseMessage GetTodaysWorkAnniversaryManager(DateTime StartDate, DateTime EndDate, Int64 ManagerID)
+        {
+            HttpResponseMessage response;
+            try
+            {
+                var j = new
+                {
+                    StartDate = StartDate,
+                    EndDate = EndDate,
+                    ManagerID = ManagerID
+
+                };
+                object res = IRecognitionManager.GetTodaysWorkAnniversaryManager(j);
+                response = Request.CreateResponse(HttpStatusCode.OK, res);
+            }
+            catch (Exception ex)
+            {
+                if (log.IsErrorEnabled)
+                {
+                    log.Error(" Error in GetTodaysWorkAnniversaryManager in Recognition Controller" + ex);
                 }
                 response = Request.CreateErrorResponse(HttpStatusCode.InternalServerError, ex.Message);
             }

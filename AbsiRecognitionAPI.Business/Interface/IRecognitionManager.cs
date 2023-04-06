@@ -122,6 +122,9 @@ namespace AbsiRecognitionAPI.Business.Interface
         IEnumerable<dynamic> GetTypeList();
         IEnumerable<dynamic> GetPointsByUserID(object filter);
 
-
+        IEnumerable<dynamic> GetNewJoineeByDateManager(object filter);
+        IEnumerable<dynamic> GetTodaysBirthDayManager(object filter);
+        IEnumerable<dynamic> GetTodaysMarriageAnniversaryManager(object filter);
+        IEnumerable<dynamic> GetTodaysWorkAnniversaryManager(object filter);
     }
 }
